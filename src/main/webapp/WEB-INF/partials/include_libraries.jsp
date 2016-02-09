@@ -1,8 +1,16 @@
 <!-- Include AE StyleSheet -->
 <link rel="stylesheet" type="text/css" href="/vsportal/src/main/webapp/resources/css/vsportal.css">
 
+<!-- Include JSTL Functions/Library -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!-- Include jQuery 2.2.0 -->
 <script src="/vsportal/src/main/webapp/resources/js/jquery-2.2.0.min.js"></script>
+
+<!-- Include Bootstrap Date-Time Picker -->
+<script src="/vsportal/src/main/webapp/resources/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/vsportal/src/main/webapp/resources/css/bootstrap-datetimepicker.min.css">
 
 <!-- Include Bootstrap 3.3.6 -->
 <script src="/vsportal/src/main/webapp/resources/js/bootstrap-3.3.6.min.js"></script>
