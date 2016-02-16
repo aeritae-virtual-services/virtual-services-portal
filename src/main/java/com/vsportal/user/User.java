@@ -1,5 +1,9 @@
 package com.vsportal.user;
 
+import java.sql.Date;
+
+import com.vsportal.company.Company;
+
 public class User {
 	
 	private int id;
@@ -7,18 +11,25 @@ public class User {
 	private String last_name;
 	private String phone;
 	private String email;
-	private int companyID;
+	private Company company;
 	private int roleID;
+	private Date created;
+	private User created_by;
+	private Date updated;
+	private User updated_by;
 	
+	
+
+
 	public User(){
 	}
 	
-	public User(String first_name, String last_name, String phone, String email, int companyID, int roleID){
+	public User(String first_name, String last_name, String phone, String email, Company company, int roleID){
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.phone = phone;
 		this.email = email;
-		this.companyID = companyID;
+		this.company = company;
 		this.roleID = roleID;
 	}
 	
@@ -60,12 +71,12 @@ public class User {
 		this.email = email;
 	}
 
-	public int getCompanyID() {
-		return companyID;
+	public Company getcompany() {
+		return company;
 	}
 
-	public void setCompanyID(int companyID) {
-		this.companyID = companyID;
+	public void setcompany(Company company) {
+		this.company = company;
 	}
 
 	public int getRoleID() {
