@@ -1,22 +1,36 @@
 package com.vsportal.session;
 
+import com.vsportal.*;
+import com.vsportal.user.User;
+import com.vsportal.user.UserDAO;
+
 public class Login {
-	private String username;
-	private String password;
+	private User user;
 	
-	public void setUsername(String userName) {
-		this.username = userName;
+	public Login() {
+		this.user = null;
 	}
 	
-	public String getUsername() {
-		return this.username;
+	public Login(String name, String password) {
+		this.user = null;
+		
+		UserDAO userDAO = new UserDAO();
+		User user = userDAO.getUserByUsername(name);
+		
+		if (userDAO.validatePassword(user.getId(), password)) {
+			this.user = user;
+		}
 	}
 	
-	public void setPassword(String pw) {
-		this.password = pw;
+	public boolean isValid() {
+		if (this.user != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public String getPassword() {
-		return this.password;
+	public User getUser() {
+		return this.user;
 	}
 }
