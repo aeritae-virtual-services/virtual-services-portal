@@ -1,7 +1,5 @@
 package com.vsportal.session;
 
-import java.sql.ResultSet;
-
 import com.vsportal.*;
 import com.vsportal.user.User;
 import com.vsportal.user.UserDAO;
@@ -19,7 +17,7 @@ public class Login {
 		UserDAO userDAO = new UserDAO();
 		User user = userDAO.getUserByUsername(name);
 		
-		if (user.validatePassword(password))) {
+		if (userDAO.validatePassword(user.getId(), password)) {
 			this.user = user;
 		}
 	}

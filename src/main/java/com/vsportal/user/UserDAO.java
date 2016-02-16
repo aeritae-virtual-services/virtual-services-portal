@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import com.vsportal.jdbc.ConnectionPool;
 import com.vsportal.jdbc.DBUtil;
+import com.vsportal.session.PasswordHelper;
+import com.vsportal.session.SystemUnavailableException;
 
 public class UserDAO {
     
@@ -15,7 +17,7 @@ public class UserDAO {
 	    Connection connection = pool.getConnection();
 	    PreparedStatement ps = null;
 	    ResultSet rs = null;
-	    User user;
+	    User user = null;
 		String query = "SELECT * from User WHERE username = ?";
 		
 		try {        
@@ -38,7 +40,87 @@ public class UserDAO {
 		return user;
 	}
     
+    public boolean validatePassword(int userId, String pw) {
+    	boolean isSuccessful = false;
+    	
+    	String encodedpw = "";
+    	String storedpw = "";
+    	
+    	try {
+    		encodedpw = com.vsportal.session.PasswordHelper.getInstance().encrypt(pw);
+    	} catch(SystemUnavailableException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	
+    	ConnectionPool pool = ConnectionPool.getInstance();
+	    Connection connection = pool.getConnection();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    
+		String query = "SELECT password from User WHERE id = ?";
+		
+		try {        
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+            
+            if(rs.next()) {
+            	storedpw = rs.getString("password");
+            } 
+            
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+		
+		if(encodedpw.matches(storedpw)) {
+    		isSuccessful = true;
+    	}
+		
+    	return isSuccessful;
+    }
     
-    
-    
+    public boolean setPassword(int userId, String pw) {
+    	boolean isSuccessful = false;
+    	
+    	String encodedpw = "";
+    	
+    	try {
+    		encodedpw = com.vsportal.session.PasswordHelper.getInstance().encrypt(pw);
+    	} catch(SystemUnavailableException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	
+    	ConnectionPool pool = ConnectionPool.getInstance();
+	    Connection connection = pool.getConnection();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    
+		String query = "UPDATE User SET password = ? WHERE user_id = ?";
+		
+		try {        
+            ps = connection.prepareStatement(query);
+            ps.setString(1, encodedpw);
+            ps.setInt(2, userId);
+            int success = ps.executeUpdate();
+            
+            if(success == 1) {
+            	isSuccessful = true;
+            }
+            
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    	
+    	return isSuccessful;
+    }
 }
