@@ -1,8 +1,10 @@
 package com.vsportal.user;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import com.vsportal.company.Company;
+import com.vsportal.role.Role;
 
 public class User {
 	
@@ -17,6 +19,8 @@ public class User {
 	private User created_by;
 	private Date updated;
 	private User updated_by;
+	private ArrayList group;
+	private Role role;
 	
 	
 
@@ -86,6 +90,48 @@ public class User {
 	public void setRoleID(int roleID) {
 		this.roleID = roleID;
 	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public User getCreated_by() {
+		return created_by;
+	}
+
+	public void setCreated_by(User created_by) {
+		this.created_by = created_by;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public User getUpdated_by() {
+		return updated_by;
+	}
+
+	public void setUpdated_by(User updated_by) {
+		this.updated_by = updated_by;
+	}
+
+	public ArrayList getGroup() {
+		return group;
+	}
+
+	public void setGroup(ArrayList group) {
+		this.group = group;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
+	
 	
 	
 
