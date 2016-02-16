@@ -9,16 +9,16 @@ import com.vsportal.role.Role;
 public class User {
 	
 	private int id;
-	private String first_name;
-	private String last_name;
+	private String username;
+	private String firstName;
+	private String lastName;
 	private String phone;
 	private String email;
 	private Company company;
-	private int roleID;
 	private Date created;
-	private User created_by;
+	private User createdBy;
 	private Date updated;
-	private User updated_by;
+	private User updatedBy;
 	private ArrayList group;
 	private Role role;
 	
@@ -28,35 +28,43 @@ public class User {
 	public User(){
 	}
 	
-	public User(String first_name, String last_name, String phone, String email, Company company, int roleID){
-		this.first_name = first_name;
-		this.last_name = last_name;
+	public User(String firstName, String lastName, String phone, String email, Company company){
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.phone = phone;
 		this.email = email;
 		this.company = company;
-		this.roleID = roleID;
+		this.role = role;
 	}
 	
 	
 
-	public String getFirst_name() {
-		return first_name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getfirstName() {
+		return firstName;
+	}
+
+	public void setfirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getlastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhone() {
@@ -83,36 +91,29 @@ public class User {
 		this.company = company;
 	}
 
-	public int getRoleID() {
-		return roleID;
-	}
-
-	public void setRoleID(int roleID) {
-		this.roleID = roleID;
-	}
 
 	public Date getCreated() {
 		return created;
 	}
 
-	public User getCreated_by() {
-		return created_by;
+	public User getcreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(User created_by) {
-		this.created_by = created_by;
+	public void setcreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public Date getUpdated() {
 		return updated;
 	}
 
-	public User getUpdated_by() {
-		return updated_by;
+	public User getupdatedBy() {
+		return updatedBy;
 	}
 
-	public void setUpdated_by(User updated_by) {
-		this.updated_by = updated_by;
+	public void setupdatedBy(User updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public ArrayList getGroup() {
@@ -130,6 +131,8 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
+	
 	
 	
 	

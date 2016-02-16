@@ -8,25 +8,25 @@ public class Company {
 	
 	private int id;
 	private String name;
-	private User primary_contact;
+	private User primaryContact;
 	private String url;
 	private String address;
-	private User queue_manager;
+	private User queueManager;
 	private boolean migration;
 	private Date created;
-	private User created_by;
+	private User createdBy;
 	private Date updated;
-	private User updated_by;
+	private User updatedBy;
 	
 	public Company(){
 	}
 	
-	public Company(String name, User primary_contact, String url, String address, User queue_manager, boolean migration){
+	public Company(String name, User primaryContact, String url, String address, User queueManager, boolean migration){
 		this.name = name;
-		this.primary_contact = primary_contact;
+		this.primaryContact = primaryContact;
 		this.url = url;
 		this.address = address;
-		this.queue_manager = queue_manager;
+		this.queueManager = queueManager;
 		this.migration = migration;
 	}
 
@@ -41,12 +41,12 @@ public class Company {
 		this.name = name;
 	}
 
-	public User getPrimary_contact() {
-		return primary_contact;
+	public User getprimaryContact() {
+		return primaryContact;
 	}
 
-	public void setPrimary_contact(User primary_contact) {
-		this.primary_contact = primary_contact;
+	public void setprimaryContact(User primaryContact) {
+		this.primaryContact = primaryContact;
 	}
 
 	public String getUrl() {
@@ -65,12 +65,12 @@ public class Company {
 		this.address = address;
 	}
 
-	public User getQueue_manager() {
-		return queue_manager;
+	public User getqueueManager() {
+		return queueManager;
 	}
 
-	public void setQueue_manager(User queue_manager) {
-		this.queue_manager = queue_manager;
+	public void setqueueManager(User queueManager) {
+		this.queueManager = queueManager;
 	}
 
 	public boolean isMigration() {
@@ -89,12 +89,12 @@ public class Company {
 		this.created = created;
 	}
 
-	public User getCreated_by() {
-		return created_by;
+	public User getcreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(User created_by) {
-		this.created_by = created_by;
+	public void setcreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public Date getUpdated() {
@@ -105,12 +105,12 @@ public class Company {
 		this.updated = updated;
 	}
 
-	public User getUpdated_by() {
-		return updated_by;
+	public User getupdatedBy() {
+		return updatedBy;
 	}
 
-	public void setUpdated_by(User updated_by) {
-		this.updated_by = updated_by;
+	public void setupdatedBy(User updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 	
 	

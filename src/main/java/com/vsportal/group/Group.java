@@ -8,9 +8,9 @@ public class Group {
 	private int id;
 	private String name;
 	private Date created;
-	private User created_by;
+	private User createdBy;
 	private Date updated;
-	private User updated_by;
+	private User updatedBy;
 	
 	public Group(){
 	}
@@ -31,23 +31,23 @@ public class Group {
 		return created;
 	}
 
-	public User getCreated_by() {
-		return created_by;
+	public User getcreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(User created_by) {
-		this.created_by = created_by;
+	public void setcreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public Date getUpdated() {
 		return updated;
 	}
 
-	public User getUpdated_by() {
-		return updated_by;
+	public User getupdatedBy() {
+		return updatedBy;
 	}
 
-	public void setUpdated_by(User updated_by) {
-		this.updated_by = updated_by;
+	public void setupdatedBy(User updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 }
