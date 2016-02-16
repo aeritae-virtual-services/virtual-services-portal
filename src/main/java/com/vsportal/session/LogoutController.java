@@ -1,5 +1,5 @@
 package com.vsportal.session;
 
-public class SessionHelper {
+public class LogoutController {
 
 }
