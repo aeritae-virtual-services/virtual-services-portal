@@ -40,4 +40,8 @@ public class ConnectionPool {
 			sqle.printStackTrace();
 		}
 	}
+	
+	public DataSource getDataSource(){
+		return dataSource;
+	}
 }

@@ -30,9 +30,14 @@ public class Company {
 		this.migration = migration;
 	}
 
-	public int getID(){
+	public int getId() {
 		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -41,11 +46,11 @@ public class Company {
 		this.name = name;
 	}
 
-	public User getprimaryContact() {
+	public User getPrimaryContact() {
 		return primaryContact;
 	}
 
-	public void setprimaryContact(User primaryContact) {
+	public void setPrimaryContact(User primaryContact) {
 		this.primaryContact = primaryContact;
 	}
 
@@ -65,11 +70,11 @@ public class Company {
 		this.address = address;
 	}
 
-	public User getqueueManager() {
+	public User getQueueManager() {
 		return queueManager;
 	}
 
-	public void setqueueManager(User queueManager) {
+	public void setQueueManager(User queueManager) {
 		this.queueManager = queueManager;
 	}
 
@@ -89,11 +94,11 @@ public class Company {
 		this.created = created;
 	}
 
-	public User getcreatedBy() {
+	public User getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setcreatedBy(User createdBy) {
+	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -105,14 +110,13 @@ public class Company {
 		this.updated = updated;
 	}
 
-	public User getupdatedBy() {
+	public User getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setupdatedBy(User updatedBy) {
+	public void setUpdatedBy(User updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	
 	
 
 }

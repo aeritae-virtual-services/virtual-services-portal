@@ -1,6 +1,7 @@
 package com.vsportal.user;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +10,27 @@ import com.vsportal.jdbc.ConnectionPool;
 import com.vsportal.jdbc.DBUtil;
 import com.vsportal.session.PasswordHelper;
 import com.vsportal.session.SystemUnavailableException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDAO {
+	
+	public void insertUser(User user){
+		String sql = "INSERT INTO User (first_name, last_name, phone_number, email, company, role)" +
+				"VALUES (?,?,?,?,?,?)";
+		
+		ConnectionPool pool = ConnectionPool.getInstance();
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
+		
+		jdbcTemplate.update(sql, new Object[]{user.getfirstName(), user.getlastName(), user.getPhone(),
+				user.getEmail(),user.getcompany(), user.getRole()});
+		
+		
+	}
+	
+	public void updateUser(User user){
+		
+	}
     
 	public User getUserByUsername(String username) {
 		ConnectionPool pool = ConnectionPool.getInstance();
@@ -18,6 +38,7 @@ public class UserDAO {
 	    PreparedStatement ps = null;
 	    ResultSet rs = null;
 	    User user = null;
+	  
 		String query = "SELECT * from User WHERE username = ?";
 		
 		try {        
