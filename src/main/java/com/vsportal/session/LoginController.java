@@ -1,12 +1,9 @@
 package com.vsportal.session;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +15,6 @@ import com.vsportal.user.UserDAO;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	private Login a_login = null;
 	private String errmsg = null;
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -29,9 +25,8 @@ public class LoginController {
 		if(sess != null && sess.getAttribute("valid_session") == "true") {
 			model = new ModelAndView("home");
 		} else {
-			Login login = new Login();
 			model = new ModelAndView("login");
-			model.addObject("login", login);
+			model.addObject("login",  new Login());
 		}
 		return model;
 	}
