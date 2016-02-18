@@ -1,5 +1,5 @@
 <fieldset class="form-group">
-	<div class="input-append datepicker">
+	<div class="input-append future-datepicker">
 		<label for="${param.fieldName}">
 			${param.fieldLabel}
 		</label>
