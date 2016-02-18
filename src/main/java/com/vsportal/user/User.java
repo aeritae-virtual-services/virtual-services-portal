@@ -47,11 +47,11 @@ public class User {
 		this.username = username;
 	}
 
-	public String getfirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setfirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -59,11 +59,11 @@ public class User {
 		return id;
 	}
 
-	public String getlastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setlastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -83,11 +83,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Company getcompany() {
+	public Company getCompany() {
 		return company;
 	}
 
-	public void setcompany(Company company) {
+	public void setCompany(Company company) {
 		this.company = company;
 	}
 
@@ -96,11 +96,11 @@ public class User {
 		return created;
 	}
 
-	public User getcreatedBy() {
+	public User getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setcreatedBy(User createdBy) {
+	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -108,11 +108,11 @@ public class User {
 		return updated;
 	}
 
-	public User getupdatedBy() {
+	public User getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setupdatedBy(User updatedBy) {
+	public void setUpdatedBy(User updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 

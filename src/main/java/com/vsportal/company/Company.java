@@ -112,7 +112,5 @@ public class Company {
 	public void setupdatedBy(User updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	
-	
 
 }

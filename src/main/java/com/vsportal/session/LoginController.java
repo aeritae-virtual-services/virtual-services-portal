@@ -25,9 +25,8 @@ public class LoginController {
 		if(sess != null && sess.getAttribute("valid_session") == "true") {
 			model = new ModelAndView("home");
 		} else {
-			Login login = new Login();
 			model = new ModelAndView("login");
-			model.addObject("login", login);
+			model.addObject("login",  new Login());
 		}
 		return model;
 	}
