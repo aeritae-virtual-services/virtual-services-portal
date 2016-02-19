@@ -2,20 +2,25 @@ package com.vsportal.user;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Controller;  
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView; 
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserController implements Controller {
+@RequestMapping("/user_list")
+public class UserController {
 	
-    @RequestMapping("/user_list", method = RequestMethod.GET)
-    public ModelAndView listUsers(@RequestParam("query") String query) {
-    	ArrayList<User> userList = UserDAO.getListByQuery(query);
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView listUsers() {
+    	//ArrayList<User> userList = UserDAO.getListByQuery(query);
     	
     	ModelAndView mv = new ModelAndView("list");
-    	mv.addObject("userList", userList);
+    	//mv.addObject("userList", userList);
     	
     	return mv;
     }

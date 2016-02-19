@@ -5,12 +5,12 @@
 	<artifactId>vsportal</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Aeritae Virtual Services Portal Webapp</name>
+	<name>Aeritae Virtual Services Portal</name>
 	<url>http://maven.apache.org</url>
 
 	<!--Spring library version -->
 	<properties>
-		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring.version>4.2.4.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -53,6 +53,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 	</dependencies>
+	
 	<build>
 		<finalName>vsportal</finalName>
 	</build>

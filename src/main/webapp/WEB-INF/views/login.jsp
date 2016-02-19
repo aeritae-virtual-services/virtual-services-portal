@@ -21,7 +21,7 @@
 					</p>
 				</div>
 				<div class="login_header_right">
-					<img class="login_header_logo" src="/vsportal/src/main/webapp/resources/images/ae_icon_white.png" />
+					<img class="login_header_logo" src="${pageContext.servletContext.contextPath}/resources/images/ae_icon_white.png" style="height: 30px; width: auto;"/>
 				</div>
 			</div>
 			<div class="login_body">

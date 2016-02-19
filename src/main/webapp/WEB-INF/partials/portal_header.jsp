@@ -5,7 +5,7 @@
 				<i class="white-icon fa fa-bars"></i>
 			</a>
 			<a class="navbar-text navbar-left" href="/home">
-        		<img alt="Aeritae Consulting Group, Ltd." src="/resources/images/ae_icon_white.png">
+        		<img alt="Aeritae Consulting Group, Ltd." src="${pageContext.servletContext.contextPath}/resources/images/ae_icon_white.png" style="height: 15px; width: auto;" />
       		</a>
     	</div>
     	<div class="collapse navbar-collapse">
