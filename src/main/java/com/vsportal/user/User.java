@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import com.vsportal.company.Company;
+import com.vsportal.group.Group;
 import com.vsportal.role.Role;
 
 public class User {
@@ -19,7 +20,7 @@ public class User {
 	private User createdBy;
 	private Date updated;
 	private User updatedBy;
-	private ArrayList group;
+	private ArrayList<Group> group;
 	private Role role;
 	
 	

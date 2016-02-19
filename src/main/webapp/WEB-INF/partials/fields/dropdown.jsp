@@ -4,8 +4,8 @@
 	</label>
 	<select name="${param.fieldName}" class="form-control dropdown">
 		<c:forEach var="option" items="${param.optionList}">
-			<option>
-				${option}
+			<option value="${option.value}">
+				${option.label}
 			</option>
 		</c:forEach>
 	</select>
