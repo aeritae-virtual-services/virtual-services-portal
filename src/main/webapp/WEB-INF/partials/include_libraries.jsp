@@ -1,10 +1,9 @@
-<!-- Include AE StyleSheet -->
-<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/vsportal.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
 <!-- Include JSTL Functions/Library -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<!-- Include Java Util Library -->
+<%@page import="java.util.*" %>
 
 <!-- Include jQuery 2.2.0 -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-2.2.0.min.js"></script>
@@ -13,6 +12,11 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-3.3.6.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-3.3.6.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-theme-3.3.6.css">
+<script>
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip(); 
+	});
+</script>
 
 <!-- Include Bootstrap Date-Time Picker -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
@@ -29,7 +33,7 @@
 		$('.future-datepicker').datetimepicker({
 			language: 'en',
 			pickTime: false,
-			startDate: now()
+			startDate: new Date()
 		});
 		//Apply Date Time Pickers
 		$('.datetimepicker').datetimepicker({
@@ -38,7 +42,7 @@
 		//Apply Future Date Time Pickers
 		$('.future-datetimepicker').datetimepicker({
 			language: 'en',
-			startDate: now()
+			startDate: new Date()
 		});
 	});
 </script>
@@ -59,6 +63,10 @@
 
 <!-- Include Form Validation -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/form-validation.js"></script>
+
+<!-- Include AE StyleSheet -->
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/vsportal.css?<%= new java.util.Date() %>">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 
 <!-- Set Shortcut Icon -->
 <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/ae_icon_white.png">
