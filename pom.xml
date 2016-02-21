@@ -34,7 +34,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- Spring Dependencies - END -->
-
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

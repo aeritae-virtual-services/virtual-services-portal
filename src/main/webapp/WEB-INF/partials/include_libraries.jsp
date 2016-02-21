@@ -64,9 +64,10 @@
 <!-- Include Form Validation -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/form-validation.js"></script>
 
-<!-- Include AE StyleSheet -->
+<!-- Include AE Features -->
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/vsportal.css?<%= new java.util.Date() %>">
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+<script src="${pageContext.servletContext.contextPath}/resources/js/global-scripts.js"></script>
 
 <!-- Set Shortcut Icon -->
 <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/ae_icon_white.png">

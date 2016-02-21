@@ -18,11 +18,17 @@
 				<p>Enter your username and password to log on.</p>
 			</div>
 			<div class="login_body">
+				<c:if test='${not empty errmsg}'>
+					<div class="alert alert-danger" role="alert">
+						${errmsg}
+						<i class="fa fa-times alert-close"></i>
+					</div>
+				</c:if>
 				<form role="form" action="login" method="post" class="login_form">
 					<fieldset class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
-							</span> <input type="text" name="user_name" class="form-control"
+							</span> <input type="text" name="username" class="form-control"
 								placeholder="Username" aria-describedby="basic-addon1">
 						</div>
 					</fieldset>

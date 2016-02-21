@@ -1,4 +1,4 @@
-<footer id="portal-footer" style="background-color: #2d2d2d; z-index: 1000; border-top: 8px solid #222; color: white; position: fixed; bottom: 0px; height: 50px; width: 100%;">
+<footer class="portal-footer">
 	<section class="container footer-in">
 		<div class="col-md-6">
 		</div>

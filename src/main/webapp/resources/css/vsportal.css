@@ -1,9 +1,9 @@
 .orange-badge {
-	background-color: #EA5624!important;
+	background-color: #EA5624 !important;
 }
 
 .white-icon {
-	color: #FFFFFF!important;
+	color: #FFFFFF !important;
 	font-size: 18px;
 }
 
@@ -18,9 +18,9 @@
 }
 
 .left-inner-addon i {
-    position: absolute;
-    padding: 10px 12px;
-    pointer-events: none;
+	position: absolute;
+	padding: 10px 12px;
+	pointer-events: none;
 }
 
 .navbar .container-fluid {
@@ -39,8 +39,9 @@
 	margin-right: auto;
 	border-radius: 5px;
 	padding: 15px;
+	padding-bottom: 60px;
 	margin-top: 100px;
-	height: 275px;
+	height: auto;
 }
 
 * {
@@ -48,7 +49,7 @@
 }
 
 .fa {
-	font-family: FontAwesome!important;
+	font-family: FontAwesome !important;
 }
 
 h3 {
@@ -67,4 +68,39 @@ h3 {
 
 .btn-float-right {
 	float: right;
+}
+
+.navbar-right {
+	margin-right: 0px;
+}
+
+.btn-primary {
+	background: #00A3DD;
+	border: 1px solid #0090C4;
+}
+
+.btn-primary:hover {
+	background: #0090C4;
+	border: 1px solid #0090C4;
+}
+
+.portal-footer {
+	background-color: #2d2d2d;
+	z-index: 1000;
+	border-top: 8px solid #222;
+	color: white;
+	position: fixed;
+	bottom: 0px;
+	height: 50px;
+	width: 100%;
+}
+
+.alert {
+	padding: 10px;
+}
+
+.alert-close {
+	float: right;
+	font-size: 20px;
+	cursor: pointer;
 }
