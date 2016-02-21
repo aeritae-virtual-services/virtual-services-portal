@@ -22,8 +22,8 @@ public class UserDAO {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
 		
-		jdbcTemplate.update(sql, new Object[]{user.getfirstName(), user.getlastName(), user.getPhone(),
-				user.getEmail(),user.getcompany(), user.getRole()});
+		jdbcTemplate.update(sql, new Object[]{user.getFirstName(), user.getFirstName(), user.getPhone(),
+				user.getEmail(),user.getCompany(), user.getRole()});
 		
 		
 	}
