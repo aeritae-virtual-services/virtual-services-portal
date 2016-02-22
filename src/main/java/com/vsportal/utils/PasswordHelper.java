@@ -1,8 +1,10 @@
-package com.vsportal.session;
+package com.vsportal.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import com.vsportal.session.SystemUnavailableException;
 
 public class PasswordHelper {
 	private static PasswordHelper instance;

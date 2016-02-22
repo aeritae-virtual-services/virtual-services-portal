@@ -1,4 +1,4 @@
-package com.vsportal.session;
+package com.vsportal.utils;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +9,8 @@ public class SessionHelper {
 	public void validateSession(HttpSession sess, User user) {
 		if(!isValidSession(sess)) {
 			sess.setAttribute("valid_session", "true");
-			sess.setAttribute("user", user);
-			//Session timeout of 15 minutes
+			sess.setAttribute("session_user", user.getId());
+			//Inactive session timeout of 15 minutes
 			sess.setMaxInactiveInterval(15 * 60);
 		}
 	}
