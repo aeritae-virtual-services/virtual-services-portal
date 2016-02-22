@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.vsportal.user.User;
-import com.vsportal.user.UserDAO;
+//import com.vsportal.user.User;
+//import com.vsportal.user.UserDAO;
 
 @Controller
 @RequestMapping("/login")
@@ -19,8 +19,9 @@ public class LoginController {
 	public ModelAndView displayLogin(HttpServletRequest request) {
 		ModelAndView model = null;
 		HttpSession sess = request.getSession(false);
+		SessionHelper sh = new SessionHelper();
 		
-		if(sess != null && sess.getAttribute("valid_session") == "true") {
+		if(sh.isValidSession(sess)) {
 			model = new ModelAndView("home");
 		} else {
 			model = new ModelAndView("login");
@@ -33,6 +34,7 @@ public class LoginController {
 	public ModelAndView executeLogin(HttpServletRequest request) {
 		ModelAndView model = null;
 		HttpSession sess = request.getSession(false);
+		SessionHelper sh = new SessionHelper();
 		String errmsg;
 		
 		if(request.getParameter("username").isEmpty() && request.getParameter("password").isEmpty()) {
@@ -54,7 +56,7 @@ public class LoginController {
 			//User user = userDAO.getUserByUsername(username);
 			
 			//} else if (userDAO.validatePassword(user.getId(), password)) {
-				//sess.setAttribute("valid_session", "true");
+				//sh.validateSession(sess, user);
 				//model = new ModelAndView("home");
 			//} else {
 				errmsg = "Invalid login credentials. Please try again.";
