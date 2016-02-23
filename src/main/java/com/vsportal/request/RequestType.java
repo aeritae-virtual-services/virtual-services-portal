@@ -1,4 +1,4 @@
-package com.vsportal.request_type;
+package com.vsportal.request;
 
 import java.sql.Date;
 
