@@ -47,7 +47,7 @@ public class UserController {
 	    	model = new ModelAndView("user_list");
 	    	//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
-	    	//Pass ArrayList to View
+	    	//Pass ArrayList to View For: User
 	    	model.addObject("userList", userList);
     	}
     	
