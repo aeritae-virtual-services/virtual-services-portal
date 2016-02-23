@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import com.vsportal.user.User;
 import com.vsportal.user.UserDAO;
 import com.vsportal.utils.SessionHelper;
 
+@Controller
 public class ClientController {
 	
 	//Display List For: Client

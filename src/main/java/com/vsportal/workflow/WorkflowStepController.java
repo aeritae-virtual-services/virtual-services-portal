@@ -1,5 +1,8 @@
 package com.vsportal.workflow;
 
-public class WorkflowStepController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class WorkflowStepController {
+	//TODO Tyler
 }

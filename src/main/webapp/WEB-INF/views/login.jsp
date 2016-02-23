@@ -40,6 +40,7 @@
 								placeholder="Password" aria-describedby="basic-addon1">
 						</div>
 					</fieldset>
+					<input type="hidden" name="redirectTo" value="${redirectTo}"/>
 					<input class="btn btn-primary btn-float-right" role="button" type="submit"
 						value="Login" />
 				</form>
