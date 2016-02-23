@@ -64,6 +64,9 @@
 <!-- Include Form Validation -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/form-validation.js"></script>
 
+<!-- Include Navigation Bar CSS -->
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/simple-sidebar.css?<%= new java.util.Date() %>">
+
 <!-- Include AE Features -->
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/vsportal.css?<%= new java.util.Date() %>">
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>

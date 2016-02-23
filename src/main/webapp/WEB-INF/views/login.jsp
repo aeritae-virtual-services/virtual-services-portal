@@ -12,16 +12,13 @@
 	<div class="body">
 		<div class="jumbotron">
 			<div class="login_header">
-				<h3>
-					Aeritae Virtual Services
-				</h3>
+				<h3>Aeritae Virtual Services</h3>
 				<p>Enter your username and password to log on.</p>
 			</div>
 			<div class="login_body">
 				<c:if test='${not empty errmsg}'>
 					<div class="alert alert-danger" role="alert">
-						${errmsg}
-						<i class="fa fa-times alert-close"></i>
+						${errmsg} <i class="fa fa-times alert-close"></i>
 					</div>
 				</c:if>
 				<form role="form" action="login" method="post" class="login_form">
@@ -40,13 +37,12 @@
 								placeholder="Password" aria-describedby="basic-addon1">
 						</div>
 					</fieldset>
-					<input type="hidden" name="redirectTo" value="${redirectTo}"/>
-					<input class="btn btn-primary btn-float-right" role="button" type="submit"
-						value="Login" />
+					<input type="hidden" name="redirectTo" value="${redirectTo}" /> <input
+						class="btn btn-primary btn-float-right" role="button"
+						type="submit" value="Login" />
 				</form>
 			</div>
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/partials/portal_footer.jsp"%>
 </body>
 </html>
