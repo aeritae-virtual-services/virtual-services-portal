@@ -3,7 +3,7 @@ package com.vsportal.user;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.vsportal.company.Company;
+import com.vsportal.client.Company;
 import com.vsportal.group.Group;
 import com.vsportal.role.Role;
 

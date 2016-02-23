@@ -1,10 +1,10 @@
-package com.vsportal.company;
+package com.vsportal.client;
 
 import java.sql.Date;
 
 import com.vsportal.user.User;
 
-public class Company {
+public class Client {
 	
 	private int id;
 	private String name;
@@ -18,10 +18,10 @@ public class Company {
 	private Date updated;
 	private User updatedBy;
 	
-	public Company(){
+	public Client(){
 	}
 	
-	public Company(String name, User primaryContact, String url, String address, User queueManager, boolean migration){
+	public Client(String name, User primaryContact, String url, String address, User queueManager, boolean migration){
 		this.name = name;
 		this.primaryContact = primaryContact;
 		this.url = url;
