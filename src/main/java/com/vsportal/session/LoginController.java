@@ -21,7 +21,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView displayLogin(HttpServletRequest request) {
 		ModelAndView model = null;
-		HttpSession sess = request.getSession(false);
+		HttpSession sess = request.getSession();
 		SessionHelper sh = new SessionHelper();
 		
 		if(sh.isValidSession(sess)) {
@@ -36,7 +36,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView executeLogin(HttpServletRequest request) {
 		ModelAndView model = null;
-		HttpSession sess = request.getSession(false);
+		HttpSession sess = request.getSession();
 		SessionHelper sh = new SessionHelper();
 		String errmsg;
 		

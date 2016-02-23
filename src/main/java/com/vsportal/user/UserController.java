@@ -19,7 +19,7 @@ public class UserController {
 	//Display List For: User
     @RequestMapping(value = "/user_list", params = {"query"}, method = RequestMethod.GET)
     public ModelAndView displayList(HttpServletRequest request, @RequestParam(value = "query") String query) {
-    	HttpSession sess = request.getSession(false);
+    	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
     	
@@ -57,7 +57,7 @@ public class UserController {
     //Display Add Form For: User
     @RequestMapping(value = "/add_user", method = RequestMethod.GET)
     public ModelAndView displayNewUser(HttpServletRequest request) {
-    	HttpSession sess = request.getSession(false);
+    	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
     	
@@ -87,7 +87,7 @@ public class UserController {
     //Submit Add Form For: User
     @RequestMapping(value = "/add_user", method = RequestMethod.POST)
     public ModelAndView insertNewUser(HttpServletRequest request) {
-    	HttpSession sess = request.getSession(false);
+    	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
 
@@ -123,7 +123,7 @@ public class UserController {
     //Display Update Form For: User
     @RequestMapping(value = "/update_user", params = {"id"}, method = RequestMethod.GET)
     public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
-    	HttpSession sess = request.getSession(false);
+    	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
     	
@@ -153,7 +153,7 @@ public class UserController {
     //Submit Update Form For: User
     @RequestMapping(value = "/update_user", method = RequestMethod.POST)
     public ModelAndView updateExistingUser(HttpServletRequest request) {
-    	HttpSession sess = request.getSession(false);
+    	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
     	
