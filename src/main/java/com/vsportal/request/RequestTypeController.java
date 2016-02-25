@@ -20,7 +20,7 @@ import com.vsportal.utils.SessionHelper;
 public class RequestTypeController {
 
 	//Display List For: RequestType
-    @RequestMapping(value = "/requestType_list", params = {"query"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/request_type_list", params = {"query"}, method = RequestMethod.GET)
     public ModelAndView displayList(HttpServletRequest request, @RequestParam(value = "query") String query) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -37,7 +37,7 @@ public class RequestTypeController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to list for: RequestType
-	    	model.addObject("redirectTo", "/requestType_list?query=" + query);
+	    	model.addObject("redirectTo", "/request_type_list?query=" + query);
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
@@ -47,7 +47,7 @@ public class RequestTypeController {
 		    userSessionDAO.updateUsersFilter("RequestType", query);
 	    	
 	    	//Call List View For: RequestType
-	    	model = new ModelAndView("requestType_list");
+	    	model = new ModelAndView("request_type_list");
 	    	//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass ArrayList to View For: RequestType
@@ -58,7 +58,7 @@ public class RequestTypeController {
     }
     
     //Display Add Form For: RequestType
-    @RequestMapping(value = "/add_requestType", method = RequestMethod.GET)
+    @RequestMapping(value = "/add_request_type", method = RequestMethod.GET)
     public ModelAndView displayNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -72,12 +72,12 @@ public class RequestTypeController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: RequestType
-    		model.addObject("redirectTo", "/add_requestType");
+    		model.addObject("redirectTo", "/add_request_type");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: RequestType
-    		model = new ModelAndView("requestType_form");
+    		model = new ModelAndView("request_type_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
@@ -88,7 +88,7 @@ public class RequestTypeController {
     }
     
     //Submit Add Form For: RequestType
-    @RequestMapping(value = "/add_requestType", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_request_type", method = RequestMethod.POST)
     public ModelAndView insertNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -105,7 +105,7 @@ public class RequestTypeController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: RequestType
-    		model.addObject("redirectTo", "/add_RequestType");
+    		model.addObject("redirectTo", "/add_request_type");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not created.");
     	} else {
@@ -117,14 +117,14 @@ public class RequestTypeController {
     		
     		//Redirect to list for: RequestType
     		//Include standard filter for: RequestType
-    		model = new ModelAndView("redirect:/requestType_list?query=" + userSessionDAO.getUsersFilter("RequestType"));
+    		model = new ModelAndView("redirect:/request_type_list?query=" + userSessionDAO.getUsersFilter("RequestType"));
     	}
     	
     	return model;
     }
     
     //Display Update Form For: RequestType
-    @RequestMapping(value = "/update_requestType", params = {"id"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/update_request_type", params = {"id"}, method = RequestMethod.GET)
     public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -138,12 +138,12 @@ public class RequestTypeController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: RequestType
-    		model.addObject("redirectTo", "/update_requestType?id=" +  id.toString());
+    		model.addObject("redirectTo", "/update_request_type?id=" +  id.toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: requestType
-    		model = new ModelAndView("requestType_form");
+    		model = new ModelAndView("request_type_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
@@ -154,7 +154,7 @@ public class RequestTypeController {
     }
     
     //Submit Update Form For: RequestType
-    @RequestMapping(value = "/update_requestType", method = RequestMethod.POST)
+    @RequestMapping(value = "/update_request_type", method = RequestMethod.POST)
     public ModelAndView updateExistingUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -170,7 +170,7 @@ public class RequestTypeController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: RequestType
-    		model.addObject("redirectTo", "/update_requestType?id=" +  request.getParameter("id").toString());
+    		model.addObject("redirectTo", "/update_request_type?id=" +  request.getParameter("id").toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not updated.");
     	} else {
@@ -182,7 +182,7 @@ public class RequestTypeController {
     		
     		//Redirect to list for: RequestType
     		//Include standard filter for: RequestType
-    		model = new ModelAndView("redirect:/requestType_list?query=" + userSessionDAO.getUsersFilter("RequestType"));
+    		model = new ModelAndView("redirect:/request_type_list?query=" + userSessionDAO.getUsersFilter("RequestType"));
     	}
     	
     	return model;
