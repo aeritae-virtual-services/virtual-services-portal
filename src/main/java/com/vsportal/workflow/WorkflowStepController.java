@@ -20,7 +20,7 @@ import com.vsportal.utils.SessionHelper;
 public class WorkflowStepController {
 
 	//Display List For: WorkflowStep
-    @RequestMapping(value = "/workflowStep_list", params = {"query"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/workflow_step_list", params = {"query"}, method = RequestMethod.GET)
     public ModelAndView displayList(HttpServletRequest request, @RequestParam(value = "query") String query) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -37,7 +37,7 @@ public class WorkflowStepController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to list for: WorkflowStep
-	    	model.addObject("redirectTo", "/workflowStep_list?query=" + query);
+	    	model.addObject("redirectTo", "/workflow_step_list?query=" + query);
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
@@ -47,7 +47,7 @@ public class WorkflowStepController {
 		    userSessionDAO.updateUsersFilter("WorkflowStep", query);
 	    	
 	    	//Call List View For: WorkflowStep
-	    	model = new ModelAndView("workflowStep_list");
+	    	model = new ModelAndView("workflow_step_list");
 	    	//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass ArrayList to View For: WorkflowStep
@@ -58,7 +58,7 @@ public class WorkflowStepController {
     }
     
     //Display Add Form For: WorkflowStep
-    @RequestMapping(value = "/add_workflowStep", method = RequestMethod.GET)
+    @RequestMapping(value = "/add_workflow_step", method = RequestMethod.GET)
     public ModelAndView displayNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -72,12 +72,12 @@ public class WorkflowStepController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: WorkflowStep
-    		model.addObject("redirectTo", "/add_workflowStep");
+    		model.addObject("redirectTo", "/add_workflow_step");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: WorkflowStep
-    		model = new ModelAndView("workflowStep_form");
+    		model = new ModelAndView("workflow_step_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
@@ -88,7 +88,7 @@ public class WorkflowStepController {
     }
     
     //Submit Add Form For: WorkflowStep
-    @RequestMapping(value = "/add_workflowStep", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_workflow_step", method = RequestMethod.POST)
     public ModelAndView insertNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -105,7 +105,7 @@ public class WorkflowStepController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: WorkflowStep
-    		model.addObject("redirectTo", "/add_workflowStep");
+    		model.addObject("redirectTo", "/add_workflow_step");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not created.");
     	} else {
@@ -117,14 +117,14 @@ public class WorkflowStepController {
     		
     		//Redirect to list for: WorkflowStep
     		//Include standard filter for: WorkflowStep
-    		model = new ModelAndView("redirect:/worflowStep_list?query=" + userSessionDAO.getUsersFilter("WorkflowStep"));
+    		model = new ModelAndView("redirect:/workflow_step_list?query=" + userSessionDAO.getUsersFilter("WorkflowStep"));
     	}
     	
     	return model;
     }
     
     //Display Update Form For: WorkflowStep
-    @RequestMapping(value = "/update_workflowStep", params = {"id"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/update_workflow_step", params = {"id"}, method = RequestMethod.GET)
     public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -138,12 +138,12 @@ public class WorkflowStepController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: WorkflowStep
-    		model.addObject("redirectTo", "/update_workflowStep?id=" +  id.toString());
+    		model.addObject("redirectTo", "/update_workflow_step?id=" +  id.toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: WorkflowStep
-    		model = new ModelAndView("workflowStep_form");
+    		model = new ModelAndView("workflow_step_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
@@ -154,7 +154,7 @@ public class WorkflowStepController {
     }
     
     //Submit Update Form For: WorkflowStep
-    @RequestMapping(value = "/update_workflowStep", method = RequestMethod.POST)
+    @RequestMapping(value = "/update_workflow_step", method = RequestMethod.POST)
     public ModelAndView updateExistingUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -170,7 +170,7 @@ public class WorkflowStepController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: WorkflowStep
-    		model.addObject("redirectTo", "/update_workflowStep?id=" +  request.getParameter("id").toString());
+    		model.addObject("redirectTo", "/update_workflow_step?id=" +  request.getParameter("id").toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not updated.");
     	} else {
@@ -182,7 +182,7 @@ public class WorkflowStepController {
     		
     		//Redirect to list for: WorkflowStep
     		//Include standard filter for: WorkflowStep
-    		model = new ModelAndView("redirect:/workflowStep_list?query=" + userSessionDAO.getUsersFilter("WorkflowStep"));
+    		model = new ModelAndView("redirect:/workflow_step_list?query=" + userSessionDAO.getUsersFilter("WorkflowStep"));
     	}
     	
     	return model;

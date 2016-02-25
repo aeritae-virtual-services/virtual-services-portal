@@ -20,7 +20,7 @@ import com.vsportal.utils.SessionHelper;
 public class EmailTemplateController {
 
 	//Display List For: EmailTemplate
-    @RequestMapping(value = "/emailTemplate_list", params = {"query"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/email_template_list", params = {"query"}, method = RequestMethod.GET)
     public ModelAndView displayList(HttpServletRequest request, @RequestParam(value = "query") String query) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -37,7 +37,7 @@ public class EmailTemplateController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to list for: EmailTemplate
-	    	model.addObject("redirectTo", "/emailTemplate_list?query=" + query);
+	    	model.addObject("redirectTo", "/email_template_list?query=" + query);
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
@@ -47,7 +47,7 @@ public class EmailTemplateController {
 		    userSessionDAO.updateUsersFilter("EmailTemplate", query);
 	    	
 	    	//Call List View For: EmailTempate
-	    	model = new ModelAndView("emailTemplate_list");
+	    	model = new ModelAndView("email_template_list");
 	    	//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass ArrayList to View For: EmailTemplate
@@ -58,7 +58,7 @@ public class EmailTemplateController {
     }
     
     //Display Add Form For: EmailTemplate
-    @RequestMapping(value = "/add_emailTemplate", method = RequestMethod.GET)
+    @RequestMapping(value = "/add_email_template", method = RequestMethod.GET)
     public ModelAndView displayNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -72,12 +72,12 @@ public class EmailTemplateController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: EmailTemplate
-    		model.addObject("redirectTo", "/add_emailTemplate");
+    		model.addObject("redirectTo", "/add_email_template");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: EmailTemplate
-    		model = new ModelAndView("emailTemplate_form");
+    		model = new ModelAndView("email_template_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
@@ -88,7 +88,7 @@ public class EmailTemplateController {
     }
     
     //Submit Add Form For: EmailTemplate
-    @RequestMapping(value = "/add_emailTemplate", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_email_template", method = RequestMethod.POST)
     public ModelAndView insertNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -105,7 +105,7 @@ public class EmailTemplateController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: EmailTemplate
-    		model.addObject("redirectTo", "/add_emailTemplate");
+    		model.addObject("redirectTo", "/add_email_template");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not created.");
     	} else {
@@ -117,13 +117,13 @@ public class EmailTemplateController {
     		
     		//Redirect to list for: EmailTemplate
     		//Include standard filter for: EmailTemplate
-    		model = new ModelAndView("redirect:/emailTemplate_list?query=" + userSessionDAO.getUsersFilter("EmailTemplate"));
+    		model = new ModelAndView("redirect:/email_template_list?query=" + userSessionDAO.getUsersFilter("EmailTemplate"));
     	}
     	return model;
     }
     
     //Display Update Form For: EmailTemplate
-    @RequestMapping(value = "/update_emailTemplate", params = {"id"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/update_email_template", params = {"id"}, method = RequestMethod.GET)
     public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -137,12 +137,12 @@ public class EmailTemplateController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: EmailTemplate
-    		model.addObject("redirectTo", "/update_emailTemplate?id=" +  id.toString());
+    		model.addObject("redirectTo", "/update_email_template?id=" +  id.toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: emailTemplate
-    		model = new ModelAndView("emailTemplate_form");
+    		model = new ModelAndView("email_template_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
@@ -153,7 +153,7 @@ public class EmailTemplateController {
     }
     
     //Submit Update Form For: EmailTemplate
-    @RequestMapping(value = "/update_emailTemplate", method = RequestMethod.POST)
+    @RequestMapping(value = "/update_email_template", method = RequestMethod.POST)
     public ModelAndView updateExistingUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -169,7 +169,7 @@ public class EmailTemplateController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: EmailTemplate
-    		model.addObject("redirectTo", "/update_emailTemplate?id=" +  request.getParameter("id").toString());
+    		model.addObject("redirectTo", "/update_email_template?id=" +  request.getParameter("id").toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not updated.");
     	} else {
@@ -181,7 +181,7 @@ public class EmailTemplateController {
     		
     		//Redirect to list for: EmailTemplate
     		//Include standard filter for: EmailTemplate
-    		model = new ModelAndView("redirect:/emailTemplate_list?query=" + userSessionDAO.getUsersFilter("EmailTemplate"));
+    		model = new ModelAndView("redirect:/email_template_list?query=" + userSessionDAO.getUsersFilter("EmailTemplate"));
     	}
     	
     	return model;

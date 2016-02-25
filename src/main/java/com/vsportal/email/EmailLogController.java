@@ -20,7 +20,7 @@ import com.vsportal.utils.SessionHelper;
 public class EmailLogController {
 
 	//Display List For: EmailLog
-    @RequestMapping(value = "/emailLog_list", params = {"query"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/email_log_list", params = {"query"}, method = RequestMethod.GET)
     public ModelAndView displayList(HttpServletRequest request, @RequestParam(value = "query") String query) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -37,7 +37,7 @@ public class EmailLogController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to list for: EmailLog
-	    	model.addObject("redirectTo", "/emailLog_list?query=" + query);
+	    	model.addObject("redirectTo", "/email_log_list?query=" + query);
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
@@ -47,7 +47,7 @@ public class EmailLogController {
 		    userSessionDAO.updateUsersFilter("EmailLog", query);
 	    	
 	    	//Call List View For: EmailLog
-	    	model = new ModelAndView("emailLog_list");
+	    	model = new ModelAndView("email_log_list");
 	    	//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass ArrayList to View For: EmailLog
@@ -58,7 +58,7 @@ public class EmailLogController {
     }
     
     //Display Add Form For: EmailLog
-    @RequestMapping(value = "/add_emailLog", method = RequestMethod.GET)
+    @RequestMapping(value = "/add_email_log", method = RequestMethod.GET)
     public ModelAndView displayNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -72,12 +72,12 @@ public class EmailLogController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: EmailLog
-    		model.addObject("redirectTo", "/add_emailLog");
+    		model.addObject("redirectTo", "/add_email_log");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: EmailLog
-    		model = new ModelAndView("emailLog_form");
+    		model = new ModelAndView("email_log_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
@@ -88,7 +88,7 @@ public class EmailLogController {
     }
     
     //Submit Add Form For: EmailLog
-    @RequestMapping(value = "/add_emailLog", method = RequestMethod.POST)
+    @RequestMapping(value = "/add_email_log", method = RequestMethod.POST)
     public ModelAndView insertNewUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -105,7 +105,7 @@ public class EmailLogController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: EmailLog
-    		model.addObject("redirectTo", "/add_emailLog");
+    		model.addObject("redirectTo", "/add_email_log");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not created.");
     	} else {
@@ -117,14 +117,14 @@ public class EmailLogController {
     		
     		//Redirect to list for: EmailLog
     		//Include standard filter for: EmailLog
-    		model = new ModelAndView("redirect:/emailLog_list?query=" + userSessionDAO.getUsersFilter("EmailLog"));
+    		model = new ModelAndView("redirect:/email_log_list?query=" + userSessionDAO.getUsersFilter("EmailLog"));
     	}
     	
     	return model;
     }
     
     //Display Update Form For: EmailLog
-    @RequestMapping(value = "/update_emailLog", params = {"id"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/update_email_log", params = {"id"}, method = RequestMethod.GET)
     public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -138,12 +138,12 @@ public class EmailLogController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: EmailLog
-    		model.addObject("redirectTo", "/update_emailLog?id=" +  id.toString());
+    		model.addObject("redirectTo", "/update_email_log?id=" +  id.toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Call Form View For: emailLog
-    		model = new ModelAndView("emailLog_form");
+    		model = new ModelAndView("email_log_form");
     		//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
@@ -154,7 +154,7 @@ public class EmailLogController {
     }
     
     //Submit Update Form For: EmailLog
-    @RequestMapping(value = "/update_emailLog", method = RequestMethod.POST)
+    @RequestMapping(value = "/update_email_log", method = RequestMethod.POST)
     public ModelAndView updateExistingUser(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
@@ -170,7 +170,7 @@ public class EmailLogController {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to existing form for: EmailLog
-    		model.addObject("redirectTo", "/update_emailLog?id=" +  request.getParameter("id").toString());
+    		model.addObject("redirectTo", "/update_email_log?id=" +  request.getParameter("id").toString());
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not updated.");
     	} else {
@@ -182,7 +182,7 @@ public class EmailLogController {
     		
     		//Redirect to list for: EmailLog
     		//Include standard filter for: EmailLog
-    		model = new ModelAndView("redirect:/emailLog_list?query=" + userSessionDAO.getUsersFilter("EmailLog"));
+    		model = new ModelAndView("redirect:/email_log_list?query=" + userSessionDAO.getUsersFilter("EmailLog"));
     	}
     	
     	return model;
