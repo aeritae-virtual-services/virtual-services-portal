@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/partials/portal_header.jsp"%>
-	<div id="wrapper" class="toggled">
+	<div id="wrapper">
 		<%@ include file="/WEB-INF/partials/portal_navigator.jsp"%>
 		<div class="body">
 		</div>

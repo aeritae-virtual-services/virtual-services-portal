@@ -1,0 +1,142 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Virtual Services | Requests</title>
+<%@ include file="/WEB-INF/partials/include_libraries.jsp"%>
+</head>
+<body>
+	<%@ include file="/WEB-INF/partials/portal_header.jsp"%>
+	<div id="wrapper">
+		<%@ include file="/WEB-INF/partials/portal_navigator.jsp"%>
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="form-actions-left">
+						<a href="" onclick="window.history.back(); return false;"data-toggle="tooltip" title="Go Back" data-placement="bottom">
+							<i class="fa fa-arrow-circle-o-left"></i>
+						</a>
+					</div>
+					<div class="form-label">
+						<span>SR0000111</span>
+					</div>
+					<div class="form-actions-right">
+						<a data-toggle="tooltip" title="Save Request" data-placement="bottom" >
+							<i class="fa fa fa-floppy-o icon-save"></i>
+						</a>
+						<a data-toggle="tooltip" title="Place on Hold" data-placement="bottom" >
+							<i class="fa fa-pause-circle-o icon-hold"></i>
+						</a>
+						<a data-toggle="tooltip" title="Cancel Request" data-placement="bottom" >
+							<i class="fa fa-ban icon-cancel"></i>
+						</a>
+						<a data-toggle="tooltip" title="Manage Attachments" data-placement="bottom" >
+							<i class="fa fa-paperclip icon-attachments"></i>
+						</a>
+						<a data-toggle="tooltip" title="View Comments" data-placement="bottom" >
+							<i class="fa fa-comment-o icon-comments"></i>
+						</a>
+					</div>
+				</div>
+				<div class="progress-wrapper">
+					<div class="progress btn-group btn-group-justified">
+						<a class="btn progress-bar-past progress-bar-first">
+							Submitted
+						</a>
+						<a class="btn progress-bar-past">
+							Requirements
+						</a>
+						<a class="btn progress-bar-current">
+							Assessing LOE
+						</a>
+						<a class="btn progress-bar-future">
+							Designing
+						</a>
+						<a class="btn progress-bar-future">
+							Developing
+						</a>
+						<a class="btn progress-bar-future">
+							Testing
+						</a>
+						<a class="btn progress-bar-future progress-bar-last">
+							Complete
+						</a>
+					</div>
+					<script>
+						//Progress Resizing
+						$(window).load(function() {
+							resizeProgressBanner();
+						});
+						$(window).resize(function() {
+							resizeProgressBanner();
+						});
+						
+						function resizeProgressBanner() {
+							if ($(window).width() < 768) {
+						    	$('.progress').removeClass('btn-group');
+						    	$('.progress').removeClass('btn-group-justified');
+						    	$('.progress').addClass('btn-group-vertical');
+						  	} else {
+						  		$('.progress').removeClass('btn-group-vertical');
+						    	$('.progress').addClass('btn-group');
+						    	$('.progress').addClass('btn-group-justified');
+						  	}
+						}
+					</script>
+				</div>
+				<div class="panel-form">
+					<div class="half-form row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:param name="fieldName" value="${'client_request_number'}"/>
+								<jsp:param name="fieldLabel" value="${'Client Request Number'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/reference.jsp">
+								<jsp:param name="fieldName" value="${'requester'}"/>
+								<jsp:param name="fieldLabel" value="${'Requester'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/date.jsp">
+								<jsp:param name="fieldName" value="${'requested_completion_date'}"/>
+								<jsp:param name="fieldLabel" value="${'Requested Completion Date'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/dropdown.jsp">
+								<jsp:param name="fieldName" value="${'priority'}"/>
+								<jsp:param name="fieldLabel" value="${'Priority'}"/>
+							</jsp:include>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<jsp:include page="../partials/fields/dropdown.jsp">
+								<jsp:param name="fieldName" value="${'status'}"/>
+								<jsp:param name="fieldLabel" value="${'Status'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/checkbox.jsp">
+								<jsp:param name="fieldName" value="${'request_loe'}"/>
+								<jsp:param name="fieldLabel" value="${'Request Level of Effort'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/number.jsp">
+								<jsp:param name="fieldName" value="${'estimated_loe'}"/>
+								<jsp:param name="fieldLabel" value="${'Estimated LOE'}"/>
+							</jsp:include>
+						</div>
+					</div>
+					<div class="full-form row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:param name="fieldName" value="${'short_description'}"/>
+								<jsp:param name="fieldLabel" value="${'Short Description'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/textarea.jsp">
+								<jsp:param name="fieldName" value="${'description'}"/>
+								<jsp:param name="fieldLabel" value="${'Description'}"/>
+							</jsp:include>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="/WEB-INF/partials/portal_footer.jsp"%>
+</body>
+</html>
