@@ -14,7 +14,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-theme-3.3.6.css">
 <script>
 	$(document).ready(function(){
-	    $('[data-toggle="tooltip"]').tooltip(); 
+	    $('[data-toggle="tooltip"]').tooltip({
+	        trigger : 'hover'
+	    });
 	});
 </script>
 
