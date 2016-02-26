@@ -21,31 +21,15 @@
 </script>
 
 <!-- Include Bootstrap Date-Time Picker -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-datetimepicker.min.css">
+<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-datepicker.css">
 <script type="text/javascript">
 	//Apply Date/Time Picker to Appropriate Fields
 	$(document).ready(function() {
 		//Apply Date Pickers
-		$('.datepicker').datetimepicker({
-			language: 'en',
-			pickTime: false
-		});
+		$('.datepicker').datepicker();
 		//Apply Future Date Pickers
-		$('.future-datepicker').datetimepicker({
-			language: 'en',
-			pickTime: false,
-			startDate: new Date()
-		});
-		//Apply Date Time Pickers
-		$('.datetimepicker').datetimepicker({
-			language: 'en'
-		});
-		//Apply Future Date Time Pickers
-		$('.future-datetimepicker').datetimepicker({
-			language: 'en',
-			startDate: new Date()
-		});
+		$('.future-datepicker').datepicker();
 	});
 </script>
 

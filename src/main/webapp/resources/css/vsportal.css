@@ -104,3 +104,184 @@ h3 {
 	font-size: 20px;
 	cursor: pointer;
 }
+
+.body {
+	height: 100%;
+	margin-top: 50px;
+	padding: 20px;
+	margin-bottom: 50px;
+}
+
+.progress-wrapper {
+	padding: 20px;
+}
+
+.progress {
+	width: 100%;
+	height: auto;
+	overflow-x: visible;
+	margin-bottom: 0px;
+}
+
+.progress .btn {
+	color: white;
+}
+
+.btn-group-vertical {
+	width: 100%;
+}
+
+.progress-bar {
+	font-size: 16px!important;
+	padding-top: 6px!important;
+}
+
+.progress-bar-past {
+	color: #333333!important;
+	background-image: -webkit-linear-gradient(top,#EEEEEE 0,#BBBBBB 100%);
+    background-image: -o-linear-gradient(top,#EEEEEE 0,#BBBBBB 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#EEEEEE),to(#BBBBBB));
+    background-image: linear-gradient(to bottom,#EEEEEE 0,#BBBBBB 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    background-repeat: repeat-x;
+    border-left: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+}
+
+.progress-bar-past:active {
+	color: #333333!important;
+	background-image: -webkit-linear-gradient(top,#EEEEEE 0,#BBBBBB 100%);
+    background-image: -o-linear-gradient(top,#EEEEEE 0,#BBBBBB 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#EEEEEE),to(#BBBBBB));
+    background-image: linear-gradient(to bottom,#EEEEEE 0,#BBBBBB 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    background-repeat: repeat-x;
+    border-left: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    box-shadow: 0 0 0 transparent;
+}
+
+.progress-bar-future {
+	background-image: -webkit-linear-gradient(top,#0090c4 0,#007dab 100%);
+    background-image: -o-linear-gradient(top,#0090c4 0,#005878 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#0090c4),to(#007dab));
+    background-image: linear-gradient(to bottom,#0090c4 0,#007dab 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    background-repeat: repeat-x;
+    border-left: 1px solid #0090c4;
+    border-top: 1px solid #0090c4;
+    border-right: 1px solid #007dab;
+    border-bottom: 1px solid #007dab;
+}
+
+.progress-bar-future:active {
+	background-color: #0090c4!important;
+}
+
+.progress-bar-current {
+	background-image: -webkit-linear-gradient(top,#5cb85c 0,#3d8b3d 100%);
+    background-image: -o-linear-gradient(top,#5cb85c 0,#3d8b3d 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#3d8b3d));
+    background-image: linear-gradient(to bottom,#5cb85c 0,#3d8b3d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    background-repeat: repeat-x;
+    border-left: 1px solid #5cb85c;
+    border-top: 1px solid #5cb85c;
+    border-right: 1px solid #3d8b3d;
+    border-bottom: 1px solid #3d8b3d;
+}
+
+.progress-bar-current:active {
+	background-color: #5cb85c!important;
+}
+
+.progress-bar-first {
+	height: 100%;
+	border-left: 0px!important;
+}
+
+.progress-bar-last {
+	height: 100%;
+	border-right: 0px!important;
+}
+
+.form-actions-left {
+	height: 100%;
+	float: left;
+	font-size: 24px;
+}
+
+.form-actions-left a {
+	color: #333333!important;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.form-label {
+	float: left;
+	padding: 4px;
+}
+
+.form-label span {
+	padding: 5px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.form-actions-right {
+	height: 100%;
+	float: right;
+	font-size: 24px;
+}
+
+.form-actions-right a {
+	color: #333333!important;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.panel-heading {
+	overflow: auto;
+	padding: 3px;
+}
+
+.icon-save {
+	color: #007dab;
+}
+
+.icon-cancel {
+	color: #B22222;
+}
+
+.icon-hold {
+	color: #daa520;
+}
+
+.panel-form {
+	padding: 20px;
+	padding-top: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=checkbox] {
+	box-shadow: 0 0 0 transparent;
+}
+
+input[type=checkbox]:focus {
+	box-shadow: 0 0 0 transparent;
+}
+
+textarea {
+    max-width: 100%;
+    min-width: 100%;
+}

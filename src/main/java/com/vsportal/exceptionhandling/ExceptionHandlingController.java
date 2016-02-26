@@ -13,8 +13,15 @@ public class ExceptionHandlingController {
 	@RequestMapping("error")
 	public ModelAndView handleError(HttpServletRequest req, HttpServletResponse resp) {
 		String statusCode = req.getAttribute("javax.servlet.error.status_code").toString();
+		String message = "";
 		
-		String message = req.getAttribute("javax.servlet.error.message").toString();
+		if(Integer.valueOf(statusCode) == 404) {
+			message = "Page Not Found";
+		} else if(Integer.valueOf(statusCode) == 400) {
+			message = "Bad Request";
+		} else if(Integer.valueOf(statusCode) == 500) {
+			message = "Internal Server Error";
+		}
 		
 		ModelAndView mv = new ModelAndView("error");
 		mv.addObject("status_code", statusCode);
