@@ -1,12 +1,11 @@
 <fieldset class="form-group">
-	<div class="input-append future-datetimepicker">
-		<label for="${param.fieldName}">
-			${param.fieldLabel}
-		</label>
-		<input name="${param.fieldName}" type="text" data-format="MM/dd/yyyy hh:mm:ss" class="form-control"></input>
-		<span class="add-on">
-	      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-	      </i>
-	    </span>
-    </div>
+	<label for="${param.fieldName}">
+		${param.fieldLabel}
+	</label>
+	<div class="input-group future-datetime">
+		<input name="${param.fieldName}" type="text" class="form-control future-datetime"></input>
+		<span class="input-group-addon" style="cursor: pointer;">
+			<i class="fa fa-calendar"></i>
+		</span>
+	</div>
 </fieldset>

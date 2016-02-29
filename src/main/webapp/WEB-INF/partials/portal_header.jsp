@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-text navbar-left auth-req" id="toggle-menu" href="" data-toggle="tooltip" title="Toggle Navigation" data-placement="bottom" onclick="$('#wrapper').toggleClass('toggled'); return false;">
+			<a class="navbar-text navbar-left auth-req" id="toggle-menu" href="" data-toggle="tooltip" title="View Menu" data-placement="bottom" onclick="$('#wrapper').toggleClass('toggled'); return false;">
 				<i class="white-icon fa fa-bars"></i>
 			</a>
 			<a class="navbar-text navbar-left navbar-image" href="home">

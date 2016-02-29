@@ -20,11 +20,12 @@
 						</a>
 					</div>
 					<div class="form-label">
-						<span>SR0000111</span>
+						<span>SR0000111:</span>
+						<span><i>Blue Cross Blue Shield</i></span>
 					</div>
 					<div class="form-actions-right">
 						<a data-toggle="tooltip" title="Save Request" data-placement="bottom" >
-							<i class="fa fa fa-floppy-o icon-save"></i>
+							<i class="fa fa-floppy-o icon-save"></i>
 						</a>
 						<a data-toggle="tooltip" title="Place on Hold" data-placement="bottom" >
 							<i class="fa fa-pause-circle-o icon-hold"></i>
@@ -32,60 +33,21 @@
 						<a data-toggle="tooltip" title="Cancel Request" data-placement="bottom" >
 							<i class="fa fa-ban icon-cancel"></i>
 						</a>
-						<a data-toggle="tooltip" title="Manage Attachments" data-placement="bottom" >
-							<i class="fa fa-paperclip icon-attachments"></i>
+						<a data-toggle="tooltip" title="Manage Attachments" data-placement="bottom">
+							<span data-toggle="modal" data-target="#attachments-modal">
+								<i class="fa fa-paperclip icon-attachments"></i>
+								<span class="badge orange-badge badge-overlap">3</span>
+							</span>
 						</a>
 						<a data-toggle="tooltip" title="View Comments" data-placement="bottom" >
-							<i class="fa fa-comment-o icon-comments"></i>
+							<span data-toggle="modal" data-target="#comments-modal">
+								<i class="fa fa-comment-o icon-comments"></i>
+								<span class="badge orange-badge badge-overlap">3</span>
+							</span>
 						</a>
 					</div>
 				</div>
-				<div class="progress-wrapper">
-					<div class="progress btn-group btn-group-justified">
-						<a class="btn progress-bar-past progress-bar-first">
-							Submitted
-						</a>
-						<a class="btn progress-bar-past">
-							Requirements
-						</a>
-						<a class="btn progress-bar-current">
-							Assessing LOE
-						</a>
-						<a class="btn progress-bar-future">
-							Designing
-						</a>
-						<a class="btn progress-bar-future">
-							Developing
-						</a>
-						<a class="btn progress-bar-future">
-							Testing
-						</a>
-						<a class="btn progress-bar-future progress-bar-last">
-							Complete
-						</a>
-					</div>
-					<script>
-						//Progress Resizing
-						$(window).load(function() {
-							resizeProgressBanner();
-						});
-						$(window).resize(function() {
-							resizeProgressBanner();
-						});
-						
-						function resizeProgressBanner() {
-							if ($(window).width() < 768) {
-						    	$('.progress').removeClass('btn-group');
-						    	$('.progress').removeClass('btn-group-justified');
-						    	$('.progress').addClass('btn-group-vertical');
-						  	} else {
-						  		$('.progress').removeClass('btn-group-vertical');
-						    	$('.progress').addClass('btn-group');
-						    	$('.progress').addClass('btn-group-justified');
-						  	}
-						}
-					</script>
-				</div>
+				<%@ include file="/WEB-INF/partials/request_progress_banner.jsp"%>
 				<div class="panel-form">
 					<div class="half-form row">
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -97,7 +59,7 @@
 								<jsp:param name="fieldName" value="${'requester'}"/>
 								<jsp:param name="fieldLabel" value="${'Requester'}"/>
 							</jsp:include>
-							<jsp:include page="../partials/fields/date.jsp">
+							<jsp:include page="../partials/fields/future-date.jsp">
 								<jsp:param name="fieldName" value="${'requested_completion_date'}"/>
 								<jsp:param name="fieldLabel" value="${'Requested Completion Date'}"/>
 							</jsp:include>
@@ -137,6 +99,8 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/partials/attachments_modal.jsp"%>
+	<%@ include file="/WEB-INF/partials/comments_modal.jsp"%>
 	<%@ include file="/WEB-INF/partials/portal_footer.jsp"%>
 </body>
 </html>
