@@ -5,10 +5,12 @@
 				<a class="close" data-dismiss="modal">
 					<i class="fa fa-times"></i>
 				</a>
-				<h4 class="modal-title">Attachments</h4>
+				<h4 class="modal-title"><i class="fa fa-paperclip icon-attachments"></i>Attachments</h4>
 			</div>
 			<div class="modal-body">
-				<input id="upload-file" type="file" style="display: none;" onchange="showFileName(this);"/>
+				<form id="upload-file-form">
+					<input id="upload-file" name="upload_file" type="file" style="display: none;" accept="*" onchange="showFileName(this);"/>
+				</form>
 				<div class="row">
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 						<div class="new-attachment-actions">
@@ -89,7 +91,31 @@
 	function clearFile() {
 		$('#upload-file').val('');
 		$('#upload-file-shown').val('');
-		$('.new-attachment-actions').find('a').addClass("icon-disabled");
+		$('.new-attachment-actions').find('a').not('#file-select').addClass("icon-disabled");
 		$('.new-attachment-actions').find('a').attr("data-toggle", "");
+	}
+	
+	function uploadFile() {
+		$.ajax({
+			url: "upload_attachment",
+			type: "POST",
+			data: new FormData($('#upload-file-form')[0]),
+			enctyp: 'multipart/form-data',
+			processData: false,
+			contentType: false,
+			cache: false,
+			success: function() {
+				uploadFileSuccess();
+			},
+			error: function() {
+				alert('Upload failed. Please try again');
+			}
+		});
+	}
+	
+	function uploadFileSuccess() {
+		//Close Modal
+		$("#attachments-modal").modal('toggle');
+		//TODO Refresh Attachments Sections
 	}
 </script>

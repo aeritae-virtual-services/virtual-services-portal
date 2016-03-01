@@ -64,7 +64,10 @@ $(document).ready(function () {
     });
     
     $('.future-date').each(function() {
-    	if($(this).val() == '') {
+    	var now = new Date();
+    	var enteredDate = new Date($(this).val());
+    	
+    	if($(this).val() == '' || enteredDate > now) {
     		//If no date already selected, future date from now
     		$(this).datetimepicker({
 		    	icons: {
@@ -78,7 +81,7 @@ $(document).ready(function () {
 					clear: "fa fa-trash-o",
 					close: "fa fa-times"
 		        },
-		        minDate: (new Date()),
+		        minDate: now,
 		        showTodayButton: true,
 		        format: 'MM/DD/YYYY'
 		    });
@@ -96,7 +99,7 @@ $(document).ready(function () {
     				clear: "fa fa-trash-o",
     				close: "fa fa-times"
     	        },
-    	        minDate: (new Date($(this).val())),
+    	        minDate: enteredDate,
     	        showTodayButton: true,
     	        format: 'MM/DD/YYYY'
     	    });
@@ -104,7 +107,10 @@ $(document).ready(function () {
     });
     
     $('.future-datetime').each(function() {
-    	if($(this).val() == '') {
+    	var now = new Date();
+    	var enteredDate = new Date($(this).val());
+    	
+    	if($(this).val() == '' || enteredDate > now) {
     		//If no datetime already selected, future datetime from now
     		$(this).datetimepicker({
 		    	icons: {
@@ -118,7 +124,7 @@ $(document).ready(function () {
 					clear: "fa fa-trash-o",
 					close: "fa fa-times"
 		        },
-		        minDate: (new Date()),
+		        minDate: now,
 		        showTodayButton: true
 		    });
     	} else {
@@ -135,14 +141,14 @@ $(document).ready(function () {
 					clear: "fa fa-trash-o",
 					close: "fa fa-times"
 		        },
-		        minDate: (new Date($(this).val())),
+		        minDate: enteredDate,
 		        showTodayButton: true
     		});
     	}
     });
 });
 
-//Masked Fields: Currency
+//Masked Fields: Currency, Phone Number
 $(document).ready(function() {
 	$('.currency').mask('000,000,000,000,000.00', {reverse: true});
 	$('.phone-number').mask('0-000-000-0000',{reverse: true});
@@ -156,3 +162,21 @@ $(document).ready(function() {
 		menubar: false
 	});
 });
+
+//Poke Toggle
+function togglePokes() {
+	$('#poke-view').toggle('fast');
+	if($('#notification-view').is( ":visible" )) {
+		$('#notification-view').toggle('fast');
+	}
+	return false;
+}
+
+//Notification Toggle
+function toggleNotifications() {
+	if($('#poke-view').is( ":visible" )) {
+		$('#poke-view').toggle('fast');
+	}
+	$('#notification-view').toggle('fast');
+	return false;
+}

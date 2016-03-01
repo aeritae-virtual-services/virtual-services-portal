@@ -33,53 +33,78 @@
 						<a data-toggle="tooltip" title="Cancel Request" data-placement="bottom" >
 							<i class="fa fa-ban icon-cancel"></i>
 						</a>
+						<span class="form-action-break">
+						</span>
+						<a data-toggle="tooltip" title="View Tier Information" data-placement="bottom">
+							<span data-toggle="modal" data-target="#tier-modal">
+								<i class="fa fa-star-o icon-tier"></i>
+							</span>
+						</a>
+						<span class="form-action-break">
+						</span>
 						<a data-toggle="tooltip" title="Manage Attachments" data-placement="bottom">
 							<span data-toggle="modal" data-target="#attachments-modal">
 								<i class="fa fa-paperclip icon-attachments"></i>
-								<span class="badge orange-badge badge-overlap">3</span>
+								<span id="attachment-count" class="badge orange-badge badge-overlap">1</span>
 							</span>
 						</a>
 						<a data-toggle="tooltip" title="View Comments" data-placement="bottom" >
 							<span data-toggle="modal" data-target="#comments-modal">
 								<i class="fa fa-comment-o icon-comments"></i>
-								<span class="badge orange-badge badge-overlap">3</span>
+								<span id="comment-count" class="badge orange-badge badge-overlap">1</span>
 							</span>
 						</a>
 					</div>
 				</div>
 				<%@ include file="/WEB-INF/partials/request_progress_banner.jsp"%>
 				<div class="panel-form">
-					<div class="half-form row">
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="third-form row">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 							<jsp:include page="../partials/fields/text.jsp">
 								<jsp:param name="fieldName" value="${'client_request_number'}"/>
 								<jsp:param name="fieldLabel" value="${'Client Request Number'}"/>
 							</jsp:include>
+							<jsp:include page="../partials/fields/dropdown.jsp">
+								<jsp:param name="fieldName" value="${'request_type'}"/>
+								<jsp:param name="fieldLabel" value="${'Request Type'}"/>
+							</jsp:include>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 							<jsp:include page="../partials/fields/reference.jsp">
 								<jsp:param name="fieldName" value="${'requester'}"/>
 								<jsp:param name="fieldLabel" value="${'Requester'}"/>
-							</jsp:include>
-							<jsp:include page="../partials/fields/future-date.jsp">
-								<jsp:param name="fieldName" value="${'requested_completion_date'}"/>
-								<jsp:param name="fieldLabel" value="${'Requested Completion Date'}"/>
-							</jsp:include>
-							<jsp:include page="../partials/fields/dropdown.jsp">
-								<jsp:param name="fieldName" value="${'priority'}"/>
-								<jsp:param name="fieldLabel" value="${'Priority'}"/>
-							</jsp:include>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/dropdown.jsp">
-								<jsp:param name="fieldName" value="${'status'}"/>
-								<jsp:param name="fieldLabel" value="${'Status'}"/>
 							</jsp:include>
 							<jsp:include page="../partials/fields/checkbox.jsp">
 								<jsp:param name="fieldName" value="${'request_loe'}"/>
 								<jsp:param name="fieldLabel" value="${'Request Level of Effort'}"/>
 							</jsp:include>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<jsp:include page="../partials/fields/future-date.jsp">
+								<jsp:param name="fieldName" value="${'requested_completion_date'}"/>
+								<jsp:param name="fieldLabel" value="${'Requested Completion Date'}"/>
+							</jsp:include>
+						</div>
+					</div>
+					<div class="half-form row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<jsp:include page="../partials/fields/dropdown.jsp">
+								<jsp:param name="fieldName" value="${'priority'}"/>
+								<jsp:param name="fieldLabel" value="${'Priority'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:param name="fieldName" value="${'update_set'}"/>
+								<jsp:param name="fieldLabel" value="${'Update Set'}"/>
+							</jsp:include>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							<jsp:include page="../partials/fields/number.jsp">
 								<jsp:param name="fieldName" value="${'estimated_loe'}"/>
 								<jsp:param name="fieldLabel" value="${'Estimated LOE'}"/>
+							</jsp:include>
+							<jsp:include page="../partials/fields/number.jsp">
+								<jsp:param name="fieldName" value="${'hours_consumed'}"/>
+								<jsp:param name="fieldLabel" value="${'Hours Consumed'}"/>
 							</jsp:include>
 						</div>
 					</div>
@@ -101,6 +126,7 @@
 	</div>
 	<%@ include file="/WEB-INF/partials/attachments_modal.jsp"%>
 	<%@ include file="/WEB-INF/partials/comments_modal.jsp"%>
+	<%@ include file="/WEB-INF/partials/tier_modal.jsp"%>
 	<%@ include file="/WEB-INF/partials/portal_footer.jsp"%>
 </body>
 </html>

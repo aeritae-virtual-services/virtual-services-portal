@@ -5,7 +5,7 @@
 				<a class="close" data-dismiss="modal">
 					<i class="fa fa-times"></i>
 				</a>
-				<h4 class="modal-title">Comments</h4>
+				<h4 class="modal-title"><i class="fa fa-comment-o icon-comments"></i>Comments</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -74,5 +74,30 @@
 		$('#public-comment').css({visibility: 'hidden'});
 		$('#public-comment').prop("checked", false);
 		$('#save-comment').css({visibility: 'hidden'});
+	}
+	
+	function saveComment() {
+		$.ajax({
+			url: "add_comment",
+			type: "POST",
+			data: ({
+				comment: $('#comment').val() + '',
+				pub: $('#public-comment').is(":checked") + ''
+			}),
+			success: function() {
+				saveCommentSuccess();
+			},
+			error: function() {
+				alert('Comment failed. Please try saving again');
+			}
+		});
+	}
+	
+	function saveCommentSuccess() {
+		//Close Modal
+		$("#comments-modal").modal('toggle');
+		//Increment Comment Counter
+		
+		//TODO Refresh Comments Table
 	}
 </script>
