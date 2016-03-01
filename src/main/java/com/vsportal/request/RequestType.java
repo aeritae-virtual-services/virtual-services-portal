@@ -3,6 +3,8 @@ package com.vsportal.request;
 import java.sql.Date;
 
 import com.vsportal.user.User;
+import com.vsportal.utils.DropdownOption;
+import com.vsportal.workflow.WorkflowStep;
 
 public class RequestType {
 	private int id;
@@ -91,6 +93,8 @@ public class RequestType {
 		this.updatedBy = updatedBy;
 	}
 	
-	
+	public DropdownOption getDropdownOption() {
+		return new DropdownOption(String.valueOf(this.getId()), this.getName());
+	}
 
 }

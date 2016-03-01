@@ -67,6 +67,7 @@
 							<jsp:include page="../partials/fields/dropdown.jsp">
 								<jsp:param name="fieldName" value="${'request_type'}"/>
 								<jsp:param name="fieldLabel" value="${'Request Type'}"/>
+								<jsp:param name="optionList" value="${'requestTypeList'}"/>
 							</jsp:include>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -91,6 +92,7 @@
 							<jsp:include page="../partials/fields/dropdown.jsp">
 								<jsp:param name="fieldName" value="${'priority'}"/>
 								<jsp:param name="fieldLabel" value="${'Priority'}"/>
+								<jsp:param name="optionList" value="${'prioritiesList'}"/>
 							</jsp:include>
 							<jsp:include page="../partials/fields/text.jsp">
 								<jsp:param name="fieldName" value="${'update_set'}"/>

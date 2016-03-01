@@ -3,6 +3,7 @@ package com.vsportal.priority;
 import java.sql.Date;
 
 import com.vsportal.user.User;
+import com.vsportal.utils.DropdownOption;
 
 public class Priority {
 
@@ -66,5 +67,8 @@ public class Priority {
 		return updated;
 	}
 	
+	public DropdownOption getDropdownOption() {
+		return new DropdownOption(String.valueOf(this.getValue()), this.getLabel());
+	}
 	
 }

@@ -197,6 +197,7 @@ h3 {
 
 .progress-wrapper {
 	padding: 20px;
+	padding-bottom: 0px;
 }
 
 .progress {
@@ -419,7 +420,7 @@ h3 {
 
 .panel-form {
 	padding: 20px;
-	padding-top: 0px;
+	padding-top: 20px;
 }
 
 input::-webkit-outer-spin-button,
@@ -505,4 +506,8 @@ textarea {
 
 .modal-title i {
 	margin-right: 10px;
+}
+
+.password {
+	border-radius: 4px!important;
 }
