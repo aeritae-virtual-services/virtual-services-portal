@@ -52,9 +52,6 @@
 				    			</tbody>
 				    		</table>
     					</div>
-    					<div class="poke-item">
-    						<img width="100%" src="http://rs108.pbsrc.com/albums/n31/dibbera/Pokes/animated-girl-poke.gif~c200"/>
-    					</div>
     				</div>
     			</li>
     			<li>

@@ -261,10 +261,21 @@ h3 {
     border-top: 1px solid #0090c4;
     border-right: 1px solid #007dab;
     border-bottom: 1px solid #007dab;
+    cursor: default;
 }
 
 .progress-bar-future:active {
-	background-color: #0090c4!important;
+	background-image: -webkit-linear-gradient(top,#0090c4 0,#007dab 100%);
+    background-image: -o-linear-gradient(top,#0090c4 0,#005878 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#0090c4),to(#007dab));
+    background-image: linear-gradient(to bottom,#0090c4 0,#007dab 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+    background-repeat: repeat-x;
+    border-left: 1px solid #0090c4;
+    border-top: 1px solid #0090c4;
+    border-right: 1px solid #007dab;
+    border-bottom: 1px solid #007dab;
+    box-shadow: 0 0 0 transparent;
 }
 
 .progress-bar-current {
@@ -293,10 +304,6 @@ h3 {
     border-right: 1px solid #3d8b3d;
     border-bottom: 1px solid #3d8b3d;
     box-shadow: 0 0 0 transparent;
-}
-
-.progress-bar-current:active {
-	background-color: #5cb85c!important;
 }
 
 .progress-bar-first {

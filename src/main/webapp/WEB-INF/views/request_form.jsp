@@ -33,15 +33,7 @@
 						<a data-toggle="tooltip" title="Cancel Request" data-placement="bottom" >
 							<i class="fa fa-ban icon-cancel"></i>
 						</a>
-						<span class="form-action-break">
-						</span>
-						<a data-toggle="tooltip" title="View Tier Information" data-placement="bottom">
-							<span data-toggle="modal" data-target="#tier-modal">
-								<i class="fa fa-star-o icon-tier"></i>
-							</span>
-						</a>
-						<span class="form-action-break">
-						</span>
+						<span class="form-action-break"></span>
 						<a data-toggle="tooltip" title="Manage Attachments" data-placement="bottom">
 							<span data-toggle="modal" data-target="#attachments-modal">
 								<i class="fa fa-paperclip icon-attachments"></i>
@@ -128,7 +120,6 @@
 	</div>
 	<%@ include file="/WEB-INF/partials/attachments_modal.jsp"%>
 	<%@ include file="/WEB-INF/partials/comments_modal.jsp"%>
-	<%@ include file="/WEB-INF/partials/tier_modal.jsp"%>
 	<%@ include file="/WEB-INF/partials/portal_footer.jsp"%>
 </body>
 </html>

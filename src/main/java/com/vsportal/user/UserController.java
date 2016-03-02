@@ -66,24 +66,24 @@ public class UserController {
     	ModelAndView model = null;
     	
     	//Get User Data Access Object to Manage Session User
-    	UserDAO userSessionDAO = new UserDAO();
+    	//UserDAO userSessionDAO = new UserDAO();
     	
     	//Validate session
-    	if(!sh.isValidSession(sess)) {
+    	/*if(!sh.isValidSession(sess)) {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: User
     		model.addObject("redirectTo", "/add_user");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
-    	} else {
+    	} else {*/
     		//Call Form View For: User
     		model = new ModelAndView("user_form");
     		//Pass session user to View
-	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
+	    	//model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
     		model.addObject("operation", "new");
-    	}
+    	//}
     	
     	return model;
     }
