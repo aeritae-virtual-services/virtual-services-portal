@@ -23,6 +23,7 @@ public class User {
 	private User updatedBy;
 	private ArrayList<Group> groups;
 	private Role role;
+	private String image;
 
 	public User(){
 		
@@ -143,5 +144,13 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public void setImage(String img) {
+		this.image = img;
 	}
 }

@@ -17,6 +17,14 @@
 	<div id="wrapper">
 		<%@ include file="/WEB-INF/partials/portal_navigator.jsp"%>
 		<div class="body">
+		<div width="100%" style="text-align: center;">
+			<button class="btn btn-success" style="padding: 10px; font-size: 20px; margin: 20px; margin-top: 0px;">
+				<i class="fa fa-plus" style="padding-right: 10px;"></i>Submit a New Request
+			</button>
+			<button class="btn btn-primary" style="padding: 10px; font-size: 20px; margin: 20px; margin-top: 0px;">
+				<i class="fa fa-pie-chart" style="padding-right: 10px;"></i>View My Reports
+			</button>
+		</div>
 		<div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">

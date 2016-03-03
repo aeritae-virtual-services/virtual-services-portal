@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Virtual Services | Users</title>
 <%@ include file="/WEB-INF/partials/include_libraries.jsp"%>
+<script>
+	function saveUserForm() {
+		document.getElementById('user_form').submit();
+	}
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/partials/portal_header.jsp"%>
@@ -30,73 +35,62 @@
 						</c:if>
 					</div>
 					<div class="form-actions-right">
-						<c:if test='${operation eq "new"}'>
-							<a formaction="add_user" data-toggle="tooltip" title="Save User"
-								data-placement="bottom"> <i
-								class="fa fa-floppy-o icon-save"></i>
-							</a>
-						</c:if>
-						<c:if test='${operation eq "update"}'>
-							<a formaction="update_user" data-toggle="tooltip"
-								title="Save User" data-placement="bottom"> <i
-								class="fa fa-floppy-o icon-save"></i>
-							</a>
-						</c:if>
+						<a onclick="saveUserForm();" data-toggle="tooltip" title="Save User" data-placement="bottom">
+								<i class="fa fa-floppy-o icon-save"></i>
+						</a>
 					</div>
 				</div>
 				<div class="panel-form">
-					<form method="POST">
+					<%
+						//Get form action based upon URI
+						String formAction = request.getAttribute("javax.servlet.forward.request_uri").toString();
+						formAction = formAction.substring(formAction.lastIndexOf('/') + 1);
+					%>
+					<form action="<%=formAction%>" method="POST" id="user_form">
 						<div class="half-form row">
-							<input type="hidden" name="id"
-								value='${operation eq "update" ? user.id : ""}' />
+							<input type="hidden" name="id" value='${operation eq "update" ? user.id : ""}' />
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'first_name'}" />
 									<jsp:param name="fieldLabel" value="${'First Name'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.firstName : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.firstName : ""}' />
 								</jsp:include>
 								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'last_name'}" />
 									<jsp:param name="fieldLabel" value="${'Last Name'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.lastName : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.lastName : ""}' />
 								</jsp:include>
 								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'username'}" />
 									<jsp:param name="fieldLabel" value="${'User Name'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.username : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.username : ""}' />
 								</jsp:include>
 								<jsp:include page="../partials/fields/reference.jsp">
 									<jsp:param name="fieldName" value="${'client'}" />
 									<jsp:param name="fieldLabel" value="${'Client'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.client.id : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.client.id : ""}' />
 								</jsp:include>
-								<jsp:include page="../partials/fields/file_upload.jsp">
+								<jsp:include page="../partials/fields/image_upload.jsp">
 									<jsp:param name="fieldName" value="${'image'}" />
 									<jsp:param name="fieldLabel" value="${'Image'}" />
+									<jsp:param name="value" value='${operation eq "update" ? user.image : "https://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png"}' />
 								</jsp:include>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<jsp:include page="../partials/fields/phonenumber.jsp">
 									<jsp:param name="fieldName" value="${'phone_number'}" />
 									<jsp:param name="fieldLabel" value="${'Phone Number'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.phone : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.phone : ""}' />
 								</jsp:include>
 								<jsp:include page="../partials/fields/email.jsp">
 									<jsp:param name="fieldName" value="${'email'}" />
 									<jsp:param name="fieldLabel" value="${'Email'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.email : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.email : ""}' />
 								</jsp:include>
 								<jsp:include page="../partials/fields/dropdown.jsp">
 									<jsp:param name="fieldName" value="${'role'}" />
 									<jsp:param name="fieldLabel" value="${'Role'}" />
-									<jsp:param name="value"
-										value='${operation eq "update" ? user.role.id : ""}' />
+									<jsp:param name="value" value='${operation eq "update" ? user.role.id : ""}' />
 									<jsp:param name="optionList" value="${'rolesList'}" />
 								</jsp:include>
 								<jsp:include page="../partials/fields/password.jsp">

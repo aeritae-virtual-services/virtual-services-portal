@@ -464,6 +464,20 @@ input[type=checkbox]:focus::before {
 	box-shadow: 0 0 0 transparent;
 }
 
+input[type=file] {
+	box-shadow: 0 0 0 transparent;
+	border: 0px!important;
+}
+
+input[type=file]:focus {
+	box-shadow: none!important;
+}
+
+input[type=file]:active {
+	box-shadow: none!important;
+}
+
+
 textarea {
     max-width: 100%;
     min-width: 100%;
