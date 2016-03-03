@@ -3,6 +3,6 @@
 		${param.fieldLabel}
 	</label>
 	<div class="input-group" style="width: 100%">
-		<input name="${param.fieldName}" type="password" class="form-control password"></input>
+		<input name="${param.fieldName}" type="password" class="form-control password" value="${param.value}"></input>
 	</div>
 </fieldset>

@@ -6,6 +6,6 @@
 		<span class="input-group-addon">
 			<i class="fa fa-usd"></i>
 		</span>
-		<input name="${param.fieldName}" type="text" class="form-control currency"></input>
+		<input name="${param.fieldName}" type="text" class="form-control currency" value="${param.value}"></input>
 	</div>
 </fieldset>

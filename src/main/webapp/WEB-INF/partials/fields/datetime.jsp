@@ -3,7 +3,7 @@
 		${param.fieldLabel}
 	</label>
 	<div class="input-group datetime">
-		<input name="${param.fieldName}" type="text" class="form-control"></input>
+		<input name="${param.fieldName}" type="text" class="form-control" value="${param.value}"></input>
 		<span class="input-group-addon" style="cursor: pointer;">
 			<i class="fa fa-calendar"></i>
 		</span>
