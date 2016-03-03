@@ -28,7 +28,7 @@
     			<li>
     				<a href="" data-toggle="tooltip" title="View Pokes" data-placement="bottom" onclick="return togglePokes();">
     					<i class="white-icon fa fa-hand-o-right"></i>
-    					<span class="badge orange-badge">1</span>
+    					<span class="badge orange-badge">3</span>
     				</a>
     				<div id="poke-view" class="poke-view" style="display: none;">
     					<h4><i class="fa fa-hand-o-right" style="margin-right: 10px;"></i>My Pokes</h4>
