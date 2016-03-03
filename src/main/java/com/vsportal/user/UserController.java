@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.vsportal.client.Client;
+import com.vsportal.client.ClientDAO;
+import com.vsportal.role.Role;
+import com.vsportal.role.RoleDAO;
 import com.vsportal.utils.SessionHelper;
 
 @Controller
@@ -62,24 +66,24 @@ public class UserController {
     	ModelAndView model = null;
     	
     	//Get User Data Access Object to Manage Session User
-    	UserDAO userSessionDAO = new UserDAO();
+    	//UserDAO userSessionDAO = new UserDAO();
     	
     	//Validate session
-    	if(!sh.isValidSession(sess)) {
+    	/*if(!sh.isValidSession(sess)) {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
     		//Set redirect back to new form for: User
     		model.addObject("redirectTo", "/add_user");
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
-    	} else {
+    	} else {*/
     		//Call Form View For: User
     		model = new ModelAndView("user_form");
     		//Pass session user to View
 	    	//model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
     		model.addObject("operation", "new");
-    	}
+    	//}
     	
     	return model;
     }
@@ -97,6 +101,12 @@ public class UserController {
     	//Get Data Access Object For: User
     	UserDAO userDAO = new UserDAO();
     	
+    	//Get Data Access Object For Client
+    	ClientDAO clientDAO = new ClientDAO();
+    	
+    	//Get Data Access Object For Role
+    	RoleDAO roleDAO = new RoleDAO();
+    	
     	//Validate session
     	if(!sh.isValidSession(sess)) {
     		//If invalid session, redirect to login page
@@ -106,11 +116,23 @@ public class UserController {
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not created.");
     	} else {
-    		//TODO Get All Attributes From Form
+    		//Get All Attributes From Form
+    		String username = request.getParameter("username");
+    		String firstName = request.getParameter("first_name");
+    		String lastName = request.getParameter("last_name");
+    		String phone = request.getParameter("phone");
+    		String email = request.getParameter("email");
+    		String password = request.getParameter("password");
+    		User createdBy = userSessionDAO.getSessionUser(sess);
+    		User updatedBy = userSessionDAO.getSessionUser(sess);
+    		Client client = clientDAO.getClientById(Integer.parseInt(request.getParameter("client")));
+    		Role role = roleDAO.getRoleById(Integer.parseInt(request.getParameter("role")));
     		
-    		//TODO Populate Object with Attributes For: User
+    		//Populate Object with Attributes For: User
+    		User newUser = new User(username, firstName, lastName, phone, email, client, role, createdBy, updatedBy);
     		
-    		//TODO Insert Base Object For: User
+    		//Insert Base Object For: User
+    		userDAO.insertUser(newUser, password);
     		
     		//Redirect to list for: User
     		//Include standard filter for: User
@@ -130,6 +152,9 @@ public class UserController {
     	//Get User Data Access Object to Manage Session User
     	UserDAO userSessionDAO = new UserDAO();
     	
+    	//Get User Data Access Object for: User
+    	UserDAO userDAO = new UserDAO();
+    	
     	//Validate session
     	if(!sh.isValidSession(sess)) {
     		//If invalid session, redirect to login page
@@ -145,6 +170,8 @@ public class UserController {
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
     		model.addObject("operation", "update");
+    		//Pass Requested: User
+    		model.addObject("user", userDAO.getUserById(id));
     	}
     	
     	return model;
@@ -163,6 +190,12 @@ public class UserController {
     	//Get Data Access Object For: User
     	UserDAO userDAO = new UserDAO();
     	
+    	//Get Data Access Object For Client
+    	ClientDAO clientDAO = new ClientDAO();
+    	
+    	//Get Data Access Object For Role
+    	RoleDAO roleDAO = new RoleDAO();
+    	
     	if(!sh.isValidSession(sess)) {
     		//If invalid session, redirect to login page
     		model = new ModelAndView("login");
@@ -171,11 +204,23 @@ public class UserController {
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: User record not updated.");
     	} else {
-    		//TODO Get All Attributes From Form
+    		//Get All Attributes From Form
+    		String username = request.getParameter("username");
+    		String firstName = request.getParameter("first_name");
+    		String lastName = request.getParameter("last_name");
+    		String phone = request.getParameter("phone");
+    		String email = request.getParameter("email");
+    		User createdBy = userSessionDAO.getSessionUser(sess);
+    		User updatedBy = userSessionDAO.getSessionUser(sess);
+    		Client client = clientDAO.getClientById(Integer.parseInt(request.getParameter("client")));
+    		Role role = roleDAO.getRoleById(Integer.parseInt(request.getParameter("role")));
     		
-    		//TODO Populate Object with Attributes For: User
+    		//Populate Object with Attributes For: User
+    		User updateUser = new User(username, firstName, lastName, phone, email, client, role, createdBy, updatedBy);
+    		updateUser.setId(Integer.parseInt(request.getParameter("id")));
     		
-    		//TODO Update Base Object For: User
+    		//Update Base Object For: User
+    		userDAO.updateUser(updateUser);
     		
     		//Redirect to list for: User
     		//Include standard filter for: User

@@ -10,7 +10,6 @@
 <body>
 	<%@ include file="/WEB-INF/partials/portal_header.jsp"%>
 	<div class="body">
-		<%@ include file="/WEB-INF/partials/progress_bar.jsp"%>
 		<div class="jumbotron">
 			<div class="login_header">
 				<h3>Aeritae Virtual Services</h3>

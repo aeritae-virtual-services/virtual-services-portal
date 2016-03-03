@@ -2,5 +2,10 @@
 	<label for="${param.fieldName}">
 		${param.fieldLabel}
 	</label>
-	<input name="${param.fieldName}" type="text" class="form-control phoneNumber" placeholder="(000)000-0000" pattern="(\(\d{3}\))?\d{3}\-\d{4}"></input>
+	<div class="input-group">
+		<input name="${param.fieldName}" type="text" class="form-control phone-number"></input>
+		<span class="input-group-addon" onclick="callThis(this); return false;" style="cursor: pointer;" data-toggle="tooltip" title="Dial Number" data-placement="bottom">
+			<i class="fa fa-phone"></i>
+		</span>
+	</div>
 </fieldset>

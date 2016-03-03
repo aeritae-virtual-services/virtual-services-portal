@@ -2,5 +2,10 @@
 	<label for="${param.fieldName}">
 		${param.fieldLabel}
 	</label>
-	<input name="${param.fieldName}" type="text" placeholder="example.com"class="form-control hyperlink"></input>
+	<div class="input-group">
+		<input name="${param.fieldName}" type="text" class="form-control hyperlink"></input>
+		<span class="input-group-addon" onclick="openLink(this); return false;" style="cursor: pointer;" data-toggle="tooltip" title="Go to Site" data-placement="bottom">
+			<i class="fa fa-share"></i>
+		</span>
+	</div>
 </fieldset>

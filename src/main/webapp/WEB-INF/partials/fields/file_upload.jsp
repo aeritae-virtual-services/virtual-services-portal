@@ -2,5 +2,5 @@
 	<label for="${param.fieldName}">
 		${param.fieldLabel}
 	</label>
-	<textarea name="${param.fieldName}" class="form-control html-editor"></textarea>
+	<input name="${param.fieldName}" type="file" class="form-control file-upload"></input>
 </fieldset>

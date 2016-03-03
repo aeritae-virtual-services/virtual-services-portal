@@ -3,7 +3,7 @@ package com.vsportal.user;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.vsportal.client.Company;
+import com.vsportal.client.Client;
 import com.vsportal.group.Group;
 import com.vsportal.role.Role;
 
@@ -13,35 +13,35 @@ public class User {
 	private String username;
 	private String firstName;
 	private String lastName;
+	private String fullName;
 	private String phone;
 	private String email;
-	private Company company;
+	private Client client;
 	private Date created;
 	private User createdBy;
 	private Date updated;
 	private User updatedBy;
-	private ArrayList<Group> group;
+	private ArrayList<Group> groups;
 	private Role role;
-	
-	
-
 
 	public User(){
+		
 	}
 	
-	public User(String firstName, String lastName, String phone, String email, Company company){
+	public User(String username, String firstName, String lastName, String phone, String email, Client client, Role role, User createdBy, User updatedBy){
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.fullName = firstName + " " + lastName;
 		this.phone = phone;
 		this.email = email;
-		this.company = company;
+		this.client = client;
 		this.role = role;
+		this.createdBy = createdBy;
+		this.updatedBy = updatedBy;
 	}
-	
-	
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
@@ -49,15 +49,27 @@ public class User {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
+	public String getFullName() {
+		return fullName;
+	}
+	
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getLastName() {
@@ -84,12 +96,12 @@ public class User {
 		this.email = email;
 	}
 
-	public Company getCompany() {
-		return company;
+	public Client getClient() {
+		return this.client;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 
@@ -117,12 +129,12 @@ public class User {
 		this.updatedBy = updatedBy;
 	}
 
-	public ArrayList getGroup() {
-		return group;
+	public ArrayList<Group> getGroup() {
+		return groups;
 	}
 
-	public void setGroup(ArrayList group) {
-		this.group = group;
+	public void setGroup(ArrayList<Group> groups) {
+		this.groups = groups;
 	}
 
 	public Role getRole() {

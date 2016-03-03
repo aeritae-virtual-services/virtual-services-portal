@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.vsportal.priority.Priority;
 import com.vsportal.request.Request;
 import com.vsportal.request.RequestDAO;
 import com.vsportal.user.UserDAO;
+import com.vsportal.utils.DropdownOption;
 import com.vsportal.utils.SessionHelper;
 
 @Controller
@@ -147,6 +150,43 @@ public class RequestController {
 	    	//model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
     		model.addObject("operation", "update");
+    		
+    		//Add Priorities list
+    		ArrayList<DropdownOption> prioritiesList = new ArrayList<DropdownOption>();
+    		
+    		Priority p1 = new Priority("Critical", 1);
+    		Priority p2 = new Priority("High", 2);
+    		Priority p3 = new Priority("Medium", 3);
+    		Priority p4 = new Priority("Low", 4);
+    		
+    		prioritiesList.add(p1.getDropdownOption());
+    		prioritiesList.add(p2.getDropdownOption());
+    		prioritiesList.add(p3.getDropdownOption());
+    		prioritiesList.add(p4.getDropdownOption());
+    		
+    		model.addObject("prioritiesList", prioritiesList);
+    		
+    		//Add Request Type list
+    		ArrayList<DropdownOption> requestTypeList = new ArrayList<DropdownOption>();
+    		
+    		RequestType inc = new RequestType();
+    		inc.setId(0);
+    		inc.setName("Incident");
+    		
+    		RequestType dev = new RequestType();
+    		dev.setId(1);
+    		dev.setName("Development");
+    		
+    		RequestType adv = new RequestType();
+    		adv.setId(2);
+    		adv.setName("Advisory");
+    		
+    		requestTypeList.add(inc.getDropdownOption());
+    		requestTypeList.add(dev.getDropdownOption());
+    		requestTypeList.add(adv.getDropdownOption());
+    		
+    		model.addObject("requestTypeList", requestTypeList);
+    		
     	//}
     	
     	return model;

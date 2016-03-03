@@ -14,8 +14,10 @@
     transition: all 0.5s ease;
 }
 
-#wrapper.toggled {
-    padding-left: 250px;
+@media screen and (min-width: 768px) {
+	#wrapper.toggled {
+	    padding-left: 250px;
+	}
 }
 
 #sidebar-wrapper {
