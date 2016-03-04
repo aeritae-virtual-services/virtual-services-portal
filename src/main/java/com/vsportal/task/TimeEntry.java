@@ -1,6 +1,8 @@
 package com.vsportal.task;
 
 import java.sql.Date;
+
+import com.vsportal.client.Client;
 import com.vsportal.contract.Contract;
 import com.vsportal.user.User;
 
@@ -11,12 +13,13 @@ public class TimeEntry {
 	private Date updated;
 	private User updatedBy;
 	private Task task;
-	private int hoursConsumed;
+	private float hoursConsumed;
 	private User user;
 	private Contract contract;
+	private Client client;
 	
-	public TimeEntry(int id, Date created, User createdBy, Date updated, User updatedBy, Task task, int hoursConsumed,
-			User user, Contract contract) {
+	public TimeEntry(int id, Date created, User createdBy, Date updated, User updatedBy, Task task, float hoursConsumed,
+			User user, Contract contract, Client client) {
 		super();
 		this.id = id;
 		this.created = created;
@@ -27,6 +30,7 @@ public class TimeEntry {
 		this.hoursConsumed = hoursConsumed;
 		this.user = user;
 		this.contract = contract;
+		this.client = client;
 	}
 	public int getId() {
 		return id;
@@ -64,10 +68,10 @@ public class TimeEntry {
 	public void setTask(Task task) {
 		this.task = task;
 	}
-	public int getHoursConsumed() {
+	public float getHoursConsumed() {
 		return hoursConsumed;
 	}
-	public void setHoursConsumed(int hoursConsumed) {
+	public void setHoursConsumed(float hoursConsumed) {
 		this.hoursConsumed = hoursConsumed;
 	}
 	public User getUser() {
@@ -83,4 +87,10 @@ public class TimeEntry {
 		this.contract = contract;
 	}
 	
+	public Client getClient() {
+		return this.client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 }

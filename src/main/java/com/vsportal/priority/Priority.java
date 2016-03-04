@@ -6,7 +6,6 @@ import com.vsportal.user.User;
 import com.vsportal.utils.DropdownOption;
 
 public class Priority {
-
 	private int id;
 	private String label;
 	private int value;

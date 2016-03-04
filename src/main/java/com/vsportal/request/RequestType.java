@@ -8,13 +8,13 @@ import com.vsportal.workflow.WorkflowStep;
 
 public class RequestType {
 	private int id;
-	private String name;
-	private String description;
-	private WorkflowStep firstStep;
 	private Date created;
 	private User createdBy;
 	private Date updated;
 	private User updatedBy;
+	private String name;
+	private String description;
+	private WorkflowStep firstStep;
 	
 	public RequestType(){
 	}

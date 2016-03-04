@@ -1,35 +1,32 @@
-package com.vsportal.comment;
+package com.vsportal.task;
 
 import java.sql.Date;
 
-import com.vsportal.request.Request;
 import com.vsportal.user.User;
+import com.vsportal.utils.DropdownOption;
 
-public class Comment {
+public class TaskType {
 	private int id;
 	private Date created;
 	private User createdBy;
 	private Date updated;
 	private User updatedBy;
-	private Request request;
-	private String comment;
-	private boolean isPublic;
+	private String type;
 	
-	public Comment() {
+	
+	
+	public TaskType() {
 		super();
 	}
 
-	public Comment(int id, Date created, User createdBy, Date updated, User updatedBy, Request request, String comment,
-			boolean isPublic) {
+	public TaskType(int id, Date created, User createdBy, Date updated, User updatedBy, String type) {
 		super();
 		this.id = id;
 		this.created = created;
 		this.createdBy = createdBy;
 		this.updated = updated;
 		this.updatedBy = updatedBy;
-		this.request = request;
-		this.comment = comment;
-		this.isPublic = isPublic;
+		this.type = type;
 	}
 
 	public int getId() {
@@ -72,27 +69,16 @@ public class Comment {
 		this.updatedBy = updatedBy;
 	}
 
-	public Request getRequest() {
-		return request;
+	public String getType() {
+		return type;
 	}
 
-	public void setRequest(Request request) {
-		this.request = request;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getComment() {
-		return comment;
+	public DropdownOption getDropdownOption() {
+		return new DropdownOption(String.valueOf(this.getId()), this.getType());
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public boolean isPublic() {
-		return isPublic;
-	}
-
-	public void setPublic(boolean isPublic) {
-		this.isPublic = isPublic;
-	}
 }

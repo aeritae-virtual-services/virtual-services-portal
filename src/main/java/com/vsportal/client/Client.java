@@ -2,32 +2,46 @@ package com.vsportal.client;
 
 import java.sql.Date;
 
+import com.vsportal.group.Group;
 import com.vsportal.user.User;
 
 public class Client {
 	
 	private int id;
-	private String name;
-	private User primaryContact;
-	private String url;
-	private String address;
-	private User queueManager;
-	private boolean migration;
 	private Date created;
 	private User createdBy;
 	private Date updated;
 	private User updatedBy;
+	private String name;
+	private User primaryContact;
+	private String url;
+	private String address;
+	private Group queueManagers;
+	private boolean migrationRequired;
+	private boolean clientPORequired;
+	private Group primaryAnalysts;
 	
-	public Client(){
+	public Client() {
+		super();
 	}
-	
-	public Client(String name, User primaryContact, String url, String address, User queueManager, boolean migration){
+
+	public Client(int id, Date created, User createdBy, Date updated, User updatedBy, String name, User primaryContact,
+			String url, String address, Group queueManagers, boolean migrationRequired, boolean clientPORequired,
+			Group primaryAnalysts) {
+		super();
+		this.id = id;
+		this.created = created;
+		this.createdBy = createdBy;
+		this.updated = updated;
+		this.updatedBy = updatedBy;
 		this.name = name;
 		this.primaryContact = primaryContact;
 		this.url = url;
 		this.address = address;
-		this.queueManager = queueManager;
-		this.migration = migration;
+		this.queueManagers = queueManagers;
+		this.migrationRequired = migrationRequired;
+		this.clientPORequired = clientPORequired;
+		this.primaryAnalysts = primaryAnalysts;
 	}
 
 	public int getId() {
@@ -36,6 +50,38 @@ public class Client {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+	public User getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(User updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getName() {
@@ -70,53 +116,35 @@ public class Client {
 		this.address = address;
 	}
 
-	public User getQueueManager() {
-		return queueManager;
+	public Group getQueueManagers() {
+		return queueManagers;
 	}
 
-	public void setQueueManager(User queueManager) {
-		this.queueManager = queueManager;
+	public void setQueueManagers(Group queueManagers) {
+		this.queueManagers = queueManagers;
 	}
 
-	public boolean isMigration() {
-		return migration;
+	public boolean isMigrationRequired() {
+		return migrationRequired;
 	}
 
-	public void setMigration(boolean migration) {
-		this.migration = migration;
+	public void setMigrationRequired(boolean migrationRequired) {
+		this.migrationRequired = migrationRequired;
 	}
 
-	public Date getCreated() {
-		return created;
+	public boolean isClientPORequired() {
+		return clientPORequired;
 	}
 
-	public void setCreated(Date created) {
-		this.created = created;
+	public void setClientPORequired(boolean clientPORequired) {
+		this.clientPORequired = clientPORequired;
 	}
 
-	public User getCreatedBy() {
-		return createdBy;
+	public Group getPrimaryAnalysts() {
+		return primaryAnalysts;
 	}
 
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
+	public void setPrimaryAnalysts(Group primaryAnalysts) {
+		this.primaryAnalysts = primaryAnalysts;
 	}
-
-	public Date getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-
-	public User getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(User updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	
-
 }

@@ -12,6 +12,7 @@ public class Field {
 	private User updatedBy;
 	private String column;
 	private String label;
+	private String table;
 	private String filter;
 	
 	public int getId() {
@@ -55,6 +56,12 @@ public class Field {
 	}
 	public void setLabel(String label) {
 		this.label = label;
+	}
+	public String getTable() {
+		return table;
+	}
+	public void setTable(String table) {
+		this.table = table;
 	}
 	public String getFilter() {
 		return filter;

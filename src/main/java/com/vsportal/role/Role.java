@@ -3,6 +3,7 @@ package com.vsportal.role;
 import java.sql.Date;
 
 import com.vsportal.user.User;
+import com.vsportal.utils.DropdownOption;
 
 public class Role {
 	
@@ -63,5 +64,9 @@ public class Role {
 
 	public Date getUpdated() {
 		return updated;
+	}
+	
+	public DropdownOption getDropdownOption() {
+		return new DropdownOption(String.valueOf(this.getId()), this.getName());
 	}
 }
