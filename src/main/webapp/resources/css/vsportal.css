@@ -464,20 +464,6 @@ input[type=checkbox]:focus::before {
 	box-shadow: 0 0 0 transparent;
 }
 
-input[type=file] {
-	box-shadow: 0 0 0 transparent;
-	border: 0px!important;
-}
-
-input[type=file]:focus {
-	box-shadow: none!important;
-}
-
-input[type=file]:active {
-	box-shadow: none!important;
-}
-
-
 textarea {
     max-width: 100%;
     min-width: 100%;
@@ -539,4 +525,16 @@ textarea {
 	padding-left: 15px;
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
+}
+
+.image-file-upload-container {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.image-file-context-menu {
+	display: none;
+	position: absolute;
+	top: 60px;
+	left: 20px;
 }

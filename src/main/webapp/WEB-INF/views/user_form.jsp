@@ -50,6 +50,11 @@
 						<div class="half-form row">
 							<input type="hidden" name="id" value='${operation eq "update" ? user.id : ""}' />
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<jsp:include page="../partials/fields/image_upload.jsp">
+									<jsp:param name="fieldName" value="${'image'}" />
+									<jsp:param name="fieldLabel" value="${'Profile Photo'}" />
+									<jsp:param name="value" value='${operation eq "update" ? user.image : "https://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png"}' />
+								</jsp:include>
 								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'first_name'}" />
 									<jsp:param name="fieldLabel" value="${'First Name'}" />
@@ -64,16 +69,6 @@
 									<jsp:param name="fieldName" value="${'username'}" />
 									<jsp:param name="fieldLabel" value="${'User Name'}" />
 									<jsp:param name="value" value='${operation eq "update" ? user.username : ""}' />
-								</jsp:include>
-								<jsp:include page="../partials/fields/reference.jsp">
-									<jsp:param name="fieldName" value="${'client'}" />
-									<jsp:param name="fieldLabel" value="${'Client'}" />
-									<jsp:param name="value" value='${operation eq "update" ? user.client.id : ""}' />
-								</jsp:include>
-								<jsp:include page="../partials/fields/image_upload.jsp">
-									<jsp:param name="fieldName" value="${'image'}" />
-									<jsp:param name="fieldLabel" value="${'Image'}" />
-									<jsp:param name="value" value='${operation eq "update" ? user.image : "https://www.wpclipart.com/signs_symbol/icons_oversized/male_user_icon.png"}' />
 								</jsp:include>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -96,6 +91,11 @@
 								<jsp:include page="../partials/fields/password.jsp">
 									<jsp:param name="fieldName" value="${'password'}" />
 									<jsp:param name="fieldLabel" value="${'Password'}" />
+								</jsp:include>
+								<jsp:include page="../partials/fields/reference.jsp">
+									<jsp:param name="fieldName" value="${'client'}" />
+									<jsp:param name="fieldLabel" value="${'Client'}" />
+									<jsp:param name="value" value='${operation eq "update" ? user.client.id : ""}' />
 								</jsp:include>
 							</div>
 						</div>

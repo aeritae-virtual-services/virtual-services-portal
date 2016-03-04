@@ -35,6 +35,11 @@
 <!-- Include Navigation Bar CSS -->
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/simple-sidebar.css?<%= new java.util.Date() %>">
 
+<!-- Include Reporting Capabilities -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/reporting-d3.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/reporting-c3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/reporting-c3.min.css">
+
 <!-- Include AE Features -->
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/vsportal.css?<%= new java.util.Date() %>">
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
