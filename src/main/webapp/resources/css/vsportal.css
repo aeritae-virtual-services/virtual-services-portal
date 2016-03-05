@@ -519,14 +519,6 @@ textarea {
 	border-radius: 4px!important;
 }
 
-.panel-heading {
-	background-color: rgba(0,160,217, .5);
-	background-image: none;
-	padding-left: 15px;
-	padding-top: 10px !important;
-	padding-bottom: 10px !important;
-}
-
 .image-file-upload-container {
 	display: inline-block;
 	cursor: pointer;
