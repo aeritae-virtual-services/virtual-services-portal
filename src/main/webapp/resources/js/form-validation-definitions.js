@@ -3,11 +3,12 @@ function getValidatorByFormName(formName) {
 		formId: 'add_approval',
 		rules: {
 			field: {
+				fieldId: 'field',
 				role: {
 					read: "1,2,3,4,5",
 					write: "1,2,3"
 				},
-				mandatory: "field == 'this' && field == 'that'",
+				mandatory: "$('#field').val() == 'this' && $('#field').val() == 'that'",
 				visible: "true",
 				readonly: "false",
 			}

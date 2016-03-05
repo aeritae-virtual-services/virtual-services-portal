@@ -159,7 +159,12 @@ $(document).ready(function() {
 $(document).ready(function() {
 	tinymce.init({
 		selector: '.html-editor',
-		menubar: false
+		menubar: false,
+		setup : function(ed) {
+		      ed.onKeyUp.add(function(ed, e) {
+		          console.debug('Key up event: ' + e.keyCode);
+		      });
+		   }
 	});
 });
 
