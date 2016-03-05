@@ -27,11 +27,11 @@
 					</div>
 					<div class="form-label">
 						<c:if test='${operation eq "new"}'>
-							<span>New Groups</span>
+							<span>New Group</span>
 						</c:if>
 						<c:if test='${operation eq "update"}'>
-							<span>${groups.id}</span>
-							<span><i>${groups.name}</i></span>
+							<span>${group.id}</span>
+							<span><i>${group.name}</i></span>
 						</c:if>
 					</div>
 					<div class="form-actions-right">
