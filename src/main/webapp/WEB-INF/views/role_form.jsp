@@ -50,18 +50,18 @@
 						<div class="half-form row">
 							<input type="hidden" name="id" value='${operation eq "update" ? role.id : ""}' />
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'name'}" />
 									<jsp:param name="fieldLabel" value="${'Name'}" />
 									<jsp:param name="value" value='${operation eq "update" ? role.name : ""}' />
-							</jsp:include>				
+								</jsp:include>				
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/number.jsp">
+								<jsp:include page="../partials/fields/number.jsp">
 									<jsp:param name="fieldName" value="${'value'}" />
 									<jsp:param name="fieldLabel" value="${'Value'}" />
 									<jsp:param name="value" value='${operation eq "update" ? role.value : ""}' />
-							</jsp:include>
+								</jsp:include>
 							</div>
 						</div>
 					</form>

@@ -50,23 +50,23 @@
 						<div class="half-form row">
 							<input type="hidden" name="id" value='${operation eq "update" ? priority.id : ""}' />
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'label'}" />
 									<jsp:param name="fieldLabel" value="${'Label'}" />
 									<jsp:param name="value" value='${operation eq "update" ? priority.label : ""}' />
-							</jsp:include>
-							<jsp:include page="../partials/fields/text.jsp">
+								</jsp:include>
+								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'table'}" />
 									<jsp:param name="fieldLabel" value="${'Table'}" />
 									<jsp:param name="value" value='${operation eq "update" ? priority.table : ""}' />
-							</jsp:include>				
+								</jsp:include>				
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/number.jsp">
+								<jsp:include page="../partials/fields/number.jsp">
 									<jsp:param name="fieldName" value="${'value'}" />
 									<jsp:param name="fieldLabel" value="${'Value'}" />
 									<jsp:param name="value" value='${operation eq "update" ? priority.value : ""}' />
-							</jsp:include>
+								</jsp:include>
 							</div>
 						</div>
 					</form>

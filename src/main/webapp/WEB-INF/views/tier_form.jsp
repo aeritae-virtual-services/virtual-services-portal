@@ -50,11 +50,11 @@
 						<div class="full-form row">
 							<input type="hidden" name="id" value='${operation eq "update" ? tier.id : ""}' />
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'name'}" />
 									<jsp:param name="fieldLabel" value="${'Name'}" />
 									<jsp:param name="value" value='${operation eq "update" ? tier.name : ""}' />
-							</jsp:include>				
+								</jsp:include>				
 							</div>
 						</div>
 					</form>

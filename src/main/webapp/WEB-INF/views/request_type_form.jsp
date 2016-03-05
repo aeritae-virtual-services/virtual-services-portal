@@ -63,14 +63,14 @@
 									<jsp:param name="value" value='${operation eq "update" ? requestType.firstStep.id : ""}' />
 								</jsp:include>	
 							</div>
-							<div class="full-form row">
+						</div>
+						<div class="full-form row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<jsp:include page="../partials/fields/textarea.jsp">
-										<jsp:param name="fieldName" value="${'description'}"/>
-										<jsp:param name="fieldLabel" value="${'Description'}"/>
-										<jsp:param name="value" value='${operation eq "update" ? requestType.description : ""}' />
-									</jsp:include>
-								</div>
+									<jsp:param name="fieldName" value="${'description'}"/>
+									<jsp:param name="fieldLabel" value="${'Description'}"/>
+									<jsp:param name="value" value='${operation eq "update" ? requestType.description : ""}' />
+								</jsp:include>
 							</div>
 						</div>
 					</form>

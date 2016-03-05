@@ -49,43 +49,43 @@
 						<div class="half-form row">
 							<input type="hidden" name="id" value='${operation eq "update" ? client.id : ""}' />
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/text.jsp">
+								<jsp:include page="../partials/fields/text.jsp">
 									<jsp:param name="fieldName" value="${'name'}" />
 									<jsp:param name="fieldLabel" value="${'Name'}" />
 									<jsp:param name="value" value='${operation eq "update" ? client.name : ""}' />
-							</jsp:include>
-							<jsp:include page="../partials/fields/hyperlink.jsp">
+								</jsp:include>
+								<jsp:include page="../partials/fields/hyperlink.jsp">
 									<jsp:param name="fieldName" value="${'url'}" />
 									<jsp:param name="fieldLabel" value="${'URL'}" />
 									<jsp:param name="value" value='${operation eq "update" ? client.url : ""}' />
-							</jsp:include>
-							<jsp:include page="../partials/fields/reference.jsp">
+								</jsp:include>
+								<jsp:include page="../partials/fields/reference.jsp">
 									<jsp:param name="fieldName" value="${'queue_manager'}" />
 									<jsp:param name="fieldLabel" value="${'Queue Manager'}" />
 									<jsp:param name="value" value='${operation eq "update" ? client.queueManager.id : ""}' />
-							</jsp:include>				
+								</jsp:include>				
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<jsp:include page="../partials/fields/reference.jsp">
+								<jsp:include page="../partials/fields/reference.jsp">
 									<jsp:param name="fieldName" value="${'primary_contact'}" />
 									<jsp:param name="fieldLabel" value="${'Primary Contact'}" />
 									<jsp:param name="value" value='${operation eq "update" ? client.primaryContact.id : ""}' />
-							</jsp:include>
-							<jsp:include page="../partials/fields/textarea.jsp">
-								<jsp:param name="fieldName" value="${'address'}"/>
-								<jsp:param name="fieldLabel" value="${'Address'}"/>
-								<jsp:param name="value" value='${operation eq "update" ? client.address : ""}' />
-							</jsp:include>
-							<jsp:include page="../partials/fields/checkbox.jsp">
-								<jsp:param name="fieldName" value="${'migration_required'}"/>
-								<jsp:param name="fieldLabel" value="${'Migration Requiered?'}"/>
-								<jsp:param name="value" value='${operation eq "update" ? client.migrationRequired : ""}' />
-							</jsp:include>
-							<jsp:include page="../partials/fields/checkbox.jsp">
-								<jsp:param name="fieldName" value="${'client_po_required'}"/>
-								<jsp:param name="fieldLabel" value="${'Client PO Required?'}"/>
-								<jsp:param name="value" value='${operation eq "update" ? client.clientPORequired : ""}' />
-							</jsp:include>
+								</jsp:include>
+								<jsp:include page="../partials/fields/textarea.jsp">
+									<jsp:param name="fieldName" value="${'address'}"/>
+									<jsp:param name="fieldLabel" value="${'Address'}"/>
+									<jsp:param name="value" value='${operation eq "update" ? client.address : ""}' />
+								</jsp:include>
+								<jsp:include page="../partials/fields/checkbox.jsp">
+									<jsp:param name="fieldName" value="${'migration_required'}"/>
+									<jsp:param name="fieldLabel" value="${'Migration Requiered?'}"/>
+									<jsp:param name="value" value='${operation eq "update" ? client.migrationRequired : ""}' />
+								</jsp:include>
+								<jsp:include page="../partials/fields/checkbox.jsp">
+									<jsp:param name="fieldName" value="${'client_po_required'}"/>
+									<jsp:param name="fieldLabel" value="${'Client PO Required?'}"/>
+									<jsp:param name="value" value='${operation eq "update" ? client.clientPORequired : ""}' />
+								</jsp:include>
 							</div>
 						</div>
 					</form>
