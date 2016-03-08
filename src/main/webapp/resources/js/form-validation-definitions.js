@@ -10,7 +10,7 @@ function getValidatorByFormName(formName) {
 				},
 				mandatory: "$('#field').val() == 'this' && $('#field').val() == 'that'",
 				visible: "true",
-				readonly: "false",
+				readonly: "false"
 			}
 		}
 	};

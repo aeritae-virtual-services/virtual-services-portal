@@ -5,7 +5,9 @@ $.fn.aeValidate = function(formDefinition) {
 	});
 
 	$('#' + formDefinition.formId).submit(function() {
-		validateRules(formDefinition);
+		if(validateRules(formDefinition)) {
+			event.preventDefault();
+		}
 	});
 
 	function attachRules(formDefinition) {
@@ -131,6 +133,6 @@ $.fn.aeValidate = function(formDefinition) {
 	}
 	
 	function validateRules(formDefinition) {
-		event.preventDefault();
+		
 	}
 };

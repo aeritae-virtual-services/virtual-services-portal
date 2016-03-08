@@ -8,6 +8,7 @@ import com.vsportal.user.User;
 
 public class Approval {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -24,11 +25,17 @@ public class Approval {
 		
 	}
 	
+	public Approval(int id, String displayValue) {
+		this.id = id;
+		this.displayValue = displayValue;
+	}
+	
 	public Approval(int id, Date created, User createdBy, Date updated, User updatedBy, Client client,
 			User approvedBy, Date decisionDate, Request request, String description, String decision,
 			String approvalType) {
 		super();
 		this.id = id;
+		this.displayValue = approvalType;
 		this.created = created;
 		this.createdBy = createdBy;
 		this.updated = updated;
@@ -136,5 +143,9 @@ public class Approval {
 
 	public void setApprovalType(String approvalType) {
 		this.approvalType = approvalType;
+	}
+	
+	public String getDisplayValue() {
+		return displayValue;
 	}
 }

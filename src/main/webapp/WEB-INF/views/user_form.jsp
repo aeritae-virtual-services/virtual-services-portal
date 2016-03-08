@@ -41,6 +41,18 @@
 					</div>
 				</div>
 				<div class="panel-form">
+					<div class="alert alert-info" role="alert">
+						This is my error message.<i class="fa fa-times alert-close"></i>
+					</div>
+					<div class="alert alert-success" role="alert">
+						This is my error message.<i class="fa fa-times alert-close"></i>
+					</div>
+					<div class="alert alert-warning" role="alert">
+						This is my error message.<i class="fa fa-times alert-close"></i>
+					</div>
+					<div class="alert alert-danger" role="alert">
+						This is my error message.<i class="fa fa-times alert-close"></i>
+					</div>
 					<%
 						//Get form action based upon URI
 						String formAction = request.getAttribute("javax.servlet.forward.request_uri").toString();
