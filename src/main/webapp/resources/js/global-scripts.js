@@ -1,9 +1,14 @@
 //Provide ability to close alerts
 $(document).ready(function() {
 	$('.alert-close').click(function() {
-		$(this).parent().hide();
+		return closeThisMessage(this);
 	});
 });
+
+function closeThisMessage(el) {
+	$(el).parent().hide();
+	return false;
+}
 
 //Navigate to URL from Click
 function openLink(el) {
@@ -185,3 +190,23 @@ function toggleNotifications() {
 	$('#notification-view').toggle('fast');
 	return false;
 }
+
+
+/*
+ * Alert Message Handling
+ * 
+ * See: http://www.w3schools.com/bootstrap/bootstrap_alerts.asp
+ * 
+ */
+
+//Danger
+function showDangerMessage(message) {
+	$('<div class="alert alert-danger" role="alert">' + message + '<i class="fa fa-times alert-close" onclick="return closeThisMessage(this);"></i></div>').insertBefore($('#error-container').first());
+}
+
+//Warning
+
+//Success
+
+//Info
+

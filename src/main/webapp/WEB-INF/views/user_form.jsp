@@ -8,7 +8,8 @@
 <%@ include file="/WEB-INF/partials/include_libraries.jsp"%>
 <script>
 	function saveUserForm() {
-		document.getElementById('user_form').submit();
+		//document.getElementById('user_form').submit();
+		showDangerMessage("Not allowed to save form.");
 	}
 </script>
 </head>
@@ -41,18 +42,9 @@
 					</div>
 				</div>
 				<div class="panel-form">
-					<div class="alert alert-info" role="alert">
-						This is my error message.<i class="fa fa-times alert-close"></i>
-					</div>
-					<div class="alert alert-success" role="alert">
-						This is my error message.<i class="fa fa-times alert-close"></i>
-					</div>
-					<div class="alert alert-warning" role="alert">
-						This is my error message.<i class="fa fa-times alert-close"></i>
-					</div>
-					<div class="alert alert-danger" role="alert">
-						This is my error message.<i class="fa fa-times alert-close"></i>
-					</div>
+					<!-- Error Messages UI -->
+					<div id="error-container" width="100%"></div>
+					
 					<%
 						//Get form action based upon URI
 						String formAction = request.getAttribute("javax.servlet.forward.request_uri").toString();
