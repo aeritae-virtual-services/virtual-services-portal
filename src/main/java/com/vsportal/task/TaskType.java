@@ -7,6 +7,7 @@ import com.vsportal.utils.DropdownOption;
 
 public class TaskType {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -17,6 +18,11 @@ public class TaskType {
 	
 	public TaskType() {
 		super();
+	}
+	
+	public TaskType(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 
 	public TaskType(int id, Date created, User createdBy, Date updated, User updatedBy, String type) {

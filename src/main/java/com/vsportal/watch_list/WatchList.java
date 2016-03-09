@@ -8,6 +8,7 @@ import com.vsportal.user.User;
 
 public class WatchList {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -17,6 +18,11 @@ public class WatchList {
 	
 	public WatchList() {
 		super();
+	}
+	
+	public WatchList(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 
 	public WatchList(int id, Date created, User createdBy, Date updated, User updatedBy, Request request,

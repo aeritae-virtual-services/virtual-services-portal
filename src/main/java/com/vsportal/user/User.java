@@ -10,6 +10,7 @@ import com.vsportal.role.Role;
 public class User {
 	
 	private int id;
+	private String displayValue;
 	private String username;
 	private String firstName;
 	private String lastName;
@@ -27,6 +28,11 @@ public class User {
 
 	public User(){
 		
+	}
+	
+	public User(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 	
 	public User(String username, String firstName, String lastName, String phone, String email, Client client, Role role, User createdBy, User updatedBy){

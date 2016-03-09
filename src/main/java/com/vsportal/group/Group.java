@@ -6,6 +6,7 @@ import com.vsportal.user.User;
 
 public class Group {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -14,6 +15,11 @@ public class Group {
 	
 	public Group() {
 		super();
+	}
+	
+	public Group(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 
 	public Group(int id, Date created, User createdBy, Date updated, User updatedBy, String name) {

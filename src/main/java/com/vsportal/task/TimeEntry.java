@@ -8,6 +8,7 @@ import com.vsportal.user.User;
 
 public class TimeEntry {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -18,6 +19,10 @@ public class TimeEntry {
 	private Contract contract;
 	private Client client;
 	
+	public TimeEntry(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
+	}
 	public TimeEntry(int id, Date created, User createdBy, Date updated, User updatedBy, Task task, float hoursConsumed,
 			User user, Contract contract, Client client) {
 		super();

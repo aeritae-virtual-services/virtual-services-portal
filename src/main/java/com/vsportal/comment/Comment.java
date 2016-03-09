@@ -7,6 +7,7 @@ import com.vsportal.user.User;
 
 public class Comment {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -17,6 +18,11 @@ public class Comment {
 	
 	public Comment() {
 		super();
+	}
+	
+	public Comment(int id, String displayValue) {
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 
 	public Comment(int id, Date created, User createdBy, Date updated, User updatedBy, Request request, String comment,

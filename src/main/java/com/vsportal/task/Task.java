@@ -9,6 +9,7 @@ import com.vsportal.user.User;
 
 public class Task {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -27,6 +28,11 @@ public class Task {
 	
 	private Task() {
 		super();
+	}
+	
+	public Task(int id, String displayValue){
+		this.id=id;
+		this.displayValue = displayValue;
 	}
 
 	public Task(int id, Date created, User createdBy, Date updated, User updatedBy, Request request,

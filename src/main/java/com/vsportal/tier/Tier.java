@@ -7,6 +7,7 @@ import com.vsportal.utils.DropdownOption;
 
 public class Tier {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -16,6 +17,11 @@ public class Tier {
 	
 	public Tier() {
 		super();
+	}
+	
+	public Tier(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 	
 	public Tier(int id, Date created, User createdBy, Date updated, User updatedBy, String name, String description) {

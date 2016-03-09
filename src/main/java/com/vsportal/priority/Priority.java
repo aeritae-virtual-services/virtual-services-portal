@@ -7,6 +7,7 @@ import com.vsportal.utils.DropdownOption;
 
 public class Priority {
 	private int id;
+	private String displayValue;
 	private String label;
 	private int value;
 	private Date created;
@@ -14,6 +15,10 @@ public class Priority {
 	private Date updated;
 	private User updated_by;
 	
+	public Priority(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
+	}
 	public Priority(){
 	}
 	

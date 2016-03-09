@@ -6,6 +6,7 @@ import com.vsportal.user.User;
 
 public class Status {
 	private int id;
+	private String displayValue;
 	private String label;
 	private int value;
 	private String type;
@@ -15,6 +16,11 @@ public class Status {
 	private User updatedBy;
 	
 	public Status(){
+	}
+	
+	public Status(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 	
 	public Status(String label,int value, String type){

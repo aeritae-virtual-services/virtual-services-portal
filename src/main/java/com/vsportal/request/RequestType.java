@@ -8,6 +8,7 @@ import com.vsportal.workflow.WorkflowStep;
 
 public class RequestType {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -17,6 +18,11 @@ public class RequestType {
 	private WorkflowStep firstStep;
 	
 	public RequestType(){
+	}
+	
+	public RequestType(int id, String displayValue){
+	 this.id = id;
+	 this.displayValue = displayValue;
 	}
 	
 	public RequestType(int id, String name, String description, WorkflowStep firstStep, User createdBy, 

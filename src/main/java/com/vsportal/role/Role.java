@@ -8,6 +8,7 @@ import com.vsportal.utils.DropdownOption;
 public class Role {
 	
 	private int id;
+	private String displayValue;
 	private String name;
 	private int value;
 	private Date created;
@@ -16,6 +17,11 @@ public class Role {
 	private User updatedBy;
 	
 	public Role(){
+	}
+	
+	public Role(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 	
 	public Role(String name, int value){

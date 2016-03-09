@@ -7,6 +7,7 @@ import com.vsportal.user.User;
 
 public class EmailLog {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -23,6 +24,11 @@ public class EmailLog {
 	
 	public EmailLog() {
 		super();
+	}
+	
+	public EmailLog(int id, String displayValue) {
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 
 	public EmailLog(int id, Date created, User createdBy, Date updated, User updatedBy, String recipient, String from,

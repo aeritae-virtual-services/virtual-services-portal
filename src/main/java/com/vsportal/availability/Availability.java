@@ -6,6 +6,7 @@ import com.vsportal.user.User;
 
 public class Availability {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -16,6 +17,11 @@ public class Availability {
 	
 	public Availability() {
 		super();
+	}
+	
+	public Availability(int id, String displayValue) {
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 
 	public Availability(int id, Date created, User createdBy, Date updated, User updatedBy, User analyst, Date start,

@@ -10,6 +10,7 @@ import com.vsportal.user.User;
 
 public class Request {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -31,6 +32,10 @@ public class Request {
 	private Tier tier;
 	private Status resumeTo;
 	
+	public Request(int id, String displayValue){
+		this.id = id;
+		this.displayValue = displayValue;
+	}
 	public Request() {
 		super();
 	}

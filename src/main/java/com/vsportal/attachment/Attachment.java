@@ -7,6 +7,7 @@ import com.vsportal.user.User;
 
 public class Attachment {
 	private int id;
+	private String displayValue;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -17,6 +18,11 @@ public class Attachment {
 	
 	public Attachment() {
 		
+	}
+	
+	public Attachment(int id, String displayValue) {
+		this.id = id;
+		this.displayValue = displayValue;
 	}
 	
 	public Attachment(User createdBy, User updatedBy, Request request, String url, String fileType) {
