@@ -205,8 +205,16 @@ function showDangerMessage(message) {
 }
 
 //Warning
+function showWarningMessage(message) {
+	$('<div class="alert alert-warning" role="alert">' + message + '<i class="fa fa-times alert-close" onclick="return closeThisMessage(this);"></i></div>').insertBefore($('#error-container').first());
+}
 
 //Success
+function showSuccessMessage(message) {
+	$('<div class="alert alert-success" role="alert">' + message + '<i class="fa fa-times alert-close" onclick="return closeThisMessage(this);"></i></div>').insertBefore($('#error-container').first());
+}
 
 //Info
-
+function showInfoMessage(message) {
+	$('<div class="alert alert-info" role="alert">' + message + '<i class="fa fa-times alert-close" onclick="return closeThisMessage(this);"></i></div>').insertBefore($('#error-container').first());
+}
