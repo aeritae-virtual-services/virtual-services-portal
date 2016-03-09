@@ -40,6 +40,8 @@
 					</div>
 				</div>
 				<div class="panel-form">
+					<!-- Error Messages UI -->
+					<div id="error-container" width="100%"></div>
 					<%
 						//Get form action based upon URI
 						String formAction = request.getAttribute("javax.servlet.forward.request_uri").toString();

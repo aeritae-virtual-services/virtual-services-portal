@@ -50,6 +50,8 @@
 				</div>
 				<%@ include file="/WEB-INF/partials/request_progress_banner.jsp"%>
 				<div class="panel-form">
+				<!-- Error Messages UI -->
+					<div id="error-container" width="100%"></div>
 					<div class="third-form row">
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 							<jsp:include page="../partials/fields/text.jsp">
