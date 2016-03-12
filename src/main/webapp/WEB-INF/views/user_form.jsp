@@ -8,8 +8,13 @@
 <%@ include file="/WEB-INF/partials/include_libraries.jsp"%>
 <script>
 	function saveUserForm() {
-		//document.getElementById('user_form').submit();
-		showDangerMessage("Not allowed to save form.");
+		if(validateRules(getValidatorByFormName($('#user_form').attr('action') + ''))) {
+			closeAllMessages();
+			$('#user_form').submit();
+		} else {
+			closeAllMessages();
+			showDangerMessage('Mandatory fields (<i class="fa fa-asterisk icon-mandatory"></i>) must be filled in.');
+		}
 	}
 </script>
 </head>
@@ -50,6 +55,9 @@
 						String formAction = request.getAttribute("javax.servlet.forward.request_uri").toString();
 						formAction = formAction.substring(formAction.lastIndexOf('/') + 1);
 					%>
+					<script>
+						$(document).aeValidate(getValidatorByFormName('<%=formAction%>'));
+					</script>
 					<form action="<%=formAction%>" method="POST" id="user_form">
 						<div class="half-form row">
 							<input type="hidden" name="id" value='${operation eq "update" ? user.id : ""}' />

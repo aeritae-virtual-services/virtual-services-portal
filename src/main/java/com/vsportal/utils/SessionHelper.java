@@ -11,7 +11,7 @@ public class SessionHelper {
 			sess.setAttribute("valid_session", "true");
 			sess.setAttribute("session_user", user.getId());
 			//Inactive session timeout of 15 minutes
-			sess.setMaxInactiveInterval(15 * 60);
+			sess.setMaxInactiveInterval(30 * 60);
 		}
 	}
 	

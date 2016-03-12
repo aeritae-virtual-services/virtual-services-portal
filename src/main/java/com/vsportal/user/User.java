@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.vsportal.client.Client;
 import com.vsportal.group.Group;
 import com.vsportal.role.Role;
+import com.vsportal.task.Task;
 
 public class User {
 	
@@ -25,6 +26,7 @@ public class User {
 	private ArrayList<Group> groups;
 	private Role role;
 	private String image;
+	private ArrayList<Task> myPokedTasks;
 
 	public User(){
 		
@@ -158,5 +160,13 @@ public class User {
 	
 	public void setImage(String img) {
 		this.image = img;
+	}
+	
+	public void setMyPokedTasks(ArrayList<Task> pokedTasks) {
+		this.myPokedTasks = pokedTasks;
+	}
+	
+	public ArrayList<Task> getMyPokedTasks() {
+		return this.myPokedTasks;
 	}
 }

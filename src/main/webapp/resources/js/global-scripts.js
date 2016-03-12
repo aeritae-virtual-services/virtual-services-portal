@@ -1,15 +1,3 @@
-//Provide ability to close alerts
-$(document).ready(function() {
-	$('.alert-close').click(function() {
-		return closeThisMessage(this);
-	});
-});
-
-function closeThisMessage(el) {
-	$(el).parent().hide();
-	return false;
-}
-
 //Navigate to URL from Click
 function openLink(el) {
 	var url = $(el).parent().find('.hyperlink').val() + '';
@@ -217,4 +205,24 @@ function showSuccessMessage(message) {
 //Info
 function showInfoMessage(message) {
 	$('<div class="alert alert-info" role="alert">' + message + '<i class="fa fa-times alert-close" onclick="return closeThisMessage(this);"></i></div>').insertBefore($('#error-container').first());
+}
+
+//Provide ability to close alerts
+$(document).ready(function() {
+	$('.alert-close').click(function() {
+		return closeThisMessage(this);
+	});
+});
+
+//Clear Single Messages
+function closeThisMessage(el) {
+	$(el).parent().slideUp();
+	return false;
+}
+
+//Clear All Messages
+function closeAllMessages() {
+	$('.alert').each(function() {
+		$(this).slideUp();
+	});
 }

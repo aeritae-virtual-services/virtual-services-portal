@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.vsportal.user.User;
+import com.vsportal.user.UserDAO;
 import com.vsportal.utils.SessionHelper;
-
-//import com.vsportal.user.User;
-//import com.vsportal.user.UserDAO;
 
 @Controller
 @RequestMapping("/login")
@@ -38,6 +36,8 @@ public class LoginController {
 		ModelAndView model = null;
 		HttpSession sess = request.getSession();
 		SessionHelper sh = new SessionHelper();
+		UserDAO userDAO = new UserDAO();
+		User user = null;
 		String errmsg;
 		
 		if(request.getParameter("username").isEmpty() && request.getParameter("password").isEmpty()) {
@@ -62,27 +62,27 @@ public class LoginController {
 			}
 			model.addObject("errmsg", errmsg);
 		} else {
-			//String username = request.getParameter("username");
-			//String password = request.getParameter("password");
-			//UserDAO userDAO = new UserDAO();
-			//User user = userDAO.getUserByUsername(username);
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			user = userDAO.getUserByUsername(username);
 			
-			//} else if (userDAO.validatePassword(user.getId(), password)) {
-				//sh.validateSession(sess, user);
-				//if(request.getParameter("redirect_to").isEmpty()) {
-				//	model = new ModelAndView("home");
-				//} else {
-				//	model = new ModelAndView("redirect:" + request.getParameter("redirect_to"));
-				//}
-				//model.addObject("session_user", user);
-			//} else {
+			if (userDAO.validatePassword(user.getId(), password)) {
+				sh.validateSession(sess, user);
+				
+				if(request.getParameter("redirect_to").isEmpty()) {
+					model = new ModelAndView("home");
+				} else {
+					model = new ModelAndView("redirect:" + request.getParameter("redirect_to"));
+				}
+				model.addObject("session_user", user);
+			} else {
 				errmsg = "Invalid login credentials. Please try again.";
 				model = new ModelAndView("login");
 				if(!request.getParameter("redirectTo").isEmpty()) {
 					model.addObject("redirectTo", request.getParameter("redirectTo"));
 				}
 				model.addObject("errmsg", errmsg);
-			//}
+			}
 		}
 		
 		return model;

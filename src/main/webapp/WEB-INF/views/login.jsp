@@ -44,5 +44,6 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/partials/portal_footer.jsp"%>
 </body>
 </html>

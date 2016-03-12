@@ -88,7 +88,8 @@
 				saveCommentSuccess();
 			},
 			error: function() {
-				alert('Comment failed. Please try saving again');
+				$("#comments-modal").modal('toggle');
+				showDangerMessage('Comment failed. Please try saving again');
 			}
 		});
 	}

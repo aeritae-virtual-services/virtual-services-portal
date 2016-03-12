@@ -108,7 +108,8 @@
 				uploadFileSuccess();
 			},
 			error: function() {
-				alert('Upload failed. Please try again');
+				$("#attachments-modal").modal('toggle');
+				showDangerMessage('Upload failed. Please try again');
 			}
 		});
 	}

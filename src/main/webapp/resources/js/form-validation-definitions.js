@@ -41,7 +41,42 @@ function getValidatorByFormName(formName) {
 	var update_task_type;
 	var add_tier;
 	var update_tier;
-	var add_user;
+	var add_user = {
+			actionId: 'add_user',
+			formId: 'user_form',
+			rules: {
+				first_name: {
+					fieldId: 'first_name',
+					role: {
+						read: "1,2,3,4,5",
+						write: "1,2,3"
+					},
+					mandatory: "true",
+					visible: "true",
+					readonly: "false"
+				},
+				last_name: {
+					fieldId: 'last_name',
+					role: {
+						read: "1,2,3,4,5",
+						write: "1,2,3"
+					},
+					mandatory: "true",
+					visible: "true",
+					readonly: "false"
+				},
+				client: {
+					fieldId: 'client',
+					role: {
+						read: "1,2,3,4,5",
+						write: "1,2,3"
+					},
+					mandatory: "true",
+					visible: "true",
+					readonly: "false"
+				}
+			}
+		};
 	var update_user;
 	var add_workflow_operation;
 	var update_workflow_operation;

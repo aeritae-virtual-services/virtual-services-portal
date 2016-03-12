@@ -1,3 +1,21 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.vsportal.user.*" %>
+<%@ page import="com.vsportal.task.*" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+	if(request.getAttribute("valid_session") == "true") {
+		int numPokes = 0;
+		try {
+			User sessUsr = (User)request.getAttribute("sessionUser");
+			ArrayList<Task> pokeList = sessUsr.getMyPokedTasks();
+			if(pokeList != null) {
+				numPokes = pokeList.size();
+			}
+		} catch(Error e){}
+	}
+%>
+
 <nav class="navbar navbar-default navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -28,30 +46,36 @@
     			<li>
     				<a href="" data-toggle="tooltip" title="View Pokes" data-placement="bottom" onclick="return togglePokes();">
     					<i class="white-icon fa fa-hand-o-right"></i>
-    					<span class="badge orange-badge">3</span>
+    					<c:if test='${numPokes ne 0} && ${valid_session eq "true"}'>
+    						<span class="badge orange-badge">
+    							${numPokes}
+    						</span>
+    					</c:if>
     				</a>
     				<div id="poke-view" class="poke-view" style="display: none;">
     					<h4><i class="fa fa-hand-o-right" style="margin-right: 10px;"></i>My Pokes</h4>
-    					<div class="poke-item">
-    						<table>
-    							<tbody>
-    								<tr>
-    									<td>
-				    						<h5>TASK0001001 - Blue Cross Blue Shield</h5>
-				    						<h6>Short Description of Task</h6>
-				    					</td>
-				    					<td style="padding: 10px; text-align: center; white-space: nowrap;">
-					    					<a class="icon-save">
-				    							<i class="fa fa-check"></i>
-				    						</a>
-				    						<a class="icon-cancel">
-				    							<i class="fa fa-times"></i>
-				    						</a>
-				    					</td>
-				    				</tr>
-				    			</tbody>
-				    		</table>
-    					</div>
+    					<c:forEach var="pokedTask" items="${sessionUser.myPokedTasks}">
+	    					<div class="poke-item">
+		    					<table>
+		    						<tbody>
+		    							<tr>
+		    								<td>
+					    						<h5><a href="/update_task/id=${pokedTask.id}">${pokedTask.number}</a> - ${pokedTask.client.displayValue}</h5>
+					    						<h6>${pokedTask.instructions}</h6>
+					    					</td>
+					    					<td style="padding: 10px; text-align: center; white-space: nowrap;">
+						    					<a onclick="acceptPoke(this, '${pokedTask.id}')" class="icon-save">
+						    						<i class="fa fa-check"></i>
+						    					</a>
+						    					<a onclick="declinePoke(this, '${pokedTask.id}')" class="icon-cancel">
+						    						<i class="fa fa-times"></i>
+						    					</a>
+						   					</td>
+						   				</tr>
+						   			</tbody>
+						   		</table>
+	    					</div>
+	    				</c:forEach>
     				</div>
     			</li>
     			<li>
@@ -84,10 +108,45 @@
     	</div>
 	</div>
 </nav>
-<c:if test='${valid_session eq "true"}'>
+<c:if test='${valid_session eq "false"}'>
 	<style>
 		.auth-req {
 			visibility: hidden!important;
 		}
 	</style>
 </c:if>
+<script type="text/javascript">
+	//Accept Poke
+	function acceptPoke(el, taskId) {
+		$.ajax({
+			url: "accept_poke",
+			type: "POST",
+			data: ({
+				task_id: taskId
+			}),
+			success: function() {
+				window.location.href = 'update_task/id=' + taskId;
+			},
+			error: function() {
+				showDangerMessage('Accepting poke failed. Please try again.');
+			}
+		});
+	}
+	//Decline Poke
+	function declinePoke(el, taskId) {
+		$.ajax({
+			url: "decline_poke",
+			type: "POST",
+			data: ({
+				task_id: taskId
+			}),
+			success: function() {
+				showInfoMessage('Poke was successfully declined.');
+				$(el).closest('.poke-item').slideUp();
+			},
+			error: function() {
+				showDangerMessage('Declining poke failed. Please try again.');
+			}
+		});
+	}
+</script>
