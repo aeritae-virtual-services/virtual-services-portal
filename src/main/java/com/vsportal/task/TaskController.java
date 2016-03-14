@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.vsportal.task.Task;
@@ -42,7 +44,7 @@ public class TaskController {
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
     		//Get ArrayList From Query For: Task
-	    	ArrayList<Task> taskList = taskDAO.getListByQuery(query);
+	    	ArrayList<Task> taskList = taskDAO.listQuery(query);
 		    //Update session user's personalized filter from the provided query for: Task
 		    userSessionDAO.updateUsersFilter("Task", query);
 	    	
@@ -59,7 +61,7 @@ public class TaskController {
     
     //Display Add Form For: Task
     @RequestMapping(value = "/add_task", method = RequestMethod.GET)
-    public ModelAndView displayNewUser(HttpServletRequest request) {
+    public ModelAndView displayNewTask(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -89,7 +91,7 @@ public class TaskController {
     
     //Submit Add Form For: Task
     @RequestMapping(value = "/add_task", method = RequestMethod.POST)
-    public ModelAndView insertNewUser(HttpServletRequest request) {
+    public ModelAndView insertNewTask(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -125,7 +127,7 @@ public class TaskController {
     
     //Display Update Form For: Task
     @RequestMapping(value = "/update_task", params = {"id"}, method = RequestMethod.GET)
-    public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
+    public ModelAndView displayExistingTask(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -155,7 +157,7 @@ public class TaskController {
     
     //Submit Update Form For: Task
     @RequestMapping(value = "/update_task", method = RequestMethod.POST)
-    public ModelAndView updateExistingUser(HttpServletRequest request) {
+    public ModelAndView updateExistingTask(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -187,4 +189,38 @@ public class TaskController {
     	
     	return model;
     }
+    
+    //Accept Poke
+    @RequestMapping(method = RequestMethod.POST, value = "/accept_poke")
+	public @ResponseBody String acceptPoke(HttpServletRequest request, @RequestParam("task_id") String taskId) {
+    	//Task Data Access Object
+    	TaskDAO taskDAO = new TaskDAO();
+    	
+    	Task thisTask = taskDAO.recordQuery("id=" + taskId);
+    	thisTask.setAssignedTo(thisTask.getPokedAnalyst());
+    	thisTask.setPokedAnalyst(null);
+    	thisTask.setPokedBy(null);
+    	thisTask.setPokedDate(null);
+    	
+    	taskDAO.update(thisTask);
+    	
+		return HttpStatus.OK.toString();
+	}
+    
+  //Decline Poke
+    @RequestMapping(method = RequestMethod.POST, value = "/decline_poke")
+	public @ResponseBody String declinePoke(@RequestParam("task_id") String taskId) {
+    	//Task Data Access Object
+    	TaskDAO taskDAO = new TaskDAO();
+    	
+    	Task thisTask = taskDAO.recordQuery("id=" + taskId);
+    	thisTask.setAssignedTo(null);
+    	thisTask.setPokedAnalyst(null);
+    	thisTask.setPokedBy(null);
+    	thisTask.setPokedDate(null);
+    	
+    	taskDAO.update(thisTask);
+    	
+		return HttpStatus.OK.toString();
+	}
 }
