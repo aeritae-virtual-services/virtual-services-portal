@@ -242,7 +242,7 @@ updated datetime NOT NULL default NOW(),
 updated_by int unsigned NOT NULL,
 request_id int unsigned,
 url varchar(200),
-file_type varchar(40),
+file_nme varchar(80),
 PRIMARY Key(id)
 );
 
