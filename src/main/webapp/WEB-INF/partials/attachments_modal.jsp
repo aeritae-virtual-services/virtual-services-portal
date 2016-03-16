@@ -24,7 +24,7 @@
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 						<div class="new-attachment-actions">
-							<a class="icon-save icon-disabled" onclick="uploadFile();" data-toggle="" title="Upload Selected File" data-placement="bottom">
+							<a class="icon-save icon-disabled" onclick="uploadFile(this);" data-toggle="" title="Upload Selected File" data-placement="bottom">
 								<i class="fa fa-arrow-up"></i>
 							</a>
 							<a class="icon-cancel icon-disabled" onclick="clearFile();" data-toggle="" title="Remove Selected File" data-placement="bottom">
@@ -45,15 +45,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr id="attachment_1">
 							<td>Image.png</td>
 							<td>nzitzer</td>
 							<td>11/12/15</td>
 							<td>
-								<a class="icon-save list-action" data-toggle="tooltip" title="Download Attachment" data-placement="bottom">
+								<a onclick="downloadFile('1');" class="icon-save list-action" data-toggle="tooltip" title="Download Attachment" data-placement="bottom">
 									<i class="fa fa-arrow-down icon-download"></i>
 								</a>
-								<a class="icon-cancel list-action" data-toggle="tooltip" title="Delete Attachment" data-placement="bottom">
+								<a onclick="deleteFile('1');" class="icon-cancel list-action" data-toggle="tooltip" title="Delete Attachment" data-placement="bottom">
 									<i class="fa fa-times icon-clear"></i>
 								</a>
 							</td>
@@ -95,28 +95,56 @@
 		$('.new-attachment-actions').find('a').attr("data-toggle", "");
 	}
 	
-	function uploadFile() {
+	function uploadFile(el) {
+		if(!$(el).hasClass('icon-disabled')) {
+			$.ajax({
+				url: "upload_attachment",
+				type: "POST",
+				data: new FormData($('#upload-file-form')[0]),
+				enctyp: 'multipart/form-data',
+				processData: false,
+				contentType: false,
+				cache: false,
+				success: function() {
+					$("#attachments-modal").modal('toggle');
+					//Increment Attachment count badge
+					var fileCount = parseInt($('#attachment-count').text()) + 1;
+					$('#attachment-count').html(fileCount);
+					
+					//Insert new row into table
+					
+				},
+				error: function() {
+					$("#attachments-modal").modal('toggle');
+					showDangerMessage('Upload failed. Please try again');
+				}
+			});
+		}
+	}
+	
+	function downloadFile(id) {
+		window.location.assign('/download_attachment?id=' + id);
+	}
+	
+	function deleteFile(id) {
 		$.ajax({
-			url: "upload_attachment",
+			url: "delete_attachment",
 			type: "POST",
-			data: new FormData($('#upload-file-form')[0]),
-			enctyp: 'multipart/form-data',
-			processData: false,
-			contentType: false,
-			cache: false,
+			data: ({
+				fileId: id
+			}),
 			success: function() {
-				uploadFileSuccess();
+				$("#attachments-modal").modal('toggle');
+				//Decrement Attachment count badge
+				var fileCount = parseInt($('#attachment-count').text()) - 1;
+				$('#attachment-count').html(fileCount);
+				//Remove row from table
+				$('#attachment_' + id).remove();
 			},
 			error: function() {
 				$("#attachments-modal").modal('toggle');
-				showDangerMessage('Upload failed. Please try again');
+				showDangerMessage('Comment failed. Please try saving again');
 			}
 		});
-	}
-	
-	function uploadFileSuccess() {
-		//Close Modal
-		$("#attachments-modal").modal('toggle');
-		//TODO Refresh Attachments Sections
 	}
 </script>

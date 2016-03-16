@@ -85,20 +85,15 @@
 				pub: $('#public-comment').is(":checked") + ''
 			}),
 			success: function() {
-				saveCommentSuccess();
+				$("#comments-modal").modal('toggle');
+				//Increment Comment Counter
+				
+				//TODO Refresh Comments Table
 			},
 			error: function() {
 				$("#comments-modal").modal('toggle');
 				showDangerMessage('Comment failed. Please try saving again');
 			}
 		});
-	}
-	
-	function saveCommentSuccess() {
-		//Close Modal
-		$("#comments-modal").modal('toggle');
-		//Increment Comment Counter
-		
-		//TODO Refresh Comments Table
 	}
 </script>

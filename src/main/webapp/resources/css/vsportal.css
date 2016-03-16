@@ -373,6 +373,13 @@ h3 {
 	font-size: 24px;
 }
 
+.new-watch-list-actions a {
+	height: 100%;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 24px;
+}
+
 .panel-heading {
 	overflow: auto;
 	padding: 3px;

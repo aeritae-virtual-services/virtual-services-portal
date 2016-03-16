@@ -59,8 +59,8 @@
 						$(document).aeValidate(getValidatorByFormName('<%=formAction%>'));
 					</script>
 					<form action="<%=formAction%>" method="POST" id="user_form">
+						<input type="hidden" name="id" value='${operation eq "update" ? user.id : ""}' />
 						<div class="half-form row">
-							<input type="hidden" name="id" value='${operation eq "update" ? user.id : ""}' />
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<jsp:include page="../partials/fields/image_upload.jsp">
 									<jsp:param name="fieldName" value="${'image'}" />

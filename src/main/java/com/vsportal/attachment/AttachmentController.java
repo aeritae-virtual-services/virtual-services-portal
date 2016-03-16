@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -28,8 +29,6 @@ public class AttachmentController {
 	@RequestMapping(method = RequestMethod.POST, value = "/upload_attachment")
 	public @ResponseBody String handleFileUpload(MultipartHttpServletRequest request) {
 		HttpSession sess = request.getSession();
-    	SessionHelper sh = new SessionHelper();
-    	ModelAndView model = null;
 
     	//Get User Data Access Object to Manage Session User
     	UserDAO userSessionDAO = new UserDAO();
@@ -54,6 +53,18 @@ public class AttachmentController {
 			attachDAO.insertAttachment(attach);
 			//Get All Attachments for this Request
 			ArrayList<Attachment> attachmentsList = attachDAO.getAttachmentListForRequestId(Integer.parseInt(request.getParameter("request_id")));
+			
+			return HttpStatus.OK.toString();
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/delete_attachment")
+	public @ResponseBody String handleFileDeletion(@RequestParam("fileId") String id) {
+		//Get Data Access Object For: Attachment
+    	AttachmentDAO attachDAO = new AttachmentDAO();
+    	
+    	attachDAO.deleteRecord(id);
+		
+		return HttpStatus.OK.toString();
 	}
 }
