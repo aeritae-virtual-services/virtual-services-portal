@@ -33,6 +33,7 @@ public class RequestType {
 		this.firstStep = firstStep;
 		this.createdBy = createdBy;
 		this.updatedBy = updatedBy;
+		this.displayValue = this.name;
 	}
 
 	public int getId() {
@@ -102,5 +103,12 @@ public class RequestType {
 	public DropdownOption getDropdownOption() {
 		return new DropdownOption(String.valueOf(this.getId()), this.getName());
 	}
-
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
+	}
 }

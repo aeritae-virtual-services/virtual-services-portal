@@ -33,6 +33,7 @@ public class Availability {
 		this.updated = updated;
 		this.updatedBy = updatedBy;
 		this.analyst = analyst;
+		this.displayValue = analyst.getDisplayValue();
 		this.start = start;
 		this.end = end;
 	}
@@ -99,5 +100,11 @@ public class Availability {
 
 	public void setEnd(Date end) {
 		this.end = end;
+	}
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

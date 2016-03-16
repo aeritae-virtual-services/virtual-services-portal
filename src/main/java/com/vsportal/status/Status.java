@@ -82,4 +82,13 @@ public class Status {
 	}
 	
 
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
+	}
+
 }

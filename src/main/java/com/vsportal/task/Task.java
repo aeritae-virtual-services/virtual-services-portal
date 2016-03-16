@@ -50,6 +50,7 @@ public class Task {
 		this.status = status;
 		this.number = number;
 		this.type = type;
+		this.displayValue = this.number;
 	}
 
 	public int getId() {
@@ -178,5 +179,14 @@ public class Task {
 	
 	public void setTaskType(TaskType type) {
 		this.type = type;
+	}
+
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

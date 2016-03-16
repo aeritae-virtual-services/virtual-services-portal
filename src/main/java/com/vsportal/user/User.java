@@ -41,6 +41,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.fullName = firstName + " " + lastName;
+		this.displayValue = this.fullName;
 		this.phone = phone;
 		this.email = email;
 		this.client = client;
@@ -168,5 +169,12 @@ public class User {
 	
 	public ArrayList<Task> getMyPokedTasks() {
 		return this.myPokedTasks;
+	}
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

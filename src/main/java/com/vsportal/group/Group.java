@@ -30,6 +30,7 @@ public class Group {
 		this.updated = updated;
 		this.updatedBy = updatedBy;
 		this.name = name;
+		this.displayValue = this.name;
 	}
 
 	public int getId() {
@@ -78,5 +79,13 @@ public class Group {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

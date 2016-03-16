@@ -49,6 +49,7 @@ public class EmailLog {
 		this.table = table;
 		this.tableId = tableId;
 		this.status = status;
+		this.displayValue = this.subject;
 	}
 
 	public int getId() {
@@ -161,5 +162,12 @@ public class EmailLog {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

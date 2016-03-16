@@ -65,6 +65,7 @@ public class Request {
 		this.requestType = requestType;
 		this.contract = contract;
 		this.tier = tier;
+		this.displayValue = this.number;
 	}
 
 	public int getId() {
@@ -233,5 +234,15 @@ public class Request {
 
 	public void setResumeTo(Status resumeTo) {
 		this.resumeTo = resumeTo;
+	}
+	
+
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

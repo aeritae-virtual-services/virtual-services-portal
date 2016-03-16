@@ -75,4 +75,12 @@ public class Priority {
 		return new DropdownOption(String.valueOf(this.getValue()), this.getLabel());
 	}
 	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
+	}
+	
 }

@@ -33,6 +33,7 @@ public class Tier {
 		this.updatedBy = updatedBy;
 		this.name = name;
 		this.description = description;
+		this.displayValue = this.name;
 	}
 
 	public int getId() {
@@ -89,6 +90,15 @@ public class Tier {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 
 	public DropdownOption getDropdownOption() {

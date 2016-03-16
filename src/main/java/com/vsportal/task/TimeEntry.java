@@ -36,6 +36,8 @@ public class TimeEntry {
 		this.user = user;
 		this.contract = contract;
 		this.client = client;
+		this.displayValue = Float.toString(this.hoursConsumed);
+		
 	}
 	public int getId() {
 		return id;
@@ -97,5 +99,14 @@ public class TimeEntry {
 	}
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

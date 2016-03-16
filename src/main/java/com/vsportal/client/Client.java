@@ -48,6 +48,7 @@ public class Client {
 		this.migrationRequired = migrationRequired;
 		this.clientPORequired = clientPORequired;
 		this.primaryAnalysts = primaryAnalysts;
+		this.displayValue = this.name;
 	}
 
 	public int getId() {
@@ -152,5 +153,11 @@ public class Client {
 
 	public void setPrimaryAnalysts(Group primaryAnalysts) {
 		this.primaryAnalysts = primaryAnalysts;
+	}
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

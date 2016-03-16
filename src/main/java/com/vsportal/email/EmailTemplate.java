@@ -34,6 +34,7 @@ public class EmailTemplate {
 		this.to = to;
 		this.subject = subject;
 		this.body = body;
+		this.displayValue = this.subject;
 	}
 
 	public int getId() {
@@ -98,5 +99,12 @@ public class EmailTemplate {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

@@ -75,4 +75,13 @@ public class Role {
 	public DropdownOption getDropdownOption() {
 		return new DropdownOption(String.valueOf(this.getId()), this.getName());
 	}
+
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
+	}
 }

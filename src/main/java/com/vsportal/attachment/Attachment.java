@@ -82,4 +82,10 @@ public class Attachment {
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
 	}
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
+	}
 }

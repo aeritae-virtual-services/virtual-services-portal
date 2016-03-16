@@ -35,6 +35,7 @@ public class Comment {
 		this.updatedBy = updatedBy;
 		this.request = request;
 		this.comment = comment;
+		this.displayValue = this.comment;
 		this.isPublic = isPublic;
 	}
 
@@ -100,5 +101,12 @@ public class Comment {
 
 	public void setPublic(boolean isPublic) {
 		this.isPublic = isPublic;
+	}
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
 	}
 }

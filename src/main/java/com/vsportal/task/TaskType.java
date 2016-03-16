@@ -86,5 +86,12 @@ public class TaskType {
 	public DropdownOption getDropdownOption() {
 		return new DropdownOption(String.valueOf(this.getId()), this.getType());
 	}
-
+	
+	public String getDisplayValue(){
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue){
+		this.displayValue = displayValue;
+	}
 }
