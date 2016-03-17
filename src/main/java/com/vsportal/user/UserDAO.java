@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,18 +17,17 @@ import com.vsportal.utils.PasswordHelper;
 import com.vsportal.utils.QueryHelper;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.core.RowMapper;  
 
-public class UserDAO {
+public class UserDAO extends JdbcDaoSupport {
 	
 	public void insertUser(User user, String password){
 		String sql = "INSERT INTO User (first_name, last_name, phone_number, email, company, role)" +
 				"VALUES (?,?,?,?,?,?)";
 		
-		ConnectionPool pool = ConnectionPool.getInstance();
 		
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
-		
-		jdbcTemplate.update(sql, new Object[]{user.getFirstName(), user.getFirstName(), user.getPhone(),
+		getJdbcTemplate().update(sql, new Object[]{user.getFirstName(), user.getFirstName(), user.getPhone(),
 				user.getEmail(),user.getClient(), user.getRole()});
 		
 		
@@ -35,6 +35,12 @@ public class UserDAO {
 	}
 	
 	public void updateUser(User user){
+		String sql = "INSERT INTO User (first_name, last_name, phone_number, email, company, role)" +
+				"VALUES (?,?,?,?,?,?)";
+		
+		
+		getJdbcTemplate().update(sql, new Object[]{user.getFirstName(), user.getFirstName(), user.getPhone(),
+				user.getEmail(),user.getClient(), user.getRole()});
 		
 	}
 	
@@ -44,13 +50,7 @@ public class UserDAO {
 		String sql = "SELECT first_name, last_name, phone_number, email, company, role FROM User WHERE ";
 		sql += qh.toSQLQuery(query);
 		
-JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
-		
-		jdbcTemplate.update(sql, new Object[]{user.getFirstName(), user.getFirstName(), user.getPhone(),
-				user.getEmail(),user.getCompany(), user.getRole()});
-		ConnectionPool pool = ConnectionPool.getInstance();
-		
-		ArrayList<User> userList = new ArrayList<User>();
+		ArrayList<User> userList = (ArrayList<User>)getJdbcTemplate().queryForList(query,new Object[]{query},new userRowMapper);
 		
 		return userList;
 	}
@@ -61,59 +61,16 @@ JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
 	}
     
 	public User getUserById(int id) {
-		ConnectionPool pool = ConnectionPool.getInstance();
-	    Connection connection = pool.getConnection();
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
-	    User user = null;
-	  
-		String query = "SELECT * from User WHERE id = ?";
 		
-		try {        
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-            
-            if(rs.next()) {
-            	user = new User();
-            } 
-            
-        } catch(SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
+		String query = "SELECT * from User WHERE id = ?";
+		User user = (User)getJdbcTemplate().queryForObject(query,new Object[]{id},new userRowMapper);
 		
 		return user;
 	}
 	
 	public User getUserByUsername(String username) {
-		ConnectionPool pool = ConnectionPool.getInstance();
-	    Connection connection = pool.getConnection();
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
-	    User user = null;
-	  
 		String query = "SELECT * from User WHERE username = ?";
-		
-		try {        
-            ps = connection.prepareStatement(query);
-            ps.setString(1, username);
-            rs = ps.executeQuery();
-            
-            if(rs.next()) {
-            	user = new User();
-            } 
-            
-        } catch(SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
+		User user = (User)getJdbcTemplate().queryForObject(query,new Object[]{username},new userRowMapper);
 		
 		return user;
 	}
@@ -130,30 +87,16 @@ JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
     		e.printStackTrace();
     	}
     	
-    	
-    	ConnectionPool pool = ConnectionPool.getInstance();
-	    Connection connection = pool.getConnection();
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
 	    
 		String query = "SELECT password from User WHERE id = ?";
+		List<String> result = getJdbcTemplate().query(query, new RowMapper(){
+			public Object mapRow(ResultSet rs, int rowNum)throws SQLException {
+		        return rs.getString(1);
+			  }
+		});
 		
-		try {        
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, userId);
-            rs = ps.executeQuery();
-            
-            if(rs.next()) {
-            	storedpw = rs.getString("password");
-            } 
-            
-        } catch(SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
+		storedpw = result.get(0);
+		
 		
 		if(encodedpw.matches(storedpw)) {
     		isSuccessful = true;
@@ -172,32 +115,10 @@ JdbcTemplate jdbcTemplate = new JdbcTemplate(pool.getDataSource());
     	} catch(SystemUnavailableException e) {
     		e.printStackTrace();
     	}
-    	
-    	
-    	ConnectionPool pool = ConnectionPool.getInstance();
-	    Connection connection = pool.getConnection();
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
-	    
+    		    
 		String query = "UPDATE User SET password = ? WHERE user_id = ?";
 		
-		try {        
-            ps = connection.prepareStatement(query);
-            ps.setString(1, encodedpw);
-            ps.setInt(2, userId);
-            int success = ps.executeUpdate();
-            
-            if(success == 1) {
-            	isSuccessful = true;
-            }
-            
-        } catch(SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
+		getJdbcTemplate().update(query);
     	
     	return isSuccessful;
     }
