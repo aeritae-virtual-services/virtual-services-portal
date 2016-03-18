@@ -7,8 +7,8 @@
 						<i class="fa fa-user"></i>
 					</td>
 					<td width="100%">
-						<h5>Welcome, <strong>VSUser</strong></h5>
-						<h6><i>Aeritae Consulting Group, Ltd.</i></h6>
+						<h5>Welcome, <strong>${sessionUser.full_name}</strong></h5>
+						<h6><i>${sessionUser.client.displayValue}</i></h6>
 					</td>
 				</tr>
 			</tbody>
@@ -17,16 +17,22 @@
 	<div class="sidebar-nav">
 		<div class="sidebar-section">
 			<div class="sidebar-section-header" data-toggle="collapse" data-target="#list1" aria-expanded="false" aria-controls="list1" onclick="rotateChevron(this);">
-				<span>Section 1</span>
+				<span>Requests</span>
 				<i class="fa fa-chevron-circle-right"></i>
 			</div>
 			<div id="list1" class="collapse">
 				<ul>
 					<li>
-						Item 1
+						My Open Requests
 					</li>
 					<li>
-						Item 2
+						My Closed Requests
+					</li>
+					<li>
+						All Open Requests
+					</li>
+					<li>
+						All Closed Requests
 					</li>
 				</ul>
 			</div>

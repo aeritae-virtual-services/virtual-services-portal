@@ -38,7 +38,6 @@
 							<a data-toggle="tooltip" title="View Watch List" data-placement="bottom">
 								<span data-toggle="modal" data-target="#watch-list-modal">
 									<i class="fa fa-users icon-watch-list"></i>
-									<span id="watch-list-count" class="badge orange-badge badge-overlap">1</span>
 								</span>
 							</a>
 							<span class="form-action-break"></span>

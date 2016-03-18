@@ -1,6 +1,6 @@
 <div width="100%" style="text-align: center;">
 	<button class="btn btn-success"
-		style="padding: 10px; font-size: 20px; margin: 20px; margin-top: 0px;">
+		style="padding: 10px; font-size: 20px; margin: 20px; margin-top: 0px;" onclick="window.location.href= 'update_request?id=1';">
 		<i class="fa fa-plus" style="padding-right: 10px;"></i>Submit a New
 		Request
 	</button>

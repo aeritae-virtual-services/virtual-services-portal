@@ -2,16 +2,22 @@ package com.vsportal.approval;
 
 import java.util.ArrayList;
 
+import com.vsportal.user.User;
 import com.vsportal.utils.QueryHelper;
 
 public class ApprovalDAO {
 	//Create Approval
-	public int insert(Approval approval) {
-		int providedId = -1;
+	public int insert(Approval approval, User sessionUser) {
+		String sql = "INSERT INTO Approval (created_by, updated_by, client_id, decision_by,"
+				+ "decision_date, request_id, description, decision, approval_type)"
+					+ "VALUES(?,?,?,?,?,?,?,?,?)";
 		
+		//getJdbcTemplate().update(sql,
+		//		new Object[]{sessionUser.getId(), sessionUser.getId(), approval.getClient().getId(),
+		//		approval.getD,user.getClient(), user.getRole()});
 		
-		
-		return providedId;
+		//return providedId;
+		return 0;
 	}
 	
 	//Update Approval

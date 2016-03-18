@@ -27,6 +27,7 @@ public class User {
 	private Role role;
 	private String image;
 	private ArrayList<Task> myPokedTasks;
+	private String encodedJSON;
 
 	public User(){
 		
@@ -176,5 +177,13 @@ public class User {
 	}
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+	
+	public void setJSONString(String json) {
+		this.encodedJSON = json;
+	}
+	
+	public String getJSONString() {
+		return this.encodedJSON;
 	}
 }

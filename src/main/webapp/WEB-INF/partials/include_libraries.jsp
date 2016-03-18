@@ -48,3 +48,8 @@
 
 <!-- Set Shortcut Icon -->
 <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/ae_icon_white.png">
+
+<!-- Create Client-Side User Object -->
+<script type="text/javascript">
+	//var sessionUser = JSON.parse('${sessionUser.encodedJSON}');
+</script>
