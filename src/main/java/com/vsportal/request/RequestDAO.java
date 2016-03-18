@@ -7,4 +7,9 @@ public class RequestDAO {
 		return null;
 	}
 
+	public Request recordQuery(String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -14,7 +14,7 @@
 	<div id="wrapper">
 		<%@ include file="/WEB-INF/partials/portal_navigator.jsp"%>
 		<div class="body">
-			<div width="100%" style="text-align: center; color: #0095CA; margin-top: -20px; padding-bottom: 10px;">
+			<div width="100%" style="text-align: center; color: #344553; margin-top: -20px; padding-bottom: 10px;">
 				<h3><i class="fa fa-home" style="padding-right: 15px;"></i>Home</h3>
 			</div>
 			<%@ include file="/WEB-INF/partials/homepages/end_user.jsp"%>

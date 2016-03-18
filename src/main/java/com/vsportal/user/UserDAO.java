@@ -131,4 +131,9 @@ public class UserDAO extends JdbcDaoSupport {
 		// TODO Query to get Saved String
 		return null;
 	}
+
+	public User recordQuery(String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

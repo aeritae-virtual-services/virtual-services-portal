@@ -600,3 +600,69 @@ textarea {
 .aeritae-services .thumbnail-footer i {
 	padding-left: 5px;
 }
+
+.main-display-menu-section-head {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: #344553!important;
+	color: white;
+    font-size: 20px;
+}
+
+.main-display-menu-section-head:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	/* Firefox */
+	left: -moz-calc(50% - 10px);
+	/* WebKit */
+	left: -webkit-calc(50% - 10px);
+	/* Opera */
+	left: -o-calc(50% - 10px);
+	/* Standard */
+	left: calc(50% - 10px);
+	top: 45px;
+	border: 10px solid;
+	border-color: #344553 transparent transparent transparent;
+}
+
+.main-display-menu-section-shadow {
+	width: 100%;
+	height: 40px;
+	padding: 5px;
+	background-color: #00A3DD;
+	position: relative;
+}
+
+.main-display-menu-section-body {
+	padding-top: 20px;
+	cursor: pointer;
+}
+
+.mini-blue-spacer {
+	border-bottom: 1px solid #00A3DD;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+	.main-display-menu-section {
+		position: absolute;
+	}
+	
+	.panel-group-section {
+		position: absolute;
+		margin-top: 400px;
+	}
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px){
+	.main-display-menu-section-head {
+		font-size: 14px;
+	}
+}

@@ -14,8 +14,8 @@ public class Approval {
 	private Date updated;
 	private User updatedBy;
 	private Client client;
-	private User approvedBy;
 	private Date decisionDate;
+	private User decisionBy;
 	private Request request;
 	private String description;
 	private String decision;
@@ -29,20 +29,19 @@ public class Approval {
 		this.id = id;
 		this.displayValue = displayValue;
 	}
-	
-	public Approval(int id, Date created, User createdBy, Date updated, User updatedBy, Client client,
-			User approvedBy, Date decisionDate, Request request, String description, String decision,
-			String approvalType) {
+
+	public Approval(int id, String displayValue, Date created, User createdBy, Date updated, User updatedBy,
+			Client client, Date decisionDate, User decisionBy, Request request, String description, String decision, String approvalType) {
 		super();
 		this.id = id;
-		this.displayValue = approvalType;
+		this.displayValue = displayValue;
 		this.created = created;
 		this.createdBy = createdBy;
 		this.updated = updated;
 		this.updatedBy = updatedBy;
 		this.client = client;
-		this.approvedBy = approvedBy;
 		this.decisionDate = decisionDate;
+		this.decisionBy = decisionBy;
 		this.request = request;
 		this.description = description;
 		this.decision = decision;
@@ -55,6 +54,14 @@ public class Approval {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getDisplayValue() {
+		return displayValue;
+	}
+
+	public void setDisplayValue(String displayValue) {
+		this.displayValue = displayValue;
 	}
 
 	public Date getCreated() {
@@ -97,20 +104,20 @@ public class Approval {
 		this.client = client;
 	}
 
-	public User getApprovedBy() {
-		return approvedBy;
-	}
-
-	public void setApprovedBy(User approvedBy) {
-		this.approvedBy = approvedBy;
-	}
-
 	public Date getDecisionDate() {
 		return decisionDate;
 	}
 
 	public void setDecisionDate(Date decisionDate) {
 		this.decisionDate = decisionDate;
+	}
+
+	public User getDecisionBy() {
+		return decisionBy;
+	}
+
+	public void setDecisionBy(User decisionBy) {
+		this.decisionBy = decisionBy;
 	}
 
 	public Request getRequest() {
@@ -143,9 +150,5 @@ public class Approval {
 
 	public void setApprovalType(String approvalType) {
 		this.approvalType = approvalType;
-	}
-	
-	public String getDisplayValue() {
-		return displayValue;
 	}
 }
