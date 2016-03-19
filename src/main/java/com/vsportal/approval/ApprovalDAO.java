@@ -49,8 +49,12 @@ public class ApprovalDAO extends JdbcDaoSupport {
 	
 	//Update Approval
 	public Approval update(Approval approval, User sessionUser) {
+		//Set Update Date to Now
+		java.sql.Date now = new java.sql.Date(new java.util.Date().getTime());
+		approval.setUpdated(now);
+		
 		String sql = "UPDATE Approval SET"
-				+ "updated = now(), "
+				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "client_id = ?, "
 				+ "decision_by = ?, "
@@ -62,6 +66,7 @@ public class ApprovalDAO extends JdbcDaoSupport {
 				+ "WHERE id = ?";
 		
 		getJdbcTemplate().update(sql, new Object[]{
+			approval.getUpdated(),
 			sessionUser.getId(),
 			approval.getClient().getId(),
 			approval.getDecisionBy().getId(),
@@ -73,7 +78,7 @@ public class ApprovalDAO extends JdbcDaoSupport {
 			approval.getId()
 		});
 		
-		return this.recordQuery("id=" + approval.getId(), "*");
+		return approval;
 	}
 	
 	//Get Approval Record
@@ -84,8 +89,9 @@ public class ApprovalDAO extends JdbcDaoSupport {
 		
 		if(query != "") {
 			sql += " WHERE " + qh.toSQLQuery(query);
-			sql += " LIMIT 0,1";
 		}
+		
+		sql += " LIMIT 0,1";
 		
 		Approval approval = getJdbcTemplate().queryForObject(sql, new Object[]{}, new ApprovalRowMapper<Approval>());
 		
