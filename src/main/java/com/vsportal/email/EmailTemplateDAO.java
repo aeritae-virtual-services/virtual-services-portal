@@ -17,7 +17,7 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 	public EmailTemplate insert(final EmailTemplate emailTemplate, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO Tier (created_by, updated_by, "
+		final String sql = "INSERT INTO EmailTemplate (created_by, updated_by, "
 				+ "email_to, email_subject, email_body)"
 					+ "VALUES(?,?,?,?,?)";
 		
