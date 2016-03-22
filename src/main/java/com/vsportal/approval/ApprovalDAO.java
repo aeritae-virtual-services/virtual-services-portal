@@ -135,14 +135,18 @@ public class ApprovalDAO extends JdbcDaoSupport {
 			sql = sql.substring(0, sql.length() - 1);
 		}
 		
+		//Add Generated Join Clauses to SQL Statement
 		sql += " FROM Approval" + sqlJoin;
 		
+		//Add Where Clause if necessary
 		if(query != "") {
 			sql += " WHERE " + qh.toSQLQuery(query);
 		}
 		
+		//Limit return results to 0 or 1 record
 		sql += " LIMIT 0,1";
 		
+		//Execute query
 		Approval approval = getJdbcTemplate().queryForObject(sql, new Object[]{}, new ApprovalRowMapper<Approval>());
 		
 		return approval;
@@ -201,12 +205,15 @@ public class ApprovalDAO extends JdbcDaoSupport {
 			sql = sql.substring(0, sql.length() - 1);
 		}
 		
+		//Add Generated Join Clauses to SQL Statement
 		sql += " FROM Approval" + sqlJoin;
 		
+		//Add Where Clause if necessary
 		if(query != "") {
 			sql += " WHERE " + qh.toSQLQuery(query);
 		}
 		
+		//Execute query
 		ArrayList<Approval> approvalList = (ArrayList<Approval>)getJdbcTemplate().query(sql,new Object[]{}, new ApprovalRowMapper<Approval>());
 		
 		return approvalList;
