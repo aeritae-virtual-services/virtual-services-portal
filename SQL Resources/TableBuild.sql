@@ -422,6 +422,23 @@ CREATE INDEX Availability_index1 ON Availability (analyst_id, start);
 
 CREATE INDEX Availability_index2 ON Availability (start);
 
+CREATE table List_Definition
+(
+id int unsigned NOT NULL AUTO_INCREMENT,
+created datetime NOT NUll default NOW(),
+created_by int unsigned NOT NULL,
+updated datetime NOT NULL default NOW(),
+updated_by int unsigned NOT NULL,
+table_nme varchar (50) NOT NULL,
+role_id int unsigned NOT NULL,
+column_label varchar (50) NOT NULL,
+coumn_nme varchar (50) NOT NULL,
+sequence int unsigned NOT NULL,
+PRIMARY Key(id)
+);
+
+CREATE INDEX List_Definition_index1 ON List_Definition (table_nme, role_id, sequence);
+
 ALTER table Client ADD FOREIGN KEY (created_by) REFERENCES User(id);
 ALTER table Client ADD FOREIGN Key (updated_by) REFERENCES User(id);
 ALTER table Client ADD FOREIGN KEY (primary_contact) REFERENCES USER(id);
@@ -533,3 +550,4 @@ ALTER table Availability ADD FOREIGN KEY (created_by) REFERENCES User(id);
 ALTER table Availability ADD FOREIGN KEY (updated_by) REFERENCES User(id);
 ALTER table Availability ADD FOREIGN KEY (analyst_id) REFERENCES User(id);
 
+ALTER table List_Definition ADD FOREIGN KEY (role_id) REFERENCES Role(id);
