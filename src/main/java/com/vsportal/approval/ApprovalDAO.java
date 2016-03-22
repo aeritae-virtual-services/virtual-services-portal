@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -84,8 +86,56 @@ public class ApprovalDAO extends JdbcDaoSupport {
 	//Get Approval Record
 	public Approval recordQuery(String query, String columns) {
 		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
 		
-		String sql = "SELECT " + columns + " FROM Approval";
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			sql += " Approval.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				sql += " Approval." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			sqlJoin += " LEFT JOIN User As createdby ON Approval.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			sqlJoin += " INNER JOIN User As updatedby ON Approval.updated_by = updatedby.id";
+		}
+		//Decision By
+		if(columns.equals("*") || columns.contains("decision_by")) {
+			sql += " decisionby.full_name,";
+			sqlJoin += " INNER JOIN User As decisionby ON Approval.decision_by = decisionby.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.name,";
+			sqlJoin += " INNER JOIN Client As clientid ON Approval.clientid = Client.id";
+		}
+		//Request
+		if(columns.equals("*") || columns.contains("request_id")) {
+			sql += " requestid.req_nbr,";
+			sqlJoin += " INNER JOIN Request As requestid ON Approval.request_id = requestid.id";
+		}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		sql += " FROM Approval" + sqlJoin;
 		
 		if(query != "") {
 			sql += " WHERE " + qh.toSQLQuery(query);
@@ -95,36 +145,6 @@ public class ApprovalDAO extends JdbcDaoSupport {
 		
 		Approval approval = getJdbcTemplate().queryForObject(sql, new Object[]{}, new ApprovalRowMapper<Approval>());
 		
-		UserDAO uDAO = new UserDAO();
-		RequestDAO rDAO = new RequestDAO();
-		ClientDAO cDAO = new ClientDAO();
-		
-		if(approval.getClient().getId() != 0) {
-			approval.getClient().setDisplayValue(cDAO.recordQuery("id=" + approval.getClient().getId(), "client_nme").getName());
-		} else {
-			approval.setClient(null);
-		}
-		
-		if(approval.getCreatedBy().getId() != 0) {
-			approval.getCreatedBy().setDisplayValue(uDAO.recordQuery("id=" + approval.getCreatedBy().getId(), "full_nme").getFullName());
-		} else {
-			approval.setCreatedBy(null);
-		}
-		
-		if(approval.getUpdatedBy().getId() != 0) {
-			approval.getUpdatedBy().setDisplayValue(uDAO.recordQuery("id=" + approval.getUpdatedBy().getId(), "full_nme").getFullName());
-		} else {
-			approval.setUpdatedBy(null);
-		}
-		
-		if(approval.getRequest().getId() != 0) {
-			approval.getRequest().setDisplayValue(rDAO.recordQuery("id=" + approval.getRequest().getId(), "number").getNumber());
-			approval.setDisplayValue(approval.getRequest().getDisplayValue());
-		} else {
-			approval.setRequest(null);
-			approval.setDisplayValue("");
-		}
-		
 		return approval;
 	}
 	
@@ -132,46 +152,62 @@ public class ApprovalDAO extends JdbcDaoSupport {
 	//Get Approval List
 	public ArrayList<Approval> listQuery(String query, String columns) {
 		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
 		
-		String sql = "SELECT " + columns + " FROM Approval";
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			sql += " Approval.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				sql += " Approval." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			sqlJoin += " LEFT JOIN User As createdby ON Approval.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			sqlJoin += " INNER JOIN User As updatedby ON Approval.updated_by = updatedby.id";
+		}
+		//Decision By
+		if(columns.equals("*") || columns.contains("decision_by")) {
+			sql += " decisionby.full_name,";
+			sqlJoin += " INNER JOIN User As decisionby ON Approval.decision_by = decisionby.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.name,";
+			sqlJoin += " INNER JOIN Client As clientid ON Approval.clientid = Client.id";
+		}
+		//Request
+		if(columns.equals("*") || columns.contains("request_id")) {
+			sql += " requestid.req_nbr,";
+			sqlJoin += " INNER JOIN Request As requestid ON Approval.request_id = requestid.id";
+		}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		sql += " FROM Approval" + sqlJoin;
 		
 		if(query != "") {
 			sql += " WHERE " + qh.toSQLQuery(query);
 		}
 		
 		ArrayList<Approval> approvalList = (ArrayList<Approval>)getJdbcTemplate().query(sql,new Object[]{}, new ApprovalRowMapper<Approval>());
-		
-		UserDAO uDAO = new UserDAO();
-		RequestDAO rDAO = new RequestDAO();
-		ClientDAO cDAO = new ClientDAO();
-		
-		for(Approval approval : approvalList) {
-			if(approval.getClient().getId() != 0) {
-				approval.getClient().setDisplayValue(cDAO.recordQuery("id=" + approval.getClient().getId(), "client_nme").getName());
-			} else {
-				approval.setClient(null);
-			}
-			
-			if(approval.getCreatedBy().getId() != 0) {
-				approval.getCreatedBy().setDisplayValue(uDAO.recordQuery("id=" + approval.getCreatedBy().getId(), "full_nme").getFullName());
-			} else {
-				approval.setCreatedBy(null);
-			}
-			
-			if(approval.getUpdatedBy().getId() != 0) {
-				approval.getUpdatedBy().setDisplayValue(uDAO.recordQuery("id=" + approval.getUpdatedBy().getId(), "full_nme").getFullName());
-			} else {
-				approval.setUpdatedBy(null);
-			}
-			
-			if(approval.getRequest().getId() != 0) {
-				approval.getRequest().setDisplayValue(rDAO.recordQuery("id=" + approval.getRequest().getId(), "number").getNumber());
-				approval.setDisplayValue(approval.getRequest().getDisplayValue());
-			} else {
-				approval.setRequest(null);
-				approval.setDisplayValue("");
-			}
-		}
 		
 		return approvalList;
 	}
