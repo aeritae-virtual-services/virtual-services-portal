@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.vsportal.jdbc.ConnectionPool;
 import com.vsportal.jdbc.DBUtil;
 import com.vsportal.session.SystemUnavailableException;
+import com.vsportal.status.Status;
+import com.vsportal.status.StatusRowMapper;
 import com.vsportal.utils.PasswordHelper;
 import com.vsportal.utils.QueryHelper;
 
@@ -44,13 +46,147 @@ public class UserDAO extends JdbcDaoSupport {
 		
 	}
 	
+	//get User
+	public User recordQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			//If * add all columns for: User
+			sql += " User.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				//Add only selected for table: User
+				sql += " User." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			//Merge User and: User
+			sqlJoin += " LEFT JOIN User As createdby ON User.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			//Merge User and: User
+			sqlJoin += " LEFT JOIN User As updatedby ON User.updated_by = updatedby.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.client_nme,";
+			//Merge User and: User
+			sqlJoin += " LEFT JOIN Client As clientid ON User.client_id = clientid.id";
+		}
+		//Role
+		if(columns.equals("*") || columns.contains("role_id")) {
+			sql += " roleid.role_nme,";
+			//Merge User and: User
+			sqlJoin += " LEFT JOIN Role As roleid ON User.role_id = roleid.id";
+		}
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement: User
+		sql += " FROM User" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Limit return results to 0 or 1 record
+		sql += " LIMIT 0,1";
+		
+		//Execute query
+		User user = getJdbcTemplate().queryForObject(sql, new Object[]{}, new UserRowMapper<User>());
+		
+		return user;
+	}
+	
+	//Get User List
+	public ArrayList<User> listQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			sql += " User.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				sql += " User." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			//Merge User and: User
+			sqlJoin += " LEFT JOIN User As createdby ON User.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			//Merge User and: User
+			sqlJoin += " LEFT JOIN User As updatedby ON User.updated_by = updatedby.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.client_nme,";
+			//Merge Client and: User
+			sqlJoin += " LEFT JOIN Client As clientid ON User.client_id = clientid.id";
+		}
+		//Role
+		if(columns.equals("*") || columns.contains("role_id")) {
+			sql += " roleid.role_nme,";
+			//Merge Role and: User
+			sqlJoin += " LEFT JOIN Role As roleid ON User.role_id = roleid.id";
+		}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement
+		sql += " FROM User" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Execute query
+		ArrayList<User> userList = (ArrayList<User>)getJdbcTemplate().query(sql,new Object[]{}, new UserRowMapper<User>());
+		
+		return userList;
+	}
+	
 	public ArrayList<User> getListByQuery(String query) {
 		QueryHelper qh = new QueryHelper();
 		
 		String sql = "SELECT first_name, last_name, phone_number, email, company, role FROM User WHERE ";
 		sql += qh.toSQLQuery(query);
 		
-		ArrayList<User> userList = (ArrayList<User>)getJdbcTemplate().queryForList(query,new Object[]{query},new userRowMapper);
+		ArrayList<User> userList = (ArrayList<User>)getJdbcTemplate().query(sql,new Object[]{}, new UserRowMapper<User>());
 		
 		return userList;
 	}
@@ -59,7 +195,7 @@ public class UserDAO extends JdbcDaoSupport {
 		int userId = (Integer)sess.getAttribute("session_user");
 		return this.getUserById(userId);
 	}
-    
+/*    
 	public User getUserById(int id) {
 		
 		String query = "SELECT * from User WHERE id = ?";
@@ -74,7 +210,7 @@ public class UserDAO extends JdbcDaoSupport {
 		
 		return user;
 	}
-    
+*/ 
     public boolean validatePassword(int userId, String pw) {
     	boolean isSuccessful = false;
     	
@@ -122,18 +258,4 @@ public class UserDAO extends JdbcDaoSupport {
     	
     	return isSuccessful;
     }
-
-	public void updateUsersFilter(String tableName, String query) {
-		//TODO Define filter update
-	}
-
-	public String getUsersFilter(String tableName) {
-		// TODO Query to get Saved String
-		return null;
-	}
-
-	public User recordQuery(String string, String string2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

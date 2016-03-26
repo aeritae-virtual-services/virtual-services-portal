@@ -112,22 +112,22 @@ public class ApprovalDAO extends JdbcDaoSupport {
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
-			sqlJoin += " INNER JOIN User As updatedby ON Approval.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Approval.updated_by = updatedby.id";
 		}
 		//Decision By
 		if(columns.equals("*") || columns.contains("decision_by")) {
 			sql += " decisionby.full_name,";
-			sqlJoin += " INNER JOIN User As decisionby ON Approval.decision_by = decisionby.id";
+			sqlJoin += " LEFT JOIN User As decisionby ON Approval.decision_by = decisionby.id";
 		}
 		//Client
 		if(columns.equals("*") || columns.contains("client_id")) {
 			sql += " clientid.name,";
-			sqlJoin += " INNER JOIN Client As clientid ON Approval.clientid = Client.id";
+			sqlJoin += " LEFT JOIN Client As clientid ON Approval.clientid = Client.id";
 		}
 		//Request
 		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
-			sqlJoin += " INNER JOIN Request As requestid ON Approval.request_id = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Approval.request_id = requestid.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -182,22 +182,22 @@ public class ApprovalDAO extends JdbcDaoSupport {
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
-			sqlJoin += " INNER JOIN User As updatedby ON Approval.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Approval.updated_by = updatedby.id";
 		}
 		//Decision By
 		if(columns.equals("*") || columns.contains("decision_by")) {
 			sql += " decisionby.full_name,";
-			sqlJoin += " INNER JOIN User As decisionby ON Approval.decision_by = decisionby.id";
+			sqlJoin += " LEFT JOIN User As decisionby ON Approval.decision_by = decisionby.id";
 		}
 		//Client
 		if(columns.equals("*") || columns.contains("client_id")) {
 			sql += " clientid.name,";
-			sqlJoin += " INNER JOIN Client As clientid ON Approval.clientid = Client.id";
+			sqlJoin += " LEFT JOIN Client As clientid ON Approval.clientid = Client.id";
 		}
 		//Request
 		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
-			sqlJoin += " INNER JOIN Request As requestid ON Approval.request_id = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Approval.request_id = requestid.id";
 		}
 		
 		//If last character is a comma, remove it

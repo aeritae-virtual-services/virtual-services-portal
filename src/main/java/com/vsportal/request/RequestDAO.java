@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.vsportal.user.User;
+import com.vsportal.utils.QueryHelper;
 
 public class RequestDAO extends JdbcDaoSupport {
 
@@ -115,14 +117,215 @@ public class RequestDAO extends JdbcDaoSupport {
 		return request;
 	}
 	
-	public Request getRequestById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public Request recordQuery(String string, String string2) {
-		// TODO Auto-generated method stub
-		return null;
+	//get Request
+	public Request recordQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			//If * add all columns for: Request
+			sql += " Request.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				//Add only selected for table: Request
+				sql += " Request." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			//Merge User and: Request
+			sqlJoin += " LEFT JOIN User As createdby ON Request.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			//Merge User and: Request
+			sqlJoin += " LEFT JOIN User As updatedby ON Request.updated_by = updatedby.id";
+		}
+		//Requester
+		if(columns.equals("*") || columns.contains("requester")) {
+			sql += " requesterid.full_name,";
+			//Merge User and: Request
+			sqlJoin += " LEFT JOIN User As requesterid ON Request.requesterid = requesterid.id";
+		}
+		//Status
+		if(columns.equals("*") || columns.contains("req_status")) {
+			sql += " reqstatus.label,";
+			//Merge Status and: Request
+			sqlJoin += " LEFT JOIN Status As reqstatus ON Request.req_status = reqstatus.id";
+		}
+		//Priority
+		if(columns.equals("*") || columns.contains("priority")) {
+			sql += " priorityid.label,";
+			//Merge Priority and: Request
+			sqlJoin += " LEFT JOIN Priority As priorityid ON Request.priority = priorityid.id";
+		}
+		//RequestType
+		if(columns.equals("*") || columns.contains("request_type")) {
+			sql += " requesttype.req_type_nme,";
+			//Merge RequestType and: Request
+			sqlJoin += " LEFT JOIN RequestType As requesttype ON Request.request_type = requesttype.id";
+		}
+		//Contract
+		if(columns.equals("*") || columns.contains("contract_id")) {
+			sql += " contractclient.client_nme,";
+			//Merge Contract and: Request
+			sqlJoin += " LEFT JOIN Contract As contractid ON Request.contract_id = contractid.id";
+			//Merge Client on contractid
+			sqlJoin += " LEFT JOIN Client As contractclient ON contratid.client_id = contractclient.id";
+		}
+		//Tier
+		if(columns.equals("*") || columns.contains("tier")) {
+			sql += " tierid.teir_name,";
+			//Merge Tier and: Request
+			sqlJoin += " LEFT JOIN Tier As tierid ON Request.tier = tierid.id";
+		}
+		//Resume To
+		if(columns.equals("*") || columns.contains("resume_to")) {
+			sql += " resumeto.label,";
+			//Merge Status and: Request
+			sqlJoin += " LEFT JOIN Status As resumeto ON Request.resume_to = resumeto.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.client_nme,";
+			//Merge Client and: Request
+			sqlJoin += " LEFT JOIN Client As clientid ON Request.client_id = clientid.id";
+		}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement: Request
+		sql += " FROM Request" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Limit return results to 0 or 1 record
+		sql += " LIMIT 0,1";
+		
+		//Execute query
+		Request request = getJdbcTemplate().queryForObject(sql, new Object[]{}, new RequestRowMapper<Request>());
+		
+		return request;
 	}
-
+	
+	//Get Request List
+	public ArrayList<Request> listQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			sql += " Request.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				sql += " Request." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			//Merge User and: Request
+			sqlJoin += " LEFT JOIN User As createdby ON Request.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			//Merge User and: Request
+			sqlJoin += " LEFT JOIN User As updatedby ON Request.updated_by = updatedby.id";
+		}
+		//Requester
+		if(columns.equals("*") || columns.contains("requester")) {
+			sql += " requesterid.full_name,";
+			//Merge User and: Request
+			sqlJoin += " LEFT JOIN User As requesterid ON Request.requesterid = requesterid.id";
+		}
+		//Status
+		if(columns.equals("*") || columns.contains("req_status")) {
+			sql += " reqstatus.label,";
+			//Merge Status and: Request
+			sqlJoin += " LEFT JOIN Status As reqstatus ON Request.req_status = reqstatus.id";
+		}
+		//Priority
+		if(columns.equals("*") || columns.contains("priority")) {
+			sql += " priorityid.label,";
+			//Merge Priority and: Request
+			sqlJoin += " LEFT JOIN Priority As priorityid ON Request.priority = priorityid.id";
+		}
+		//RequestType
+		if(columns.equals("*") || columns.contains("request_type")) {
+			sql += " requesttype.req_type_nme,";
+			//Merge RequestType and: Request
+			sqlJoin += " LEFT JOIN RequestType As requesttype ON Request.request_type = requesttype.id";
+		}
+		//Contract
+		if(columns.equals("*") || columns.contains("contract_id")) {
+			sql += " contractclient.client_nme,";
+			//Merge Contract and: Request
+			sqlJoin += " LEFT JOIN Contract As contractid ON Request.contract_id = contractid.id";
+			//Merge Client on contractid
+			sqlJoin += " LEFT JOIN Client As contractclient ON contratid.client_id = contractclient.id";
+		}
+		//Tier
+		if(columns.equals("*") || columns.contains("tier")) {
+			sql += " tierid.teir_name,";
+			//Merge Tier and: Request
+			sqlJoin += " LEFT JOIN Tier As tierid ON Request.tier = tierid.id";
+		}
+		//Resume To
+		if(columns.equals("*") || columns.contains("resume_to")) {
+			sql += " resumeto.label,";
+			//Merge Status and: Request
+			sqlJoin += " LEFT JOIN Status As resumeto ON Request.resume_to = resumeto.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.client_nme,";
+			//Merge Client and: Request
+			sqlJoin += " LEFT JOIN Client As clientid ON Request.client_id = clientid.id";
+		}
+				
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement
+		sql += " FROM Request" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Execute query
+		ArrayList<Request> requestList = (ArrayList<Request>)getJdbcTemplate().query(sql,new Object[]{}, new RequestRowMapper<Request>());
+		
+		return requestList;
+	}
 }

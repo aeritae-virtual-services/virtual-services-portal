@@ -12,7 +12,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.vsportal.contract.Contract;
+import com.vsportal.contract.ContractRowMapper;
 import com.vsportal.user.User;
+import com.vsportal.utils.QueryHelper;
 
 public class EmailLogDAO extends JdbcDaoSupport{
 	//Create EmalLog
@@ -87,10 +89,144 @@ public class EmailLogDAO extends JdbcDaoSupport{
 		});
 		return emailLog;
 	}
-	
-	public ArrayList<Contract> getListByQuery(String query) {
-		// TODO Auto-generated method stub
-		return null;
+	//Get EmailLog Record
+	public EmailLog recordQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			//If * add all columns for: EmailLog
+			sql += " EmailLog.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				//Add only selected for table: EmailLog
+				sql += " EmailLog." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			//Merge User and: EmailLog
+			sqlJoin += " LEFT JOIN User As createdby ON EmailLog.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			//Merge User and: EmailLog
+			sqlJoin += " LEFT JOIN User As updatedby ON EmailLog.updated_by = updatedby.id";
+		}
+		//EmailTemplate
+		if(columns.equals("*") || columns.contains("email_template_id")) {
+			sql += " emailtemplateid.email_subject,";
+			sqlJoin += " LEFT JOIN EmailTemplate As emailtemplateid ON EmailLog.email_template_id = emailtemplateid.id";
+		}
+		//Status
+		if(columns.equals("*") || columns.contains("status")) {
+			sql += " statusid.label,";
+			sqlJoin += " LEFT JOIN Status As statusid ON EmailLog.status = statusid.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client")) {
+			sql += " clientid.client_nme,";
+			sqlJoin += " LEFT JOIN Client As clientid ON EmailLog.client = clientid.id";
+		}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement: EmailLog
+		sql += " FROM EmailLog" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Limit return results to 0 or 1 record
+		sql += " LIMIT 0,1";
+		
+		//Execute query
+		EmailLog emailLog = getJdbcTemplate().queryForObject(sql, new Object[]{}, new EmailLogRowMapper<EmailLog>());
+		
+		return emailLog;
 	}
-
+	
+	//Get EmailLog List
+	public ArrayList<EmailLog> listQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			sql += " EmailLog.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				sql += " EmailLog." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+					sql += " createdby.full_name,";
+					//Merge User and: EmailLog
+					sqlJoin += " LEFT JOIN User As createdby ON EmailLog.created_by = createdby.id";
+				}
+				//Updated By
+				if(columns.equals("*") || columns.contains("updated_by")) {
+					sql += " updatedby.full_name,";
+					//Merge User and: EmailLog
+					sqlJoin += " LEFT JOIN User As updatedby ON EmailLog.updated_by = updatedby.id";
+				}
+				//EmailTemplate
+				if(columns.equals("*") || columns.contains("email_template_id")) {
+					sql += " emailtemplateid.email_subject,";
+					sqlJoin += " LEFT JOIN EmailTemplate As emailtemplateid ON EmailLog.email_template_id = emailtemplateid.id";
+				}
+				//Status
+				if(columns.equals("*") || columns.contains("status")) {
+					sql += " statusid.label,";
+					sqlJoin += " LEFT JOIN Status As statusid ON EmailLog.status = statusid.id";
+				}
+				//Client
+				if(columns.equals("*") || columns.contains("client")) {
+					sql += " clientid.client_nme,";
+					sqlJoin += " LEFT JOIN Client As clientid ON EmailLog.client = clientid.id";
+				}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement
+		sql += " FROM EmailLog" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Execute query
+		ArrayList<EmailLog> emailLogList = (ArrayList<EmailLog>)getJdbcTemplate().query(sql,new Object[]{}, new EmailLogRowMapper<EmailLog>());
+		
+		return emailLogList;
+	}
 }

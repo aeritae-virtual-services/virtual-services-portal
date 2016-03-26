@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.vsportal.tier.Tier;
 import com.vsportal.user.User;
+import com.vsportal.utils.QueryHelper;
 
 public class ContractDAO extends JdbcDaoSupport {
 	//Create Contract
@@ -74,9 +75,144 @@ public class ContractDAO extends JdbcDaoSupport {
 		return contract;
 	}
 	
-	public ArrayList<Contract> getListByQuery(String query) {
-		// TODO Auto-generated method stub
-		return null;
+	//Get Contract Record
+	public Contract recordQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			//If * add all columns for: Contract
+			sql += " Contract.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				//Add only selected for table: Contract
+				sql += " Contract." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+		if(columns.equals("*") || columns.contains("created_by")) {
+			sql += " createdby.full_name,";
+			//Merge User and: Contract
+			sqlJoin += " LEFT JOIN User As createdby ON Contract.created_by = createdby.id";
+		}
+		//Updated By
+		if(columns.equals("*") || columns.contains("updated_by")) {
+			sql += " updatedby.full_name,";
+			//Merge User and: Contract
+			sqlJoin += " LEFT JOIN User As updatedby ON Contract.updated_by = updatedby.id";
+		}
+		//Client
+		if(columns.equals("*") || columns.contains("client_id")) {
+			sql += " clientid.client_nme,";
+			sqlJoin += " LEFT JOIN Client AS clientid ON Contract.client_id = clientid.id";
+		}
+		//Tier
+		if(columns.equals("*") || columns.contains("tier_id")) {
+			sql += " tierid.tier_name,";
+			sqlJoin += " LEFT JOIN Tier AS tierid ON Contract.tier_id = teirid.id";
+		}
+		//Status
+		if(columns.equals("*") || columns.contains("contract_status")) {
+			sql += " contractstatus.label,";
+			sqlJoin += " LEFT JOIN Status AS contractstatus ON Contract.contract_status = contractstatus.id";
+		}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement: Contract
+		sql += " FROM Contract" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Limit return results to 0 or 1 record
+		sql += " LIMIT 0,1";
+		
+		//Execute query
+		Contract contract = getJdbcTemplate().queryForObject(sql, new Object[]{}, new ContractRowMapper<Contract>());
+		
+		return contract;
 	}
-
+	
+	//Get Contract List
+	public ArrayList<Contract> listQuery(String query, String columns) {
+		QueryHelper qh = new QueryHelper();
+		String sql = "SELECT";
+		
+		//Ensure columns are selected, if none are specified, automatically select all columns
+		if(columns.isEmpty() || columns.equals(null)) {
+			columns = "*";
+		}
+		
+		if(columns == "*") {
+			sql += " Contract.*,";
+		} else {
+			String[] columnArr = columns.split(",");
+			for(int i = 0; i < columnArr.length; i++) {
+				sql += " Contract." + columnArr[i] + ",";
+			}
+		}
+		
+		String sqlJoin = "";
+		
+		//Created By
+			if(columns.equals("*") || columns.contains("created_by")) {
+				sql += " createdby.full_name,";
+				//Merge User and: Contract
+				sqlJoin += " LEFT JOIN User As createdby ON Contract.created_by = createdby.id";
+			}
+			//Updated By
+			if(columns.equals("*") || columns.contains("updated_by")) {
+				sql += " updatedby.full_name,";
+				//Merge User and: Contract
+				sqlJoin += " LEFT JOIN User As updatedby ON Contract.updated_by = updatedby.id";
+			}
+			//Client
+			if(columns.equals("*") || columns.contains("client_id")) {
+				sql += " clientid.client_nme,";
+				sqlJoin += " LEFT JOIN Client AS clientid ON Contract.client_id = clientid.id";
+			}
+			//Tier
+			if(columns.equals("*") || columns.contains("tier_id")) {
+				sql += " tierid.tier_name,";
+				sqlJoin += " LEFT JOIN Tier AS tierid ON Contract.tier_id = teirid.id";
+			}
+			//Status
+			if(columns.equals("*") || columns.contains("contract_status")) {
+				sql += " contractstatus.label,";
+				sqlJoin += " LEFT JOIN Status AS contractstatus ON Contract.contract_status = contractstatus.id";
+			}
+		
+		//If last character is a comma, remove it
+		if(sql.endsWith(",")) {
+			sql = sql.substring(0, sql.length() - 1);
+		}
+		
+		//Add Generated Join Clauses to SQL Statement
+		sql += " FROM Contract" + sqlJoin;
+		
+		//Add Where Clause if necessary
+		if(query != "") {
+			sql += " WHERE " + qh.toSQLQuery(query);
+		}
+		
+		//Execute query
+		ArrayList<Contract> contractList = (ArrayList<Contract>)getJdbcTemplate().query(sql,new Object[]{}, new ContractRowMapper<Contract>());
+		
+		return contractList;
+	}
 }
