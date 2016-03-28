@@ -1,6 +1,7 @@
 package com.vsportal.approval;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,12 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.vsportal.approval.Approval;
 import com.vsportal.approval.ApprovalDAO;
+import com.vsportal.listdefinition.ListDefinition;
+import com.vsportal.listdefinition.ListDefinitionDAO;
 import com.vsportal.user.UserDAO;
 import com.vsportal.utils.SessionHelper;
 
 @Controller
 public class ApprovalController {
-
+	
 	//Display List For: approval
     @RequestMapping(value = "/approval_list", params = {"query"}, method = RequestMethod.GET)
     public ModelAndView displayList(HttpServletRequest request, @RequestParam(value = "query") String query) {
@@ -32,6 +35,9 @@ public class ApprovalController {
     	//Get Data Access Object For: approval
     	ApprovalDAO approvalDAO = new ApprovalDAO();
     	
+    	//Get Data Access Object for List Information
+    	ListDefinitionDAO listDAO = new ListDefinitionDAO();
+    	
     	//Validate Session
     	if(!sh.isValidSession(sess)) {
     		//If invalid session, redirect to login page
@@ -41,17 +47,34 @@ public class ApprovalController {
     		//Error Message: Invalid session
     		model.addObject("errmsg", "Invalid Session: Please log in.");
     	} else {
+    		//Get List information for Session User's Role for: Approval
+    		int roleId = userSessionDAO.getSessionUser(sess).getRole().getId();
+    		String columnList = "";
+    		
+    		ArrayList<ListDefinition> ld = listDAO.listQuery("role_id=" + roleId + "^table_nme=Approval", "*");
+    		
+    		//Sort List by Sequence
+	    	Collections.sort(ld);
+    		
+    		for(ListDefinition li : ld) {
+    			columnList += li.getColumnName() + ",";
+    		}
+    		
+    		columnList = columnList.substring(0, columnList.length() - 1);
+    		
     		//Get ArrayList From Query For: Approval
-	    	ArrayList<Approval> approvalList = ApprovalDAO.getListByQuery(query);
-		    //Update session user's personalized filter from the provided query for: Approval
-		    userSessionDAO.updateUsersFilter("Approval", query);
+	    	ArrayList<Approval> approvalList = approvalDAO.listQuery(query, columnList);
 	    	
 	    	//Call List View For: Approval
 	    	model = new ModelAndView("Approval_list");
 	    	//Pass session user to View
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass ArrayList to View For: Approval
-	    	model.addObject("approvalList", approvalList);
+	    	model.addObject("recordList", approvalList);
+	    	//Pass Column List for View
+	    	model.addObject("columnList", ld);
+	    	//Pass List Label
+	    	model.addObject("label", "Approvals");
     	}
     	
     	return model;

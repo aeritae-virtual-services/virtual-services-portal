@@ -1,10 +1,16 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="sidebar-wrapper">
 	<div id="sidebar-profile">
 		<table>
 			<tbody>
 				<tr>
 					<td>
-						<i class="fa fa-user"></i>
+						<c:if test="${sessionUser.image empty}">
+							<i class="fa fa-user"></i>
+						</c:if>
+						<c:if test="${sessionUser.image not empty}">
+							<img src="${sessionUser.image}" height="20px"/>
+						</c:if>
 					</td>
 					<td width="100%">
 						<h5>Welcome, <strong>${sessionUser.full_name}</strong></h5>
@@ -16,24 +22,28 @@
 	</div>
 	<div class="sidebar-nav">
 		<div class="sidebar-section">
-			<div class="sidebar-section-header" data-toggle="collapse" data-target="#list1" aria-expanded="false" aria-controls="list1" onclick="rotateChevron(this);">
+			<div class="sidebar-section-header" data-toggle="collapse" data-target="#requestlist" aria-expanded="false" aria-controls="requestlist" onclick="rotateChevron(this);">
 				<span>Requests</span>
 				<i class="fa fa-chevron-circle-right"></i>
 			</div>
-			<div id="list1" class="collapse">
+			<div id="requestlist" class="collapse">
 				<ul>
-					<li>
-						My Open Requests
-					</li>
-					<li>
-						My Closed Requests
-					</li>
-					<li>
-						All Open Requests
-					</li>
-					<li>
-						All Closed Requests
-					</li>
+					<c:if test="${sessionUser.role.id eq 1}">
+						<!-- End User: My Open Requests -->
+						<li>		
+							<a href="">
+								My Open Requests
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${sessionUser.role.id eq 1}">
+						<!-- End User: My Closed Requests -->
+						<li>		
+							<a href="">
+								My Closed Requests
+							</a>
+						</li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

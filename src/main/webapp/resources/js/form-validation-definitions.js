@@ -17,6 +17,8 @@ function getValidatorByFormName(formName) {
 	var update_approval;
 	var add_client;
 	var update_client;
+	var add_contract;
+	var update_contract;
 	var add_email_log;
 	var update_email_log;
 	var add_email_template;
