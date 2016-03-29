@@ -23,4 +23,9 @@ public class WorkflowStep {
 		return 0;
 	}
 
+	public int getOperationID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -281,4 +281,12 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		
 		return workflowStepList;
 	}
+
+	public WorkflowStep getStepByID(int stepID) {
+		String sql = "Select * FROM WorkflowStep WHERE id= ?";
+		WorkflowStep step = getJdbcTemplate().queryForObject(sql,new Object[]{ stepID },
+				new WorkflowStepRowMapper());
+		
+		return step;
+	}
 }
