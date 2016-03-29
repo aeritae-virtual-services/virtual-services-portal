@@ -1,20 +1,43 @@
 function getValidatorByFormName(formName) {
+	
+	/*
+	 * Approval Forms
+	 */
+	
 	var add_approval = {
 		formId: 'add_approval',
 		rules: {
-			field: {
-				fieldId: 'field',
+			client_id: {
+				fieldId: 'client_id',
 				role: {
-					read: "1,2,3,4,5",
-					write: "1,2,3"
+					read: '1,2,3,4,5',
+					write: '5'
 				},
-				mandatory: "$('#field').val() == 'this' && $('#field').val() == 'that'",
-				visible: "true",
-				readonly: "false"
+				mandatory: 'true',
+				visible: 'true',
+				readonly: 'false'
+			},
+			
+			decision_by: {
+				fieldId: 'decision_by',
+				role: {
+					read: '1,2,3,4,5',
+					write: ''
+				},
+				mandatory: 'false',
+				visible: 'true',
+				readonly: 'true'
 			}
 		}
 	};
-	var update_approval;
+	
+	var update_approval = add_approval;
+	update_approval.formId = 'update_approval';
+	
+	/*
+	 * Client Forms
+	 */
+	
 	var add_client;
 	var update_client;
 	var add_contract;
@@ -43,42 +66,7 @@ function getValidatorByFormName(formName) {
 	var update_task_type;
 	var add_tier;
 	var update_tier;
-	var add_user = {
-			actionId: 'add_user',
-			formId: 'user_form',
-			rules: {
-				first_name: {
-					fieldId: 'first_name',
-					role: {
-						read: "1,2,3,4,5",
-						write: "1,2,3"
-					},
-					mandatory: "true",
-					visible: "true",
-					readonly: "false"
-				},
-				last_name: {
-					fieldId: 'last_name',
-					role: {
-						read: "1,2,3,4,5",
-						write: "1,2,3"
-					},
-					mandatory: "true",
-					visible: "true",
-					readonly: "false"
-				},
-				client: {
-					fieldId: 'client',
-					role: {
-						read: "1,2,3,4,5",
-						write: "1,2,3"
-					},
-					mandatory: "true",
-					visible: "true",
-					readonly: "false"
-				}
-			}
-		};
+	var add_user;
 	var update_user;
 	var add_workflow_operation;
 	var update_workflow_operation;

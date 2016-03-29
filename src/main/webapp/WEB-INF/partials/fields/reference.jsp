@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fieldset class="form-group">
 	<label for="${param.fieldName}">
 		${param.fieldLabel}
@@ -24,21 +25,21 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>Full Name</th>
-							<th>Client</th>
+							<th>${param.fieldLabel}</th>
 							<th>Select</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Charlie Biegel</td>
-							<td>Blue Cross Blue Shield</td>
-							<td>
-								<a class="icon-save list-action" onclick="selectThisOption(1, 'Charlie Biegel');" data-dismiss="modal">
-									<i class="fa fa-check"></i>
-								</a>
-							</td>
-						</tr>
+						<c:forEach var="ref" items='<%=request.getAttribute(request.getParameter("fieldName") + "_list")%>'>
+							<tr>
+								<td>${ref.displayValue}</td>
+								<td>
+									<a class="icon-save list-action" onclick="selectThisOption('${ref.id}', '${ref.displayValue}');" data-dismiss="modal">
+										<i class="fa fa-check"></i>
+									</a>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>

@@ -14,8 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.vsportal.approval.Approval;
 import com.vsportal.approval.ApprovalDAO;
+import com.vsportal.client.Client;
+import com.vsportal.client.ClientDAO;
 import com.vsportal.listdefinition.ListDefinition;
 import com.vsportal.listdefinition.ListDefinitionDAO;
+import com.vsportal.request.Request;
+import com.vsportal.request.RequestDAO;
 import com.vsportal.user.UserDAO;
 import com.vsportal.utils.SessionHelper;
 
@@ -75,6 +79,8 @@ public class ApprovalController {
 	    	model.addObject("columnList", ld);
 	    	//Pass List Label
 	    	model.addObject("label", "Approvals");
+	    	//Control List Actions
+	    	model.addObject("canCreate", "false");
     	}
     	
     	return model;
@@ -82,7 +88,7 @@ public class ApprovalController {
     
     //Display Add Form For: Approval
     @RequestMapping(value = "/add_approval", method = RequestMethod.GET)
-    public ModelAndView displayNewUser(HttpServletRequest request) {
+    public ModelAndView displayNewForm(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -105,6 +111,19 @@ public class ApprovalController {
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
     		//Pass Operation of New
     		model.addObject("operation", "new");
+    		
+    		/*
+    		 * Get All Reference Lists
+    		 */
+    		
+    		//Active Clients
+    		ArrayList<Client> clients = new ClientDAO().listQuery("active=true", "id,client_nme");
+    		//All Requests
+    		ArrayList<Request> requests = new RequestDAO().listQuery("", "id,req_nbr");
+    		
+    		//Pass Reference Lists
+    		model.addObject("client_id_list", clients);
+    		model.addObject("request_id_list", requests);
     	}
     	
     	return model;
@@ -112,7 +131,7 @@ public class ApprovalController {
     
     //Submit Add Form For: approval
     @RequestMapping(value = "/add_approval", method = RequestMethod.POST)
-    public ModelAndView insertNewUser(HttpServletRequest request) {
+    public ModelAndView submitNewForm(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -134,13 +153,12 @@ public class ApprovalController {
     	} else {
     		//TODO Get All Attributes From Form
     		
-    		//TODO Populate Object with Attributes For: approval
+    		//TODO Populate Object with Attributes For: Approval
     		
-    		//TODO Insert Base Object For: approval
+    		//TODO Update Base Object For: Approval
     		
-    		//Redirect to list for: approval
-    		//Include standard filter for: approval
-    		model = new ModelAndView("redirect:/approval_list?query=" + userSessionDAO.getUsersFilter("Approval"));
+    		//Redirect to home
+    		model = new ModelAndView("redirect:/home");
     	}
     	
     	return model;
@@ -148,7 +166,7 @@ public class ApprovalController {
     
     //Display Update Form For: Approval
     @RequestMapping(value = "/update_approval", params = {"id"}, method = RequestMethod.GET)
-    public ModelAndView displayExistingUser(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
+    public ModelAndView displayExistingForm(HttpServletRequest request, @RequestParam(value = "id") Integer id) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
@@ -171,6 +189,18 @@ public class ApprovalController {
 	    	model.addObject("sessionUser", userSessionDAO.getSessionUser(sess));
 	    	//Pass Operation of Update
     		model.addObject("operation", "update");
+    		/*
+    		 * Get All Reference Lists
+    		 */
+    		
+    		//Active Clients
+    		ArrayList<Client> clients = new ClientDAO().listQuery("active=true", "id,client_nme");
+    		//All Requests
+    		ArrayList<Request> requests = new RequestDAO().listQuery("", "id,req_nbr");
+    		
+    		//Pass Reference Lists
+    		model.addObject("client_id_list", clients);
+    		model.addObject("request_id_list", requests);
     	}
     	
     	return model;
@@ -178,7 +208,7 @@ public class ApprovalController {
     
     //Submit Update Form For: approval
     @RequestMapping(value = "/update_approval", method = RequestMethod.POST)
-    public ModelAndView updateExistingUser(HttpServletRequest request) {
+    public ModelAndView submitExistingForm(HttpServletRequest request) {
     	HttpSession sess = request.getSession();
     	SessionHelper sh = new SessionHelper();
     	ModelAndView model = null;
