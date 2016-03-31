@@ -20,13 +20,13 @@
 <nav class="navbar navbar-default navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<c:if test='${valid_session eq "true"}'>
+			<!-- c:if test='${valid_session eq "true"}'-->
 				<a class="navbar-text navbar-left" id="toggle-menu" href=""
 					data-toggle="tooltip" title="View Menu" data-placement="bottom"
 					onclick="$('#wrapper').toggleClass('toggled'); return false;">
 					<i class="white-icon fa fa-bars"></i>
 				</a>
-			</c:if>
+			<!-- /c:if -->
 			<a class="navbar-text navbar-left navbar-image" href="home"> <img
 				class="navbar-image" alt="Aeritae Consulting Group, Ltd."
 				src="${pageContext.servletContext.contextPath}/resources/images/ae_icon_white.png" />
