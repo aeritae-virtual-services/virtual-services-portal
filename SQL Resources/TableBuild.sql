@@ -35,6 +35,8 @@ phone_number varchar(20),
 email varchar(50),
 client_id int unsigned,
 role_id int unsigned,
+profile_image varchar(100), 
+passwd varchar(200), 
 PRIMARY Key(id)
 );
 
@@ -273,6 +275,23 @@ start_date datetime,
 end_date datetime,
 final_completion_date datetime,
 contract_status int unsigned,
+expiration_notification_days_1 int unsigned,
+expiration_notification_days_2 int unsigned,
+expiration_notification_days_3 int unsigned,
+expiration_notification_days_4 int unsigned,
+status_id int unsigned,
+total_contracted_hours int unsigned,
+ccpm int unsigned,
+contract_contact int unsigned,
+current_balanace int unsigned,
+expiration_notification_date_1 int unsigned,
+expiration_notification_date_2 int unsigned,
+expiration_notification_date_3 int unsigned,
+expiration_notification_date_4 int unsigned,
+send_low_balance_notification boolean,
+low_balance_threshold_1 int unsigned,
+low_balance_threshold_2 int unsigned,
+low_balance_threshold_3 int unsigned
 PRIMARY Key(id)
 );
 
@@ -325,6 +344,7 @@ assignment_group_id int unsigned,
 instructions varchar(200),
 new_status int unsigned,
 write_metric boolean,
+task_type int unsigned,
 PRIMARY Key(id)
 );
 
