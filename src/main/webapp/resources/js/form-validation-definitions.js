@@ -983,6 +983,113 @@ function getValidatorByFormName(formName) {
 	var update_task = add_task;
 	update_task.formId = 'update_task';
 
+	var add_user = {
+			formId: 'add_user',
+			rules: {
+				first_nme: {
+					fieldId: 'first_nme',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				last_nme: {
+					fieldId: 'last_nme',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				full_nme: {
+					fieldId: 'full_nme',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				phone_number: {
+					fieldId: 'phone_number',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				email: {
+					fieldId: 'email',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				client_id: {
+					fieldId: 'client_id',
+					role: {
+						read: '1,2,3,4,5',
+						write: '2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				role_id: {
+					fieldId: 'role_id',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				user_id: {
+					fieldId: 'user_id',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				profile_image: {
+					fieldId: 'profile_image',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				passwd: {
+					fieldId: 'passwd',
+					role: {
+						read: '1,2,3,4,5',
+						write: '1,2,3,4,5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+			}
+		};
+
+	
 	var update_user = {
 			formId: 'update_user',
 			rules: {
@@ -1083,7 +1190,7 @@ function getValidatorByFormName(formName) {
 						write: '1,2,3,4,5'
 					},
 					mandatory: 'true',
-					visible: 'true',
+					visible: 'true', //This user record is the session user or session user role == 5
 					readonly: 'false'
 				},
 			}
@@ -1227,11 +1334,113 @@ function getValidatorByFormName(formName) {
 	var update_workflow_step = add_workflow_workflow_step;
 	update_workflow_step.formId = 'update_workflow_step';
 	
-	var add_metric;
-	var update_metric;
-	var add_task_type;
-	var update_task_type;
-	var add_user;
+	var add_metric = {
+			formId: 'add_metric',
+			rules: {
+				task_type: {
+					fieldId: 'task_type',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				task_id: {
+					fieldId: 'task_id',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				status: {
+					fieldId: 'status',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				start_date: {
+					fieldId: 'start_date',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				end_date: {
+					fieldId: 'end_date',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				duration: {
+					fieldId: 'duration',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				request_id: {
+					fieldId: 'request_id',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				},
+				client_id: {
+					fieldId: 'client_id',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				}
+			}
+		};
+		
+	var update_metric = add_metric;
+	update_metric.formId = 'update_metric';
+
+	var add_task_type = {
+			formId: 'add_ask_type',
+			rules: {
+				label: {
+					fieldId: 'label',
+					role: {
+						read: '5',
+						write: '5'
+					},
+					mandatory: 'true',
+					visible: 'true',
+					readonly: 'false'
+				}
+			}
+		};
+		
+	var update_task_type = add_task_type;
+	update_task_type.formId = 'task_type';
 
 	return eval(formName);
 }

@@ -457,7 +457,37 @@ sequence int unsigned NOT NULL,
 PRIMARY Key(id)
 );
 
-CREATE INDEX List_Definition_index1 ON List_Definition (table_nme, role_id, sequence);
+CREATE table Metric
+(
+id int unsigned NOT NULL AUTO_INCREMENT,
+created datetime NOT NUll default NOW(),
+created_by int unsigned NOT NULL,
+updated datetime NOT NULL default NOW(),
+updated_by int unsigned NOT NULL,
+task_type int unsigned,
+task_id int unsigned,
+status int unsigned,
+start_date datetime,
+end_date datettime,
+duration int unsigned,
+request_id int unsigned,
+client_id int unsigned,
+PRIMARY Key(id)
+);
+CREATE INDEX Metric_index1 ON Metric (request_id);
+CREATE INDEX Metric_index2 ON Metric (client_id);
+
+CREATE table Task_Type
+(
+id int unsigned NOT NULL AUTO_INCREMENT,
+created datetime NOT NUll default NOW(),
+created_by int unsigned NOT NULL,
+updated datetime NOT NULL default NOW(),
+updated_by int unsigned NOT NULL,
+label varchar (40),
+PRIMARY Key(id)
+);
+CREATE INDEX Task_Type_index1 ON Task_Type (label);
 
 ALTER table Client ADD FOREIGN KEY (created_by) REFERENCES User(id);
 ALTER table Client ADD FOREIGN Key (updated_by) REFERENCES User(id);
