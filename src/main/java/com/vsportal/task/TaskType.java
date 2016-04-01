@@ -12,7 +12,7 @@ public class TaskType {
 	private User createdBy;
 	private Date updated;
 	private User updatedBy;
-	private String type;
+	private String label;
 	
 	
 	
@@ -25,14 +25,14 @@ public class TaskType {
 		this.displayValue = displayValue;
 	}
 
-	public TaskType(int id, Date created, User createdBy, Date updated, User updatedBy, String type) {
+	public TaskType(int id, Date created, User createdBy, Date updated, User updatedBy, String label) {
 		super();
 		this.id = id;
 		this.created = created;
 		this.createdBy = createdBy;
 		this.updated = updated;
 		this.updatedBy = updatedBy;
-		this.type = type;
+		this.label = label;
 	}
 
 	public int getId() {
@@ -75,16 +75,16 @@ public class TaskType {
 		this.updatedBy = updatedBy;
 	}
 
-	public String getType() {
-		return type;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public DropdownOption getDropdownOption() {
-		return new DropdownOption(String.valueOf(this.getId()), this.getType());
+		return new DropdownOption(String.valueOf(this.getId()), this.getLabel());
 	}
 	
 	public String getDisplayValue(){

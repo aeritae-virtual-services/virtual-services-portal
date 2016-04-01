@@ -2,6 +2,8 @@ package com.vsportal.metric;
 
 import java.sql.Date;
 
+import com.vsportal.client.Client;
+import com.vsportal.request.Request;
 import com.vsportal.status.Status;
 import com.vsportal.task.TaskType;
 import com.vsportal.user.User;
@@ -17,13 +19,16 @@ public class Metric {
 	private Date end;
 	private int duration;
 	private Status status;
+	private Request request_id;
+	private Client client_id;
+	private String displayValue;
 	
 	public Metric() {
 		super();
 	}
 
 	public Metric(int id, Date created, User createdBy, Date updated, User updatedBy, TaskType type, Date start,
-			Date end, int duration, Status status) {
+			Date end, int duration, Status status, Request request_id, Client client_id) {
 		super();
 		this.id = id;
 		this.created = created;
@@ -35,6 +40,9 @@ public class Metric {
 		this.end = end;
 		this.duration = duration;
 		this.status = status;
+		this.request_id = request_id;
+		this.client_id = client_id;
+		this.displayValue = type.getDisplayValue();
 	}
 
 	public int getId() {
@@ -115,5 +123,29 @@ public class Metric {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public Request getRequest_id() {
+		return request_id;
+	}
+
+	public void setRequest_id(Request request_id) {
+		this.request_id = request_id;
+	}
+
+	public Client getClient_id() {
+		return client_id;
+	}
+
+	public void setClient_id(Client client_id) {
+		this.client_id = client_id;
+	}
+	
+	public String getDisplayValue() {
+		return displayValue;
+	}
+	
+	public void setDisplayValue(String displayValue) {
+		this.displayValue = displayValue;
 	}
 }

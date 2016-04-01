@@ -31,7 +31,6 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 						ps.setInt(2, sessionUser.getId());
 						//getLabel getValue missing from TaskType
 						ps.setString(3, taskType.getLabel());
-						ps.setString(4, taskType.getValue());
 						return ps;
 					}
 				}, keyHolder);		
@@ -57,7 +56,6 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 			sessionUser.getId(),
 			//getLabel getValue missing from TaskType
 			taskType.getLabel(),
-			taskType.getValue(),
 			taskType.getId()
 		});
 		return taskType;
