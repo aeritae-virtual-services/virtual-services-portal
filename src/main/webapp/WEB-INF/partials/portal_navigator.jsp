@@ -549,7 +549,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Email Log -->
 						<li>		
-							<a href="">
+							<a href="email_log_list?query=">
 								Email Log
 							</a>
 						</li>
@@ -557,7 +557,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Email Template -->
 						<li>		
-							<a href="">
+							<a href="email_template_list?query=">
 								Email Template
 							</a>
 						</li>
@@ -565,7 +565,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Workflow Operations -->
 						<li>		
-							<a href="">
+							<a href="workflow_operation_list?query=">
 								Workflow Operations
 							</a>
 						</li>
@@ -573,7 +573,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Workflow Steps -->
 						<li>		
-							<a href="">
+							<a href="workflow_step_list?query=">
 								Workflow Steps
 							</a>
 						</li>
@@ -581,7 +581,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Roles -->
 						<li>		
-							<a href="">
+							<a href="role_list?query=">
 								Roles
 							</a>
 						</li>
@@ -589,7 +589,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Request Types -->
 						<li>		
-							<a href="">
+							<a href="request_type_list?query=">
 								Request Types
 							</a>
 						</li>
@@ -597,7 +597,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Priorities -->
 						<li>		
-							<a href="">
+							<a href="priority_list?query=">
 								Priorities
 							</a>
 						</li>
@@ -605,7 +605,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Admin: Status -->
 						<li>		
-							<a href="">
+							<a href="status_list?query=">
 								Status
 							</a>
 						</li>
