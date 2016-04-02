@@ -5,10 +5,10 @@
 			<tbody>
 				<tr>
 					<td>
-						<c:if test="${sessionUser.image empty}">
+						<c:if test="${empty sessionUser.image}">
 							<i class="fa fa-user"></i>
 						</c:if>
-						<c:if test="${sessionUser.image not empty}">
+						<c:if test="${not empty sessionUser.image}">
 							<img src="${sessionUser.image}" height="20px"/>
 						</c:if>
 					</td>
@@ -28,14 +28,15 @@
 			</div>
 			<div id="requestlist" class="collapse">
 				<ul>
-					<c:if test="${sessionUser.role.id eq 1}">
+					<!-- c:if test="${sessionUser.role.id eq 1}"-->
 						<!-- End User: My Open Requests -->
 						<li>		
 							<a href="">
+								<i class="fa fa-chevron-right"></i>
 								My Open Requests
 							</a>
 						</li>
-					</c:if>
+					<!-- /c:if -->
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My More Info Requests -->
 						<li>		
@@ -290,7 +291,7 @@
 			</div>
 			<div id="clientinformationlist" class="collapse">
 				<ul>
-										<c:if test="${sessionUser.role.id eq 1}">
+					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My Contracts -->
 						<li>		
 							<a href="">
@@ -309,7 +310,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My Client Information -->
 						<li>		
-							<a href="">
+							<a href="client_list?query=Client.id=${sessionUser.client_id.id}">
 								My Client Information
 							</a>
 						</li>

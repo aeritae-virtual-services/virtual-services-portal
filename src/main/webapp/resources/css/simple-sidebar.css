@@ -94,6 +94,15 @@
 	font-size: 14px;
 }
 
+.sidebar-section li a {
+	color: #2D2D2D!important;
+	text-decoration: none;
+}
+
+.sidebar-section li a:hover {
+	text-decoration: none;
+}
+
 #sidebar-profile {
 	color: #2D2D2D!important;
 	position: absolute;
