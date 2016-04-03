@@ -124,7 +124,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: My Open Assigned Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to=${sessionUser.id}^taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								My Open Assigned Tasks
 							</a>
 						</li>
@@ -148,7 +148,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: All Unassigned Open Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to IS NULL ^taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								All Unassigned Open Tasks
 							</a>
 						</li>
@@ -156,7 +156,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: All Open Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								All Open Tasks
 							</a>
 						</li>
@@ -164,7 +164,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: My Open Poked Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.poked_analyst=${sessionUser.id}^taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								My Open Poked Tasks
 							</a>
 						</li>
@@ -172,7 +172,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: My Recent Comments -->
 						<li>		
-							<a href="">
+							<a href="comment_list?query=((Now()-Comment.created)<=7)^requestid.id IN (SELECT RequestGrab.id FROM Task LEFT JOIN Request As RequestGrab ON Task.request_id = RequestGrab.id LEFT JOIN Status As TaskStatus ON Task.task_status = TaskStatus.id WHERE Task.assigned_to = ${sessionUser.id} AND TaskStatus.label NOT IN ('On Hold','More Info', 'Completed', 'Cannceled'))">
 								My Recent Comments
 							</a>
 						</li>
@@ -180,7 +180,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: My On Hold Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to=${sessionUser.id}^taskstatus.label='On Hold'">
 								My On Hold Tasks
 							</a>
 						</li>
@@ -188,7 +188,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: My More Info Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to=${sessionUser.id}^taskstatus.label='More Info'">
 								My More Info Tasks
 							</a>
 						</li>
@@ -196,7 +196,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My Open Assigned Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to=${sessionUser.id}^taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								My Open Assigned Tasks
 							</a>
 						</li>
@@ -220,7 +220,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: All Unassigned Open Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to IS NULL ^taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								All Unassigned Open Tasks
 							</a>
 						</li>
@@ -228,7 +228,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: All Open Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								All Open Tasks
 							</a>
 						</li>
@@ -236,7 +236,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My Open Poked Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.poked_analyst=${sessionUser.id}^taskstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								My Open Poked Tasks
 							</a>
 						</li>
@@ -244,7 +244,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My Recent Comments -->
 						<li>		
-							<a href="">
+							<a href="comment_list?query=((Now()-Comment.created)<=7)^requestid.id IN (SELECT RequestGrab.id FROM Task LEFT JOIN Request As RequestGrab ON Task.request_id = RequestGrab.id LEFT JOIN Status As TaskStatus ON Task.task_status = TaskStatus.id WHERE Task.assigned_to = ${sessionUser.id} AND TaskStatus.label NOT IN ('On Hold','More Info', 'Completed', 'Cannceled'))">
 								My Recent Comments
 							</a>
 						</li>
@@ -252,7 +252,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My On Hold Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to=${sessionUser.id}^taskstatus.label='On Hold'">
 								My On Hold Tasks
 							</a>
 						</li>
@@ -260,7 +260,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My More Info Tasks -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.assigned_to=${sessionUser.id}^taskstatus.label='More Info'">
 								My More Info Tasks
 							</a>
 						</li>
@@ -268,7 +268,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My Pending Pokes -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.poked_analyst IS NOT NULL^Task.poked_by=${sessionUser.id}">
 								My Pending Pokes
 							</a>
 						</li>
