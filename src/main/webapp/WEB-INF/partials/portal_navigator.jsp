@@ -294,7 +294,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My Contracts -->
 						<li>		
-							<a href="">
+							<a href="contract_list?query=Contract.client_id=${sessionUser.client_id.id}">
 								My Contracts
 							</a>
 						</li>
@@ -302,7 +302,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My User Contacts -->
 						<li>		
-							<a href="">
+							<a href="user_list?query=User.client_id=${sessionUser.client_id.id}">
 								My User Contacts
 							</a>
 						</li>
@@ -318,7 +318,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: All Client Contacts -->
 						<li>		
-							<a href="">
+							<a href="user_list?query=client_id IS NOT NULL">
 								All Client Contacts
 							</a>
 						</li>
@@ -334,7 +334,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: All Client Contacts -->
 						<li>		
-							<a href="">
+							<a href="user_list?query=client_id IS NOT NULL">
 								All Client Contacts
 							</a>
 						</li>
@@ -350,7 +350,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: All Clients -->
 						<li>		
-							<a href="">
+							<a href="client_list?query=">
 								All Clients
 							</a>
 						</li>
@@ -382,7 +382,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: All Groups -->
 						<li>		
-							<a href="">
+							<a href="group_list?query=">
 								All Groups
 							</a>
 						</li>
@@ -398,7 +398,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Clients -->
 						<li>		
-							<a href="">
+							<a href="client_lsit?query=">
 								All Clients
 							</a>
 						</li>
@@ -414,7 +414,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Contracts -->
 						<li>		
-							<a href="">
+							<a href="contract_list?query=">
 								All Contracts
 							</a>
 						</li>
@@ -478,7 +478,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: Update My Availability -->
 						<li>		
-							<a href="">
+							<a href="availability_list?query=Availability.analyst_id=${sessionUser.id}">
 								Update My Availability
 							</a>
 						</li>
@@ -486,7 +486,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- VS Analyst: My Recent Time Entries -->
 						<li>		
-							<a href="">
+							<a href="time_entry_list?query=TimeEntry.created_by=${sessionUser.id}^((Now()-TimeEntry.created)<=7)">
 								My Recent Time Entries
 							</a>
 						</li>
@@ -494,7 +494,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: Update My Availability -->
 						<li>		
-							<a href="">
+							<a href="availability_list?query=Availability.analyst_id=${sessionUser.id}">
 								Update My Availability
 							</a>
 						</li>
@@ -502,7 +502,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: My Recent Time Entries -->
 						<li>		
-							<a href="">
+							<a href="time_entry_list?query=TimeEntry.created_by=${sessionUser.id}^((Now()-TimeEntry.created)<=7)">
 								My Recent Time Entries
 							</a>
 						</li>
@@ -510,7 +510,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Q Manager: View All Availability -->
 						<li>		
-							<a href="">
+							<a href="avaliablity_list?query=">
 								View All Availability
 							</a>
 						</li>
@@ -518,7 +518,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Groups -->
 						<li>		
-							<a href="">
+							<a href="group_list?query=">
 								All Groups
 							</a>
 						</li>
@@ -526,7 +526,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Users -->
 						<li>		
-							<a href="">
+							<a href="user_list?query=">
 								All Users
 							</a>
 						</li>
@@ -534,7 +534,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): Update My Availability -->
 						<li>		
-							<a href="">
+							<a href="availability_list?query=Availability.analyst_id=${sessionUser.id}">
 								Update My Availability
 							</a>
 						</li>
@@ -542,7 +542,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Tiers -->
 						<li>		
-							<a href="">
+							<a href="tier_list?query=">
 								All Tiers
 							</a>
 						</li>
