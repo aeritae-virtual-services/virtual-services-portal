@@ -31,7 +31,7 @@
 					<!-- c:if test="${sessionUser.role.id eq 1}"-->
 						<!-- End User: My Open Requests -->
 						<li>		
-							<a href="">
+							<a href="request_list?query=Request.requester=${sessionUser.id}^reqstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								<i class="fa fa-chevron-right"></i>
 								My Open Requests
 							</a>
@@ -40,7 +40,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My More Info Requests -->
 						<li>		
-							<a href="">
+							<a href="request_list?query=Request.requester=${sessionUser.id}^reqstatus.label='More Info'">
 								My More Info Requests
 							</a>
 						</li>
@@ -48,7 +48,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My On Hold Requests -->
 						<li>		
-							<a href="">
+							<a href="request_list?query=Request.requester=${sessionUser.id}^reqstatus.label='On Hold'">
 								My On Hold Requests
 							</a>
 						</li>
@@ -56,7 +56,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: My Closed/Cancelled Requests -->
 						<li>		
-							<a href="">
+							<a href="request_list?query=Request.requester=${sessionUser.id}}^reqstatus.label IN ('Closed','Cancelled')">
 								My Closed/Cancelled Requests
 							</a>
 						</li>
@@ -64,7 +64,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- End User: Recent Request Comments -->
 						<li>		
-							<a href="">
+							<a href="comment_list?query=requestid.requester=${sessionUser.id}^((Now()-Comment.created)<=7)">
 								Recent Request Comments
 							</a>
 						</li>
@@ -72,7 +72,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): Open Requests -->
 						<li>		
-							<a href="">
+							<a href="request_list?query=reqstatus.label NOT IN ('On Hold','More Info','Closed','Cancelled')">
 								Open Requests
 							</a>
 						</li>
@@ -80,7 +80,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Requests -->
 						<li>		
-							<a href="">
+							<a href="request_list?query=">
 								All Requests
 							</a>
 						</li>
@@ -88,7 +88,7 @@
 					<c:if test="${sessionUser.role.id eq 1}">
 						<!-- Service Line Leader (SLL): All Pending Pokes -->
 						<li>		
-							<a href="">
+							<a href="task_list?query=Task.poked_analyst IS NOT NULL">
 								All Pending Pokes
 							</a>
 						</li>
