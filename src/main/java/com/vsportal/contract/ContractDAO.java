@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.vsportal.tier.Tier;
 import com.vsportal.user.User;
 import com.vsportal.utils.QueryHelper;
 
@@ -35,7 +34,7 @@ public class ContractDAO extends JdbcDaoSupport {
 						ps.setInt(4, contract.getTier().getId());
 						ps.setDate(5, contract.getStartDate());
 						ps.setDate(6, contract.getEndDate());
-						ps.setDate(7, contract.getFinalCompetionDate());
+						ps.setDate(7, contract.getFinalCompletionDate());
 						ps.setInt(8, contract.getStatus().getId());
 						return ps;
 					}
