@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import com.vsportal.status.Status;
 import com.vsportal.user.User;
+import com.vsportal.client.Client;
 
 public class EmailLog {
 	private int id;
@@ -21,6 +22,7 @@ public class EmailLog {
 	private String table;
 	private int tableId;
 	private Status status;
+	private Client client;
 	
 	public EmailLog() {
 		super();
@@ -33,7 +35,7 @@ public class EmailLog {
 
 	public EmailLog(int id, Date created, User createdBy, Date updated, User updatedBy, String recipient, String from,
 			String direction, String subject, String body, EmailTemplate template, String table, int tableId,
-			Status status) {
+			Status status, Client client) {
 		super();
 		this.id = id;
 		this.created = created;
@@ -49,6 +51,7 @@ public class EmailLog {
 		this.table = table;
 		this.tableId = tableId;
 		this.status = status;
+		this.client = client;
 		this.displayValue = this.subject;
 	}
 
@@ -169,5 +172,13 @@ public class EmailLog {
 	}
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }
