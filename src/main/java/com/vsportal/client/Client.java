@@ -17,10 +17,11 @@ public class Client {
 	private User primaryContact;
 	private String url;
 	private String address;
-	private Group queueManagers;
-	private boolean migrationRequired;
+	private Group qManager;
+	private boolean testMigrationRequired;
+	private boolean productionMigrationRequired;
 	private boolean clientPORequired;
-	private Group primaryAnalysts;
+	private Group primaryAnalystGroup;
 	
 	public Client() {
 		super();
@@ -32,8 +33,9 @@ public class Client {
 	}
 
 	public Client(int id, Date created, User createdBy, Date updated, User updatedBy, String name, User primaryContact,
-			String url, String address, Group queueManagers, boolean migrationRequired, boolean clientPORequired,
-			Group primaryAnalysts) {
+			String url, String address, Group qManager, boolean testMigrationRequired, boolean productionMigrationRequired,
+			boolean clientPORequired, Group primaryAnalystGroup)
+	{
 		super();
 		this.id = id;
 		this.created = created;
@@ -44,10 +46,10 @@ public class Client {
 		this.primaryContact = primaryContact;
 		this.url = url;
 		this.address = address;
-		this.queueManagers = queueManagers;
-		this.migrationRequired = migrationRequired;
+		this.qManager = qManager;
+		this.testMigrationRequired = testMigrationRequired;
 		this.clientPORequired = clientPORequired;
-		this.primaryAnalysts = primaryAnalysts;
+		this.primaryAnalystGroup = primaryAnalystGroup;
 		this.displayValue = this.name;
 	}
 
@@ -123,20 +125,12 @@ public class Client {
 		this.address = address;
 	}
 
-	public Group getQueueManagers() {
-		return queueManagers;
+	public Group getQManager() {
+		return qManager;
 	}
 
-	public void setQueueManagers(Group queueManagers) {
-		this.queueManagers = queueManagers;
-	}
-
-	public boolean isMigrationRequired() {
-		return migrationRequired;
-	}
-
-	public void setMigrationRequired(boolean migrationRequired) {
-		this.migrationRequired = migrationRequired;
+	public void setQManager(Group qManager) {
+		this.qManager = qManager;
 	}
 
 	public boolean isClientPORequired() {
@@ -146,18 +140,34 @@ public class Client {
 	public void setClientPORequired(boolean clientPORequired) {
 		this.clientPORequired = clientPORequired;
 	}
-
-	public Group getPrimaryAnalysts() {
-		return primaryAnalysts;
-	}
-
-	public void setPrimaryAnalysts(Group primaryAnalysts) {
-		this.primaryAnalysts = primaryAnalysts;
-	}
 	public String getDisplayValue(){
 		return displayValue;
 	}
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+
+	public boolean isTestMigrationRequired() {
+		return testMigrationRequired;
+	}
+
+	public void setTestMigrationRequired(boolean testMigrationRequired) {
+		this.testMigrationRequired = testMigrationRequired;
+	}
+
+	public boolean isProductionMigrationRequired() {
+		return productionMigrationRequired;
+	}
+
+	public void setProductionMigrationRequired(boolean productionMigrationRequired) {
+		this.productionMigrationRequired = productionMigrationRequired;
+	}
+
+	public Group getPrimaryAnalystGroup() {
+		return primaryAnalystGroup;
+	}
+
+	public void setPrimaryAnalystGroup(Group primaryAnalystGroup) {
+		this.primaryAnalystGroup = primaryAnalystGroup;
 	}
 }

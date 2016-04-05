@@ -23,12 +23,12 @@ public class ClientRowMapper<T> implements RowMapper<Client> {
 		client.setUrl(rs.getString("Client.url"));
 		client.setAddress(rs.getString("Client.address"));
 		Group queueManagers = new Group(rs.getInt("Client.q_manager"),rs.getString("qmanager.user_group_nme"));
-		client.setQueueManagers(queueManagers);
+		client.setQManager(queueManagers);
 		client.setTestMigrationRequired(rs.getBoolean("Client.test_migration_req"));
 		client.setProductionMigrationRequired(rs.getBoolean("Client.prod_migration_req"));
 		client.setClientPORequired(rs.getBoolean("Client.client_po_req"));
 		Group primaryAnalysts = new Group(rs.getInt("Client.primary_analyst_group"),rs.getString("primaryanalystgroup.user_group_nme"));
-		client.setPrimaryAnalysts(primaryAnalysts);
+		client.setPrimaryAnalystGroup(primaryAnalysts);
 		return client;
 	}
 }

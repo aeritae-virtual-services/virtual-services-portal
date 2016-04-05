@@ -34,12 +34,12 @@ public class ClientDAO extends JdbcDaoSupport{
 						ps.setInt(4, client.getPrimaryContact().getId());
 						ps.setString(5, client.getUrl());
 						ps.setString(6, client.getAddress());
-						ps.setInt(7, client.getQueueManagers().getId());
+						ps.setInt(7, client.getQManager().getId());
 						//test migration required missing from client object
 						ps.setBoolean(8, client.isTestMigrationRequired());
 						ps.setBoolean(9, client.isProductionMigrationRequired());
 						ps.setBoolean(10, client.isClientPORequired());
-						ps.setInt(11, client.getPrimaryAnalysts().getId());
+						ps.setInt(11, client.getPrimaryAnalystGroup().getId());
 						return ps;
 					}
 				}, keyHolder);
@@ -74,12 +74,12 @@ public class ClientDAO extends JdbcDaoSupport{
 			client.getPrimaryContact(),
 			client.getUrl(),
 			client.getAddress(),
-			client.getQueueManagers(),
+			client.getQManager(),
 			//testMigrationRequired missing from client object
 			client.isTestMigrationRequired(),
 			client.isProductionMigrationRequired(),
 			client.isClientPORequired(),
-			client.getPrimaryAnalysts(),
+			client.getPrimaryAnalystGroup(),
 			client.getId()
 		});
 		
