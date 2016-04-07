@@ -7,16 +7,17 @@ import com.vsportal.utils.DropdownOption;
 
 public class Priority {
 	private int id;
+	private Date created;
+	private User createdBy;
+	private Date updated;
+	private User updatedBy;
 	private String displayValue;
 	private String label;
 	private int value;
-	private Date created;
-	private User created_by;
-	private Date updated;
-	private User updated_by;
+	private String table;
 	
 	public Priority(int id, String displayValue){
-		this.id = id;
+		this.setId(id);
 		this.displayValue = displayValue;
 	}
 	public Priority(){
@@ -43,32 +44,20 @@ public class Priority {
 		this.value = value;
 	}
 
-	public User getCreated_by() {
-		return created_by;
+	public User getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(User created_by) {
-		this.created_by = created_by;
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public User getUpdated_by() {
-		return updated_by;
+		return updatedBy;
 	}
 
-	public void setUpdated_by(User updated_by) {
-		this.updated_by = updated_by;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public Date getUpdated() {
-		return updated;
+	public void setUpdatedBy(User updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 	
 	public DropdownOption getDropdownOption() {
@@ -81,6 +70,30 @@ public class Priority {
 	
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+	public Date getCreated() {
+		return created;
+	}
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+	public Date getUpdated() {
+		return updated;
+	}
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+	public String getTable() {
+		return table;
+	}
+	public void setTable(String table) {
+		this.table = table;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

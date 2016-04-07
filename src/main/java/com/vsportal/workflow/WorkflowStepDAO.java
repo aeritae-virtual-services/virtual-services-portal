@@ -17,7 +17,7 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 	public WorkflowStep insert(final WorkflowStep workflowStep, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO WorkflowStep (created_by, updated_by, "
+		final String sql = "INSERT INTO Workflow_Step (created_by, updated_by, "
 				+ "operation_id, success_next_step, fail_next_step, description, email_template_id,"
 				+ "assignment_group_id, instructions, new_status, write_metric)"
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
@@ -50,7 +50,7 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		//set Updated missing from now
 		workflowStep.setUpdated(now);
 		
-		String sql = "UPDATE WorkflowStep SET"
+		String sql = "UPDATE Workflow_Step SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "operation_id = ?, "
@@ -92,13 +92,13 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		}
 		
 		if(columns == "*") {
-			//If * add all columns for: WorkflowStep
-			sql += " WorkflowStep.*,";
+			//If * add all columns for: Workflow_Step
+			sql += " Workflow_Step.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				//Add only selected for table: WorkflowStep
-				sql += " WorkflowStep." + columnArr[i] + ",";
+				//Add only selected for table: Workflow_Step
+				sql += " Workflow_Step." + columnArr[i] + ",";
 			}
 		}
 		
@@ -107,68 +107,68 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		//Created By
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
-			//Merge User and: WorkflowStep
-			sqlJoin += " LEFT JOIN User As createdby ON WorkflowStep.created_by = createdby.id";
+			//Merge User and: Workflow_Step
+			sqlJoin += " LEFT JOIN User As createdby ON Workflow_Step.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
-			//Merge User and: WorkflowStep
-			sqlJoin += " LEFT JOIN User As updatedby ON WorkflowStep.updated_by = updatedby.id";
+			//Merge User and: Workflow_Step
+			sqlJoin += " LEFT JOIN User As updatedby ON Workflow_Step.updated_by = updatedby.id";
 		}
-		//WorkflowOperation
+		//Workflow_Operation
 		if(columns.equals("*") || columns.contains("operation_id")) {
 			sql += " operationid.operation_nme,";
-			//Merge WorkflowOperation and: WorkflowStep
-			sqlJoin += " LEFT JOIN WorkflowOperation As operationid ON WorkflowStep.operation_id = operationid.id";
+			//Merge Workflow_Operation and: Workflow_Step
+			sqlJoin += " LEFT JOIN Workflow_Operation As operationid ON Workflow_Step.operation_id = operationid.id";
 		}
 		//Success Next Step
 		if(columns.equals("*") || columns.contains("success_next_step")) {
 			sql += " successnextsteptasktype.label,";
-			//Merge WorkflowStep and: WorkflowStep
-			sqlJoin += " LEFT JOIN WorkflowStep As successnextstep ON WorkflowStep.success_next_step = successnextstep.id";
-			//Merge successnextstep and TaskType
-			sqlJoin += " LEFT JOIN TaskType As successnextsteptasktype ON successnextstep.task_type = successnextsteptasktype.id";
+			//Merge Workflow_Step and: Workflow_Step
+			sqlJoin += " LEFT JOIN Workflow_Step As successnextstep ON Workflow_Step.success_next_step = successnextstep.id";
+			//Merge successnextstep and Task_Type
+			sqlJoin += " LEFT JOIN Task_Type As successnextsteptasktype ON successnextstep.task_type = successnextsteptasktype.id";
 		}
 		//Fail Next Step
 		if(columns.equals("*") || columns.contains("fail_next_step")) {
 			sql += " failnextsteptasktype.label,";
-			//Merge WorkflowStep and: WorkflowStep
-			sqlJoin += " LEFT JOIN WorkflowStep As failnextstep ON WorkflowStep.fail_next_step = failnextstep.id";
-			//Merge failsnextstep and TaskType
-			sqlJoin += " LEFT JOIN TaskType As failnextsteptasktype ON failnextstep.task_type = failnextsteptasktype.id";
+			//Merge Workflow_Step and: Workflow_Step
+			sqlJoin += " LEFT JOIN Workflow_Step As failnextstep ON Workflow_Step.fail_next_step = failnextstep.id";
+			//Merge failsnextstep and Task_Type
+			sqlJoin += " LEFT JOIN Task_Type As failnextsteptasktype ON failnextstep.task_type = failnextsteptasktype.id";
 		}
 		//Email Template
 		if(columns.equals("*") || columns.contains("email_template_id")) {
 			sql += " emailtemplateid.subject,";
-			//Merge Email Template and: WorkflowStep
-			sqlJoin += " LEFT JOIN EmailTemplate As emailtemplateid ON WorkflowStep.email_template_id = emailtemplateid.id";
+			//Merge Email Template and: Workflow_Step
+			sqlJoin += " LEFT JOIN Email_Template As emailtemplateid ON Workflow_Step.email_template_id = emailtemplateid.id";
 		}
 		//Assignment Group
 		if(columns.equals("*") || columns.contains("assignment_group_id")) {
 			sql += " assignmentgroupid.user_group_nme,";
-			//Merge user_group and: WorkflowStep
-			sqlJoin += " LEFT JOIN User_Group As assignmentgroupid ON WorkflowStep.assignment_group_id = assignmentgroupid.id";
+			//Merge user_group and: Workflow_Step
+			sqlJoin += " LEFT JOIN User_Group As assignmentgroupid ON Workflow_Step.assignment_group_id = assignmentgroupid.id";
 		}
 		//New Status
 		if(columns.equals("*") || columns.contains("new_status")) {
 			sql += " newstatus.label,";
-			//Merge status and: WorkflowStep
-			sqlJoin += " LEFT JOIN Status As newstatus ON WorkflowStep.new_status = newstatus.id";
+			//Merge status and: Workflow_Step
+			sqlJoin += " LEFT JOIN Status As newstatus ON Workflow_Step.new_status = newstatus.id";
 		}
 		//Task Type
 		if(columns.equals("*") || columns.contains("task_type")) {
 			sql += " tasktypeid.label,";
-			//Merge Task Type and: WorkflowStep
-			sqlJoin += " LEFT JOIN TaskType As tasktypeid ON WorkflowStep.task_type = tasktypeid.id";
+			//Merge Task Type and: Workflow_Step
+			sqlJoin += " LEFT JOIN Task_Type As tasktypeid ON Workflow_Step.task_type = tasktypeid.id";
 		}
 		//If last character is a comma, remove it
 		if(sql.endsWith(",")) {
 			sql = sql.substring(0, sql.length() - 1);
 		}
 		
-		//Add Generated Join Clauses to SQL Statement: WorkflowStep
-		sql += " FROM WorkflowStep" + sqlJoin;
+		//Add Generated Join Clauses to SQL Statement: Workflow_Step
+		sql += " FROM Workflow_Step" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -195,11 +195,11 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		}
 		
 		if(columns == "*") {
-			sql += " WorkflowStep.*,";
+			sql += " Workflow_Step.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " WorkflowStep." + columnArr[i] + ",";
+				sql += " Workflow_Step." + columnArr[i] + ",";
 			}
 		}
 		
@@ -208,60 +208,60 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		//Created By
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
-			//Merge User and: WorkflowStep
-			sqlJoin += " LEFT JOIN User As createdby ON WorkflowStep.created_by = createdby.id";
+			//Merge User and: Workflow_Step
+			sqlJoin += " LEFT JOIN User As createdby ON Workflow_Step.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
-			//Merge User and: WorkflowStep
-			sqlJoin += " LEFT JOIN User As updatedby ON WorkflowStep.updated_by = updatedby.id";
+			//Merge User and: Workflow_Step
+			sqlJoin += " LEFT JOIN User As updatedby ON Workflow_Step.updated_by = updatedby.id";
 		}
-		//WorkflowOperation
+		//Workflow_Operation
 		if(columns.equals("*") || columns.contains("operation_id")) {
 			sql += " operationid.operation_nme,";
-			//Merge WorkflowOperation and: WorkflowStep
-			sqlJoin += " LEFT JOIN WorkflowOperation As operationid ON WorkflowStep.operation_id = operationid.id";
+			//Merge Workflow_Operation and: Workflow_Step
+			sqlJoin += " LEFT JOIN Workflow_Operation As operationid ON Workflow_Step.operation_id = operationid.id";
 		}
 		//Success Next Step
 		if(columns.equals("*") || columns.contains("success_next_step")) {
 			sql += " successnextsteptasktype.label,";
-			//Merge WorkflowStep and: WorkflowStep
-			sqlJoin += " LEFT JOIN WorkflowStep As successnextstep ON WorkflowStep.success_next_step = successnextstep.id";
-			//Merge successnextstep and TaskType
-			sqlJoin += " LEFT JOIN TaskType As successnextsteptasktype ON successnextstep.task_type = successnextsteptasktype.id";
+			//Merge Workflow_Step and: Workflow_Step
+			sqlJoin += " LEFT JOIN Workflow_Step As successnextstep ON Workflow_Step.success_next_step = successnextstep.id";
+			//Merge successnextstep and Task_Type
+			sqlJoin += " LEFT JOIN Task_Type As successnextsteptasktype ON successnextstep.task_type = successnextsteptasktype.id";
 		}
 		//Fail Next Step
 		if(columns.equals("*") || columns.contains("fail_next_step")) {
 			sql += " failnextsteptasktype.label,";
-			//Merge WorkflowStep and: WorkflowStep
-			sqlJoin += " LEFT JOIN WorkflowStep As failnextstep ON WorkflowStep.fail_next_step = failnextstep.id";
-			//Merge failsnextstep and TaskType
-			sqlJoin += " LEFT JOIN TaskType As failnextsteptasktype ON failnextstep.task_type = failnextsteptasktype.id";
+			//Merge Workflow_Step and: Workflow_Step
+			sqlJoin += " LEFT JOIN Workflow_Step As failnextstep ON Workflow_Step.fail_next_step = failnextstep.id";
+			//Merge failsnextstep and Task_Type
+			sqlJoin += " LEFT JOIN Task_Type As failnextsteptasktype ON failnextstep.task_type = failnextsteptasktype.id";
 		}
 		//Email Template
 		if(columns.equals("*") || columns.contains("email_template_id")) {
 			sql += " emailtemplateid.subject,";
-			//Merge Email Template and: WorkflowStep
-			sqlJoin += " LEFT JOIN EmailTemplate As emailtemplateid ON WorkflowStep.email_template_id = emailtemplateid.id";
+			//Merge Email Template and: Workflow_Step
+			sqlJoin += " LEFT JOIN Email_Template As emailtemplateid ON Workflow_Step.email_template_id = emailtemplateid.id";
 		}
 		//Assignment Group
 		if(columns.equals("*") || columns.contains("assignment_group_id")) {
 			sql += " assignmentgroupid.user_group_nme,";
-			//Merge user_group and: WorkflowStep
-			sqlJoin += " LEFT JOIN User_Group As assignmentgroupid ON WorkflowStep.assignment_group_id = assignmentgroupid.id";
+			//Merge user_group and: Workflow_Step
+			sqlJoin += " LEFT JOIN User_Group As assignmentgroupid ON Workflow_Step.assignment_group_id = assignmentgroupid.id";
 		}
 		//New Status
 		if(columns.equals("*") || columns.contains("new_status")) {
 			sql += " newstatus.label,";
-			//Merge status and: WorkflowStep
-			sqlJoin += " LEFT JOIN Status As newstatus ON WorkflowStep.new_status = newstatus.id";
+			//Merge status and: Workflow_Step
+			sqlJoin += " LEFT JOIN Status As newstatus ON Workflow_Step.new_status = newstatus.id";
 		}
 		//Task Type
 		if(columns.equals("*") || columns.contains("task_type")) {
 			sql += " tasktypeid.label,";
-			//Merge Task Type and: WorkflowStep
-			sqlJoin += " LEFT JOIN TaskType As tasktypeid ON WorkflowStep.task_type = tasktypeid.id";
+			//Merge Task Type and: Workflow_Step
+			sqlJoin += " LEFT JOIN Task_Type As tasktypeid ON Workflow_Step.task_type = tasktypeid.id";
 		}		
 		//If last character is a comma, remove it
 		if(sql.endsWith(",")) {
@@ -269,7 +269,7 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM WorkflowStep" + sqlJoin;
+		sql += " FROM Workflow_Step" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -283,7 +283,7 @@ public class WorkflowStepDAO extends JdbcDaoSupport {
 	}
 
 	public WorkflowStep getStepByID(int stepID) {
-		String sql = "Select * FROM WorkflowStep WHERE id= ?";
+		String sql = "Select * FROM Workflow_Step WHERE id= ?";
 		WorkflowStep step = getJdbcTemplate().queryForObject(sql,new Object[]{ stepID },
 				new WorkflowStepRowMapper());
 		

@@ -6,6 +6,7 @@ import com.vsportal.group.Group;
 import com.vsportal.request.Request;
 import com.vsportal.status.Status;
 import com.vsportal.user.User;
+import com.vsportal.client.Client;
 
 public class Task {
 	private int id;
@@ -21,12 +22,14 @@ public class Task {
 	private Status status;
 	private String number;
 	private Status resumeTo;
+	private float hoursConsumed;
 	private User pokedAnalyst;
 	private Date pokedDate;
 	private User pokedBy;
 	private TaskType type;
+	private Client client;
 	
-	private Task() {
+	public Task() {
 		super();
 	}
 	
@@ -188,5 +191,21 @@ public class Task {
 	
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+
+	public float getHoursConsumed() {
+		return hoursConsumed;
+	}
+
+	public void setHoursConsumed(float hoursConsumed) {
+		this.hoursConsumed = hoursConsumed;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }

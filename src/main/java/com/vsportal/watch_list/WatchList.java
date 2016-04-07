@@ -22,7 +22,7 @@ public class WatchList {
 	
 	public WatchList(int id, String displayValue){
 		this.id = id;
-		this.displayValue = displayValue;
+		this.setDisplayValue(displayValue);
 	}
 
 	public WatchList(int id, Date created, User createdBy, Date updated, User updatedBy, Request request,
@@ -91,5 +91,13 @@ public class WatchList {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getDisplayValue() {
+		return displayValue;
+	}
+
+	public void setDisplayValue(String displayValue) {
+		this.displayValue = displayValue;
 	}
 }

@@ -19,7 +19,7 @@ public class WatchListDAO extends JdbcDaoSupport {
 	public WatchList insert(final WatchList watchList, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO WatchList (created_by, updated_by, "
+		final String sql = "INSERT INTO Watch_List (created_by, updated_by, "
 				+ "request_id, email_address)"
 					+ "VALUES(?,?,?,?)";
 		
@@ -44,7 +44,7 @@ public class WatchListDAO extends JdbcDaoSupport {
 		//set Updated missing from now
 		watchList.setUpdated(now);
 		
-		String sql = "UPDATE WatchList SET"
+		String sql = "UPDATE Watch_List SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "request_id = ?, "
@@ -72,12 +72,12 @@ public class WatchListDAO extends JdbcDaoSupport {
 		
 		if(columns == "*") {
 			//If * add all columns for: WatchList
-			sql += " WatchList.*,";
+			sql += " Watch_List.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
 				//Add only selected for table: WatchList
-				sql += " WatchList." + columnArr[i] + ",";
+				sql += " Watch_List." + columnArr[i] + ",";
 			}
 		}
 		
@@ -87,19 +87,19 @@ public class WatchListDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: WatchList
-			sqlJoin += " LEFT JOIN User As createdby ON WatchList.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Watch_List.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: WatchList
-			sqlJoin += " LEFT JOIN User As updatedby ON WatchList.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Watch_List.updated_by = updatedby.id";
 		}
 		//Request
 		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
 			//Merge Request and: WatchList
-			sqlJoin += " LEFT JOIN Request As requestid ON WatchList.request_id = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Watch_List.request_id = requestid.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -108,7 +108,7 @@ public class WatchListDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement: WatchList
-		sql += " FROM WatchList" + sqlJoin;
+		sql += " FROM Watch_List" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -135,11 +135,11 @@ public class WatchListDAO extends JdbcDaoSupport {
 		}
 		
 		if(columns == "*") {
-			sql += " WatchList.*,";
+			sql += " Watch_List.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " WatchList." + columnArr[i] + ",";
+				sql += " Watch_List." + columnArr[i] + ",";
 			}
 		}
 		
@@ -149,18 +149,18 @@ public class WatchListDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: WatchList
-			sqlJoin += " LEFT JOIN User As createdby ON WatchList.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Watch_List.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: WatchList
-			sqlJoin += " LEFT JOIN User As updatedby ON WatchList.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Watch_List.updated_by = updatedby.id";
 		}
 		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
 			//Merge Request and: WatchList
-			sqlJoin += " LEFT JOIN Request As requestid ON WatchList.request_id = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Watch_List.request_id = requestid.id";
 		}
 				
 		//If last character is a comma, remove it
@@ -169,7 +169,7 @@ public class WatchListDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM WatchList" + sqlJoin;
+		sql += " FROM Watch_List" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {

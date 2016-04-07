@@ -19,7 +19,7 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 	public EmailTemplate insert(final EmailTemplate emailTemplate, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO EmailTemplate (created_by, updated_by, "
+		final String sql = "INSERT INTO Email_Template (created_by, updated_by, "
 				+ "email_to, email_subject, email_body)"
 					+ "VALUES(?,?,?,?,?)";
 		
@@ -45,7 +45,7 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		//set Updated missing from now
 		emailTemplate.setUpdated(now);
 		
-		String sql = "UPDATE EmailTemplate SET"
+		String sql = "UPDATE Email_Template SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "email_to = ?, "
@@ -74,12 +74,12 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		
 		if(columns == "*") {
 			//If * add all columns for: EmailTemplate
-			sql += " EmailTemplate.*,";
+			sql += " Email_Template.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
 				//Add only selected for table: EmailTemplate
-				sql += " EmailTemplate." + columnArr[i] + ",";
+				sql += " Email_Template." + columnArr[i] + ",";
 			}
 		}
 		
@@ -89,13 +89,13 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: EmailTemplate
-			sqlJoin += " LEFT JOIN User As createdby ON EmailTemplate.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Email_Template.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: EmailTemplate
-			sqlJoin += " LEFT JOIN User As updatedby ON EmailTemplate.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Email_Template.updated_by = updatedby.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -104,7 +104,7 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		}
 		
 		//Add Generated Join Clauses to SQL Statement: EmailTemplate
-		sql += " FROM EmailTemplate" + sqlJoin;
+		sql += " FROM Email_Template" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -131,11 +131,11 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		}
 		
 		if(columns == "*") {
-			sql += " EmailTemplate.*,";
+			sql += " Email_Template.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " EmailTemplate." + columnArr[i] + ",";
+				sql += " Email_Template." + columnArr[i] + ",";
 			}
 		}
 		
@@ -145,13 +145,13 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: EmailTemplate
-			sqlJoin += " LEFT JOIN User As createdby ON EmailTemplate.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Email_Template.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: EmailTemplate
-			sqlJoin += " LEFT JOIN User As updatedby ON EmailTemplate.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Email_Template.updated_by = updatedby.id";
 		}
 				
 		//If last character is a comma, remove it
@@ -160,7 +160,7 @@ public class EmailTemplateDAO extends JdbcDaoSupport{
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM EmailTemplate" + sqlJoin;
+		sql += " FROM Email_Template" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {

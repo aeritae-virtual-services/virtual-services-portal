@@ -35,8 +35,8 @@ public class RequestRowMapper<T> implements RowMapper<Request> {
 		Priority priority = new Priority(rs.getInt("Request.priority"),rs.getString("priorityid.label"));
 		request.setPriority(priority);
 		request.setUpdateSet("Request.update_set");
-		request.setRequestLOE(rs.getBoolean("Request.request_loe"));
-		request.setEstimatedLOE(rs.getFloat("Request.estimated_loe"));
+		request.setRequestLevelOfEffort(rs.getBoolean("Request.request_loe"));
+		request.setEstimatedLevelOfEffort(rs.getFloat("Request.estimated_loe"));
 		request.setHoursConsumed(rs.getFloat("Request.hours_consumed"));
 		RequestType requestType = new RequestType(rs.getInt("Request.request_type"),rs.getString("requesttype.req_type_nme"));
 		request.setRequestType(requestType);

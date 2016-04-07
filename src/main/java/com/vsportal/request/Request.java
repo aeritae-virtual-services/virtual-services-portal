@@ -7,6 +7,7 @@ import com.vsportal.priority.Priority;
 import com.vsportal.status.Status;
 import com.vsportal.tier.Tier;
 import com.vsportal.user.User;
+import com.vsportal.client.Client;
 
 public class Request {
 	private int id;
@@ -24,13 +25,14 @@ public class Request {
 	private Date requestedCompletionDate;
 	private Priority priority;
 	private String updateSet;
-	private boolean requestLOE;
-	private float estimatedLOE;
+	private boolean requestLevelOfEffort;
+	private float estimatedLevelOfEffort;
 	private float hoursConsumed;
 	private RequestType requestType;
 	private Contract contract;
 	private Tier tier;
 	private Status resumeTo;
+	private Client client;
 	
 	public Request(int id, String displayValue){
 		this.id = id;
@@ -42,8 +44,8 @@ public class Request {
 
 	public Request(int id, Date created, User createdBy, Date updated, User updatedBy, User requester, String number,
 			String description, String shortDescription, String clientRequestNumber, Status status,
-			Date requestedCompletionDate, Priority priority, String updateSet, boolean requestLOE, float estimatedLOE,
-			float hoursConsumed, RequestType requestType, Contract contract, Tier tier) {
+			Date requestedCompletionDate, Priority priority, String updateSet, boolean requestLevelOfEffort, float estimatedLevelOfEffort,
+			float hoursConsumed, RequestType requestType, Contract contract, Tier tier, Status resumeTo, Client client) {
 		super();
 		this.id = id;
 		this.created = created;
@@ -59,12 +61,14 @@ public class Request {
 		this.requestedCompletionDate = requestedCompletionDate;
 		this.priority = priority;
 		this.updateSet = updateSet;
-		this.requestLOE = requestLOE;
-		this.estimatedLOE = estimatedLOE;
+		this.requestLevelOfEffort = requestLevelOfEffort;
+		this.estimatedLevelOfEffort = estimatedLevelOfEffort;
 		this.hoursConsumed = hoursConsumed;
 		this.requestType = requestType;
 		this.contract = contract;
 		this.tier = tier;
+		this.resumeTo = resumeTo;
+		this.client = client;
 		this.displayValue = this.number;
 	}
 
@@ -180,20 +184,20 @@ public class Request {
 		this.updateSet = updateSet;
 	}
 
-	public boolean isRequestLOE() {
-		return requestLOE;
+	public boolean isRequestLevelOfEffort() {
+		return requestLevelOfEffort;
 	}
 
-	public void setRequestLOE(boolean requestLOE) {
-		this.requestLOE = requestLOE;
+	public void setRequestLevelOfEffort(boolean requestLevelOfEffort) {
+		this.requestLevelOfEffort = requestLevelOfEffort;
 	}
 
-	public float getEstimatedLOE() {
-		return estimatedLOE;
+	public float getEstimatedLevelOfEffort() {
+		return estimatedLevelOfEffort;
 	}
 
-	public void setEstimatedLOE(float estimatedLOE) {
-		this.estimatedLOE = estimatedLOE;
+	public void setEstimatedLevelOfEffort(float estimatedLevelOfEffort) {
+		this.estimatedLevelOfEffort = estimatedLevelOfEffort;
 	}
 
 	public float getHoursConsumed() {
@@ -244,5 +248,11 @@ public class Request {
 	
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }

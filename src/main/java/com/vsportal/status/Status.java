@@ -9,7 +9,7 @@ public class Status {
 	private String displayValue;
 	private String label;
 	private int value;
-	private String type;
+	private String table;
 	private Date created;
 	private User createdBy;
 	private Date updated;
@@ -23,10 +23,10 @@ public class Status {
 		this.displayValue = displayValue;
 	}
 	
-	public Status(String label,int value, String type){
+	public Status(String label,int value, String table){
 		this.label = label;
 		this.value = value;
-		this.type = type;
+		this.table = table;
 	}
 
 	public String getLabel() {
@@ -45,19 +45,30 @@ public class Status {
 		this.value = value;
 	}
 
-	public String getType() {
-		return type;
+	public String getTable() {
+		return table;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTable(String table) {
+		this.table = table;
 	}
 
 	public User getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreated_by(User createdBy) {
+	public void setId(int id){
+		this.id=id;
+	}
+	
+	public void setCreated(Date created){
+		this.created = created;
+	}
+	
+	public void setUpdated(Date updated){
+		this.updated = updated;
+	}
+	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
 

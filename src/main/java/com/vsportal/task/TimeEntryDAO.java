@@ -19,7 +19,7 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 	public TimeEntry insert(final TimeEntry timeEntry, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO TimeEntry (created_by, updated_by, "
+		final String sql = "INSERT INTO Time_Entry (created_by, updated_by, "
 				+ "task, request_id, hours_consumed, user_id, contract_id, client_id)"
 					+ "VALUES(?,?,?,?,?,?,?,?)";
 		
@@ -30,7 +30,6 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 						ps.setInt(1, sessionUser.getId());
 						ps.setInt(2, sessionUser.getId());
 						ps.setInt(3, timeEntry.getTask().getId());
-						//getRequest missing from Time Entry
 						ps.setInt(4, timeEntry.getRequest().getId());
 						ps.setFloat(5, timeEntry.getHoursConsumed());
 						ps.setInt(6, timeEntry.getUser().getId());
@@ -49,7 +48,7 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		//set Updated missing from now
 		timeEntry.setUpdated(now);
 		
-		String sql = "UPDATE TimeEntry SET"
+		String sql = "UPDATE Time_Entry SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "task = ?, "
@@ -64,7 +63,6 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 			timeEntry.getUpdated(),
 			sessionUser.getId(),
 			timeEntry.getTask().getId(),
-			//get Request missing
 			timeEntry.getRequest().getId(),
 			timeEntry.getHoursConsumed(),
 			timeEntry.getUser().getId(),
@@ -75,10 +73,6 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		return timeEntry;
 	}
 
-	public ArrayList<TimeEntry> getListByQuery(String query) {
-		ArrayList<TimeEntry> teArr = new ArrayList<TimeEntry>();
-		return null;
-	}
 	//get TimeEntry
 	public TimeEntry recordQuery(String query, String columns) {
 		QueryHelper qh = new QueryHelper();
@@ -91,12 +85,12 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		
 		if(columns == "*") {
 			//If * add all columns for: TimeEntry
-			sql += " TimeEntry.*,";
+			sql += " Time_Entry.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
 				//Add only selected for table: TimeEntry
-				sql += " TimeEntry." + columnArr[i] + ",";
+				sql += " Time_Entry." + columnArr[i] + ",";
 			}
 		}
 		
@@ -106,37 +100,37 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: TimeEntry
-			sqlJoin += " LEFT JOIN User As createdby ON TimeEntry.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Time_Entry.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: TimeEntry
-			sqlJoin += " LEFT JOIN User As updatedby ON TimeEntry.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Time_Entry.updated_by = updatedby.id";
 		}
 		//Task
 		if(columns.equals("*") || columns.contains("task")) {
 			sql += " taskid.task_nbr,";
 			//Merge Task and: TimeEntry
-			sqlJoin += " LEFT JOIN Task As taskid ON TimeEntry.task = taskby.id";
+			sqlJoin += " LEFT JOIN Task As taskid ON Time_Entry.task = taskby.id";
 		}
 		//Request
 		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
 			//Merge Request and: TimeEntry
-			sqlJoin += " LEFT JOIN Request As requestid ON TimeEntry.request_id = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Time_Entry.request_id = requestid.id";
 		}
 		//User
 		if(columns.equals("*") || columns.contains("user_id")) {
 			sql += " userid.full_name,";
-			//Merge Request and: TimeEntry
-			sqlJoin += " LEFT JOIN User As userid ON TimeEntry.user_id = userid.id";
+			//Merge User and: TimeEntry
+			sqlJoin += " LEFT JOIN User As userid ON Time_Entry.user_id = userid.id";
 		}
 		//Contract
 		if(columns.equals("*") || columns.contains("contract_id")) {
 			sql += " contractclient.client_nme,";
 			//Merge Contract and: Request
-			sqlJoin += " LEFT JOIN Contract As contractid ON TimeEntry.contract_id = contractid.id";
+			sqlJoin += " LEFT JOIN Contract As contractid ON Time_Entry.contract_id = contractid.id";
 			//Merge Client on contractid
 			sqlJoin += " LEFT JOIN Client As contractclient ON contratid.client_id = contractclient.id";
 		}
@@ -144,7 +138,7 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("client_id")) {
 			sql += " clientid.client_nme,";
 			//Merge Request and: TimeEntry
-			sqlJoin += " LEFT JOIN Client As clientid ON TimeEntry.client_id = clientid.id";
+			sqlJoin += " LEFT JOIN Client As clientid ON Time_Entry.client_id = clientid.id";
 		}
 		
 		
@@ -154,7 +148,7 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement: TimeEntry
-		sql += " FROM TimeEntry" + sqlJoin;
+		sql += " FROM Time_Entry" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -181,11 +175,11 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		}
 		
 		if(columns == "*") {
-			sql += " TimeEntry.*,";
+			sql += " Time_Entry.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " TimeEntry." + columnArr[i] + ",";
+				sql += " Time_Entry." + columnArr[i] + ",";
 			}
 		}
 		
@@ -195,37 +189,37 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: TimeEntry
-			sqlJoin += " LEFT JOIN User As createdby ON TimeEntry.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Time_Entry.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: TimeEntry
-			sqlJoin += " LEFT JOIN User As updatedby ON TimeEntry.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Time_Entry.updated_by = updatedby.id";
 		}
 		//Task
 		if(columns.equals("*") || columns.contains("task")) {
 			sql += " taskid.task_nbr,";
 			//Merge Task and: TimeEntry
-			sqlJoin += " LEFT JOIN Task As taskid ON TimeEntry.task = taskby.id";
+			sqlJoin += " LEFT JOIN Task As taskid ON Time_Entry.task = taskby.id";
 		}
 		//Request
 		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
 			//Merge Request and: TimeEntry
-			sqlJoin += " LEFT JOIN Request As requestid ON TimeEntry.request_id = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Time_Entry.request_id = requestid.id";
 		}
 		//User
 		if(columns.equals("*") || columns.contains("user_id")) {
 			sql += " userid.full_name,";
 			//Merge Request and: TimeEntry
-			sqlJoin += " LEFT JOIN User As userid ON TimeEntry.user_id = userid.id";
+			sqlJoin += " LEFT JOIN User As userid ON Time_Entry.user_id = userid.id";
 		}
 		//Contract
 		if(columns.equals("*") || columns.contains("contract_id")) {
 			sql += " contractclient.client_nme,";
 			//Merge Contract and: Request
-			sqlJoin += " LEFT JOIN Contract As contractid ON TimeEntry.contract_id = contractid.id";
+			sqlJoin += " LEFT JOIN Contract As contractid ON Time_Entry.contract_id = contractid.id";
 			//Merge Client on contractid
 			sqlJoin += " LEFT JOIN Client As contractclient ON contratid.client_id = contractclient.id";
 		}
@@ -233,7 +227,7 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("client_id")) {
 			sql += " clientid.client_nme,";
 			//Merge Request and: TimeEntry
-			sqlJoin += " LEFT JOIN Client As clientid ON TimeEntry.client_id = clientid.id";
+			sqlJoin += " LEFT JOIN Client As clientid ON Time_Entry.client_id = clientid.id";
 		}
 				
 		//If last character is a comma, remove it
@@ -242,7 +236,7 @@ public class TimeEntryDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM TimeEntry" + sqlJoin;
+		sql += " FROM Time_Entry" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {

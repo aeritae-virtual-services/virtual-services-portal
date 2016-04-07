@@ -21,7 +21,7 @@ public class EmailLogDAO extends JdbcDaoSupport{
 	public EmailLog insert(final EmailLog emailLog, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO EmailLog (created_by, updated_by, "
+		final String sql = "INSERT INTO Email_Log (created_by, updated_by, "
 				+ "email_recipient, email_from, email_direction, email_subject, email_body, email_template_id"
 				+ "email_table, table_record_id, status, client)"
 				+ "VALUES(?,?,?,?"
@@ -57,7 +57,7 @@ public class EmailLogDAO extends JdbcDaoSupport{
 		java.sql.Date now = new java.sql.Date(new java.util.Date().getTime());
 		emailLog.setUpdated(now);
 		
-		String sql = "UPDATE EmailLog SET"
+		String sql = "UPDATE Email_Log SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "email_recipient = ?, "
@@ -101,12 +101,12 @@ public class EmailLogDAO extends JdbcDaoSupport{
 		
 		if(columns == "*") {
 			//If * add all columns for: EmailLog
-			sql += " EmailLog.*,";
+			sql += " Email_Log.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				//Add only selected for table: EmailLog
-				sql += " EmailLog." + columnArr[i] + ",";
+				//Add only selected for table: Email_Log
+				sql += " Email_Log." + columnArr[i] + ",";
 			}
 		}
 		
@@ -116,28 +116,28 @@ public class EmailLogDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: EmailLog
-			sqlJoin += " LEFT JOIN User As createdby ON EmailLog.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Email_Log.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: EmailLog
-			sqlJoin += " LEFT JOIN User As updatedby ON EmailLog.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Email_Log.updated_by = updatedby.id";
 		}
 		//EmailTemplate
 		if(columns.equals("*") || columns.contains("email_template_id")) {
 			sql += " emailtemplateid.email_subject,";
-			sqlJoin += " LEFT JOIN EmailTemplate As emailtemplateid ON EmailLog.email_template_id = emailtemplateid.id";
+			sqlJoin += " LEFT JOIN Email_Template As emailtemplateid ON Email_Log.email_template_id = emailtemplateid.id";
 		}
 		//Status
 		if(columns.equals("*") || columns.contains("status")) {
 			sql += " statusid.label,";
-			sqlJoin += " LEFT JOIN Status As statusid ON EmailLog.status = statusid.id";
+			sqlJoin += " LEFT JOIN Status As statusid ON Email_Log.status = statusid.id";
 		}
 		//Client
 		if(columns.equals("*") || columns.contains("client")) {
 			sql += " clientid.client_nme,";
-			sqlJoin += " LEFT JOIN Client As clientid ON EmailLog.client = clientid.id";
+			sqlJoin += " LEFT JOIN Client As clientid ON Email_Log.client = clientid.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -146,7 +146,7 @@ public class EmailLogDAO extends JdbcDaoSupport{
 		}
 		
 		//Add Generated Join Clauses to SQL Statement: EmailLog
-		sql += " FROM EmailLog" + sqlJoin;
+		sql += " FROM Email_Log" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -187,28 +187,28 @@ public class EmailLogDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 					sql += " createdby.full_name,";
 					//Merge User and: EmailLog
-					sqlJoin += " LEFT JOIN User As createdby ON EmailLog.created_by = createdby.id";
+					sqlJoin += " LEFT JOIN User As createdby ON Email_Log.created_by = createdby.id";
 				}
 				//Updated By
 				if(columns.equals("*") || columns.contains("updated_by")) {
 					sql += " updatedby.full_name,";
 					//Merge User and: EmailLog
-					sqlJoin += " LEFT JOIN User As updatedby ON EmailLog.updated_by = updatedby.id";
+					sqlJoin += " LEFT JOIN User As updatedby ON Email_Log.updated_by = updatedby.id";
 				}
 				//EmailTemplate
 				if(columns.equals("*") || columns.contains("email_template_id")) {
 					sql += " emailtemplateid.email_subject,";
-					sqlJoin += " LEFT JOIN EmailTemplate As emailtemplateid ON EmailLog.email_template_id = emailtemplateid.id";
+					sqlJoin += " LEFT JOIN Email_Template As emailtemplateid ON Email_Log.email_template_id = emailtemplateid.id";
 				}
 				//Status
 				if(columns.equals("*") || columns.contains("status")) {
 					sql += " statusid.label,";
-					sqlJoin += " LEFT JOIN Status As statusid ON EmailLog.status = statusid.id";
+					sqlJoin += " LEFT JOIN Status As statusid ON Email_Log.status = statusid.id";
 				}
 				//Client
 				if(columns.equals("*") || columns.contains("client")) {
 					sql += " clientid.client_nme,";
-					sqlJoin += " LEFT JOIN Client As clientid ON EmailLog.client = clientid.id";
+					sqlJoin += " LEFT JOIN Client As clientid ON Email_Log.client = clientid.id";
 				}
 		
 		//If last character is a comma, remove it

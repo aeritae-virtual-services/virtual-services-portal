@@ -46,8 +46,8 @@ public class RequestDAO extends JdbcDaoSupport {
 						ps.setDate(9, request.getRequestedCompletionDate());
 						ps.setInt(10, request.getPriority().getId());
 						ps.setString(11, request.getUpdateSet());
-						ps.setBoolean(12, request.isRequestLOE());
-						ps.setFloat(13, request.getEstimatedLOE());
+						ps.setBoolean(12, request.isRequestLevelOfEffort());
+						ps.setFloat(13, request.getEstimatedLevelOfEffort());
 						ps.setFloat(14, request.getHoursConsumed());
 						ps.setInt(15, request.getRequestType().getId());
 						ps.setInt(16, request.getContract().getId());
@@ -102,8 +102,8 @@ public class RequestDAO extends JdbcDaoSupport {
 			request.getRequestedCompletionDate(),
 			request.getPriority().getId(),
 			request.getUpdateSet(),
-			request.isRequestLOE(),
-			request.getEstimatedLOE(),
+			request.isRequestLevelOfEffort(),
+			request.getEstimatedLevelOfEffort(),
 			request.getHoursConsumed(),
 			request.getRequestType().getId(),
 			request.getContract().getId(),
@@ -171,11 +171,11 @@ public class RequestDAO extends JdbcDaoSupport {
 			//Merge Priority and: Request
 			sqlJoin += " LEFT JOIN Priority As priorityid ON Request.priority = priorityid.id";
 		}
-		//RequestType
+		//Request_Type
 		if(columns.equals("*") || columns.contains("request_type")) {
 			sql += " requesttype.req_type_nme,";
-			//Merge RequestType and: Request
-			sqlJoin += " LEFT JOIN RequestType As requesttype ON Request.request_type = requesttype.id";
+			//Merge Request_Type and: Request
+			sqlJoin += " LEFT JOIN Request_Type As requesttype ON Request.request_type = requesttype.id";
 		}
 		//Contract
 		if(columns.equals("*") || columns.contains("contract_id")) {
@@ -277,11 +277,11 @@ public class RequestDAO extends JdbcDaoSupport {
 			//Merge Priority and: Request
 			sqlJoin += " LEFT JOIN Priority As priorityid ON Request.priority = priorityid.id";
 		}
-		//RequestType
+		//Request_Type
 		if(columns.equals("*") || columns.contains("request_type")) {
 			sql += " requesttype.req_type_nme,";
-			//Merge RequestType and: Request
-			sqlJoin += " LEFT JOIN RequestType As requesttype ON Request.request_type = requesttype.id";
+			//Merge Request_Type and: Request
+			sqlJoin += " LEFT JOIN Request_Type As requesttype ON Request.request_type = requesttype.id";
 		}
 		//Contract
 		if(columns.equals("*") || columns.contains("contract_id")) {

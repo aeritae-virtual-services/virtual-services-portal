@@ -32,7 +32,7 @@ public class StatusDAO extends JdbcDaoSupport{
 						ps.setString(3, status.getLabel());
 						ps.setInt(4, status.getValue());
 						//Table missing from status object, used type
-						ps.setString(5, status.getType());
+						ps.setString(5, status.getTable());
 						return ps;
 					}
 				}, keyHolder);		
@@ -60,7 +60,7 @@ public class StatusDAO extends JdbcDaoSupport{
 			status.getLabel(),
 			status.getValue(),
 			//Table missing from status, used type instead
-			status.getType(),
+			status.getTable(),
 			status.getId()
 		});
 		return status;

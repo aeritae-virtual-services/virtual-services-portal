@@ -15,7 +15,7 @@ public class RequestType {
 	private User updatedBy;
 	private String name;
 	private String description;
-	private WorkflowStep firstStep;
+	private WorkflowStep firstWorkflowStep;
 	
 	public RequestType(){
 	}
@@ -25,12 +25,12 @@ public class RequestType {
 	 this.displayValue = displayValue;
 	}
 	
-	public RequestType(int id, String name, String description, WorkflowStep firstStep, User createdBy, 
+	public RequestType(int id, String name, String description, WorkflowStep firstWorkflowStep, User createdBy, 
 			User updatedBy){
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.firstStep = firstStep;
+		this.setFirstWorkflowStep(firstWorkflowStep);
 		this.createdBy = createdBy;
 		this.updatedBy = updatedBy;
 		this.displayValue = this.name;
@@ -58,14 +58,6 @@ public class RequestType {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public WorkflowStep getFirstStep() {
-		return firstStep;
-	}
-
-	public void setFirstStep(WorkflowStep firstStep) {
-		this.firstStep = firstStep;
 	}
 
 	public Date getCreated() {
@@ -110,5 +102,13 @@ public class RequestType {
 	
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+
+	public WorkflowStep getFirstWorkflowStep() {
+		return firstWorkflowStep;
+	}
+
+	public void setFirstWorkflowStep(WorkflowStep firstWorkflowStep) {
+		this.firstWorkflowStep = firstWorkflowStep;
 	}
 }

@@ -19,7 +19,7 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 	public WorkflowOperation insert(final WorkflowOperation workflowOperation, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO WorkflowOperation (created_by, updated_by, "
+		final String sql = "INSERT INTO Workflow_Operation (created_by, updated_by, "
 				+ "operation_nme, description)"
 					+ "VALUES(?,?,?,?)";
 		
@@ -44,7 +44,7 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		//set Updated missing from now
 		workflowOperation.setUpdated(now);
 		
-		String sql = "UPDATE WorkflowOperation SET"
+		String sql = "UPDATE Workflow_Operation SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "operation_nme = ?, "
@@ -73,12 +73,12 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		
 		if(columns == "*") {
 			//If * add all columns for: WorkflowOperation
-			sql += " WorkflowOperation.*,";
+			sql += " Workflow_Operation.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
 				//Add only selected for table: WorkflowOperation
-				sql += " WorkflowOperation." + columnArr[i] + ",";
+				sql += " Workflow_Operation." + columnArr[i] + ",";
 			}
 		}
 		
@@ -88,13 +88,13 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: WorkflowOperation
-			sqlJoin += " LEFT JOIN User As createdby ON WorkflowOperation.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Workflow_Operation.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: WorkflowOperation
-			sqlJoin += " LEFT JOIN User As updatedby ON WorkflowOperation.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Workflow_Operation.updated_by = updatedby.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -103,7 +103,7 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement: WorkflowOperation
-		sql += " FROM WorkflowOperation" + sqlJoin;
+		sql += " FROM Workflow_Operation" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -130,11 +130,11 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		}
 		
 		if(columns == "*") {
-			sql += " WorkflowOperation.*,";
+			sql += " Workflow_Operation.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " WorkflowOperation." + columnArr[i] + ",";
+				sql += " Workflow_Operation." + columnArr[i] + ",";
 			}
 		}
 		
@@ -144,13 +144,13 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: WorkflowOperation
-			sqlJoin += " LEFT JOIN User As createdby ON WorkflowOperation.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Workflow_Operation.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: WorkflowOperation
-			sqlJoin += " LEFT JOIN User As updatedby ON WorkflowOperation.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Workflow_Operation.updated_by = updatedby.id";
 		}
 				
 		//If last character is a comma, remove it
@@ -159,7 +159,7 @@ public class WorkflowOperationDAO extends JdbcDaoSupport {
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM WorkflowOperation" + sqlJoin;
+		sql += " FROM Workflow_Operation" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {

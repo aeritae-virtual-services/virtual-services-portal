@@ -19,7 +19,7 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 	public TaskType insert(final TaskType taskType, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO TaskType (created_by, updated_by, "
+		final String sql = "INSERT INTO Task_Type (created_by, updated_by, "
 				+ "label, value)"
 					+ "VALUES(?,?,?,?)";
 		
@@ -31,6 +31,7 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 						ps.setInt(2, sessionUser.getId());
 						//getLabel getValue missing from TaskType
 						ps.setString(3, taskType.getLabel());
+						ps.setString(4, taskType.getValue());
 						return ps;
 					}
 				}, keyHolder);		
@@ -44,7 +45,7 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		//set Updated missing from now
 		taskType.setUpdated(now);
 		
-		String sql = "UPDATE TaskType SET"
+		String sql = "UPDATE Task_Type SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "label = ?, "
@@ -56,6 +57,7 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 			sessionUser.getId(),
 			//getLabel getValue missing from TaskType
 			taskType.getLabel(),
+			taskType.getValue(),
 			taskType.getId()
 		});
 		return taskType;
@@ -72,12 +74,12 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		
 		if(columns == "*") {
 			//If * add all columns for: TaskType
-			sql += " TaskType.*,";
+			sql += " Task_Type.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
 				//Add only selected for table: TaskType
-				sql += " TaskType." + columnArr[i] + ",";
+				sql += " Task_Type." + columnArr[i] + ",";
 			}
 		}
 		
@@ -87,13 +89,13 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: TaskType
-			sqlJoin += " LEFT JOIN User As createdby ON TaskType.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Task_Type.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: TaskType
-			sqlJoin += " LEFT JOIN User As updatedby ON TaskType.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Task_Type.updated_by = updatedby.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -102,7 +104,7 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		}
 		
 		//Add Generated Join Clauses to SQL Statement: TaskType
-		sql += " FROM TaskType" + sqlJoin;
+		sql += " FROM Task_Type" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {
@@ -129,11 +131,11 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		}
 		
 		if(columns == "*") {
-			sql += " TaskType.*,";
+			sql += " Task_Type.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " TaskType." + columnArr[i] + ",";
+				sql += " Task_Type." + columnArr[i] + ",";
 			}
 		}
 		
@@ -143,13 +145,13 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: TaskType
-			sqlJoin += " LEFT JOIN User As createdby ON TaskType.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Task_Type.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: TaskType
-			sqlJoin += " LEFT JOIN User As updatedby ON TaskType.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Task_Type.updated_by = updatedby.id";
 		}
 				
 		//If last character is a comma, remove it
@@ -158,7 +160,7 @@ public class TaskTypeDAO extends JdbcDaoSupport{
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM TaskType" + sqlJoin;
+		sql += " FROM Task_Type" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {

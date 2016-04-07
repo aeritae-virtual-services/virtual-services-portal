@@ -16,7 +16,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String fullName;
-	private String phone;
+	private String phoneNumber;
 	private String email;
 	private Client client;
 	private Date created;
@@ -38,12 +38,12 @@ public class User {
 		this.displayValue = displayValue;
 	}
 	
-	public User(String username, String firstName, String lastName, String phone, String email, Client client, Role role, User createdBy, User updatedBy){
+	public User(String username, String firstName, String lastName, String phoneNumber, String email, Client client, Role role, User createdBy, User updatedBy){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.fullName = firstName + " " + lastName;
 		this.displayValue = this.fullName;
-		this.phone = phone;
+		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.client = client;
 		this.role = role;
@@ -71,6 +71,14 @@ public class User {
 		return fullName;
 	}
 	
+	public void setCreated(Date created){
+		this.created=created;
+	}
+	
+	public void setUpdated(Date updated){
+		this.updated=updated;
+	}
+	
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
@@ -91,12 +99,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {

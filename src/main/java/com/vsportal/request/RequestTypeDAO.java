@@ -20,7 +20,7 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 	public RequestType insert(final RequestType requestType, final User sessionUser) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		final String sql = "INSERT INTO RequestType (created_by, updated_by, "
+		final String sql = "INSERT INTO Request_Type (created_by, updated_by, "
 				+ "req_type_nme, description, first_workflow_step"
 				+ ")"
 				+ "VALUES(?,?,"
@@ -35,7 +35,7 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 						ps.setInt(2, sessionUser.getId());
 						ps.setString(3, requestType.getName());
 						ps.setString(4, requestType.getDescription());
-						ps.setInt(5, requestType.getFirstStep().getID());
+						ps.setInt(5, requestType.getFirstWorkflowStep().getID());
 						return ps;
 					}
 				}, keyHolder);
@@ -49,7 +49,7 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 		java.sql.Date now = new java.sql.Date(new java.util.Date().getTime());
 		requestType.setUpdated(now);
 		
-		String sql = "UPDATE RequestType SET"
+		String sql = "UPDATE Request_Type SET"
 				+ "updated = ?, "
 				+ "updated_by = ?, "
 				+ "req_type_nme = ?,"
@@ -62,7 +62,7 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 			sessionUser.getId(),
 			requestType.getName(),
 			requestType.getDescription(),
-			requestType.getFirstStep().getID(),
+			requestType.getFirstWorkflowStep().getID(),
 			requestType.getId()
 		});
 		
@@ -80,12 +80,12 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 		
 		if(columns == "*") {
 			//If * add all columns for: RequestType
-			sql += " RequestType.*,";
+			sql += " Request_Type.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
 				//Add only selected for table: RequestType
-				sql += " RequestType." + columnArr[i] + ",";
+				sql += " Request_Type." + columnArr[i] + ",";
 			}
 		}
 		
@@ -95,21 +95,21 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: RequestType
-			sqlJoin += " LEFT JOIN User As createdby ON RequestType.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Request_Type.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: RequestType
-			sqlJoin += " LEFT JOIN User As updatedby ON RequestType.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Request_Type.updated_by = updatedby.id";
 		}
 		//First Workflow Step
 		if(columns.equals("*") || columns.contains("first_workflow_step")) {
 			sql += " tasktypeid.label,";
 			//Merge User and: RequestType
-			sqlJoin += " LEFT JOIN WorkflowStep As firstworkflowstep ON RequestType.first_workflow_step = firstworkflowstep.id";
+			sqlJoin += " LEFT JOIN Workflow_Step As firstworkflowstep ON Request_Type.first_workflow_step = firstworkflowstep.id";
 			//Merge Workflow Step and TaskType
-			sqlJoin += " LEFT JOIN TaskType As tasktypeid ON firstworkflowstep.task_type = tasktypeid.id";
+			sqlJoin += " LEFT JOIN Task_Type As tasktypeid ON firstworkflowstep.task_type = tasktypeid.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -145,11 +145,11 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 		}
 		
 		if(columns == "*") {
-			sql += " RequestType.*,";
+			sql += " Request_Type.*,";
 		} else {
 			String[] columnArr = columns.split(",");
 			for(int i = 0; i < columnArr.length; i++) {
-				sql += " RequestType." + columnArr[i] + ",";
+				sql += " Request_Type." + columnArr[i] + ",";
 			}
 		}
 		
@@ -159,21 +159,21 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 		if(columns.equals("*") || columns.contains("created_by")) {
 			sql += " createdby.full_name,";
 			//Merge User and: RequestType
-			sqlJoin += " LEFT JOIN User As createdby ON RequestType.created_by = createdby.id";
+			sqlJoin += " LEFT JOIN User As createdby ON Request_Type.created_by = createdby.id";
 		}
 		//Updated By
 		if(columns.equals("*") || columns.contains("updated_by")) {
 			sql += " updatedby.full_name,";
 			//Merge User and: RequestType
-			sqlJoin += " LEFT JOIN User As updatedby ON RequestType.updated_by = updatedby.id";
+			sqlJoin += " LEFT JOIN User As updatedby ON Request_Type.updated_by = updatedby.id";
 		}
 		//First Workflow Step
 		if(columns.equals("*") || columns.contains("first_workflow_step")) {
 			sql += " tasktypeid.label,";
 			//Merge User and: RequestType
-			sqlJoin += " LEFT JOIN WorkflowStep As firstworkflowstep ON RequestType.first_workflow_step = firstworkflowstep.id";
+			sqlJoin += " LEFT JOIN Workflow_Step As firstworkflowstep ON Request_Type.first_workflow_step = firstworkflowstep.id";
 			//Merge Workflow Step and TaskType
-			sqlJoin += " LEFT JOIN TaskType As tasktypeid ON firstworkflowstep.task_type = tasktypeid.id";
+			sqlJoin += " LEFT JOIN Task_Type As tasktypeid ON firstworkflowstep.task_type = tasktypeid.id";
 		}
 		
 		//If last character is a comma, remove it
@@ -182,7 +182,7 @@ public class RequestTypeDAO extends JdbcDaoSupport{
 		}
 		
 		//Add Generated Join Clauses to SQL Statement
-		sql += " FROM RequestType" + sqlJoin;
+		sql += " FROM Request_Type" + sqlJoin;
 		
 		//Add Where Clause if necessary
 		if(query != "") {

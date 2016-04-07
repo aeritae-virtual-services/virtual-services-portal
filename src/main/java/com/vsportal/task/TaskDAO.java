@@ -102,7 +102,7 @@ public class TaskDAO extends JdbcDaoSupport {
 			task.getPokedAnalyst().getId(),
 			task.getPokedDate(),
 			task.getPokedBy().getId(),
-			task.getClient.getId(),
+			task.getClient().getId(),
 			task.getId()
 		});
 		

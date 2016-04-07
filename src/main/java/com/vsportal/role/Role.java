@@ -44,32 +44,44 @@ public class Role {
 		this.value = value;
 	}
 
-	public User getcreatedBy() {
+	public User getCreatedBy() {
 		return createdBy;
 	}
-
-	public void setcreatedBy(User createdBy) {
+	
+	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
 
-	public User getupdatedBy() {
+	public User getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setupdatedBy(User updatedBy) {
+	public void setUpdatedBy(User updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int id){
+		this.id=id;
+	}
 
 	public Date getCreated() {
 		return created;
 	}
+	
+	public void setCreated(Date created){
+		this.created = created;
+	}
 
 	public Date getUpdated() {
 		return updated;
+	}
+	
+	public void setUpdated(Date updated){
+		this.updated = updated;
 	}
 	
 	public DropdownOption getDropdownOption() {

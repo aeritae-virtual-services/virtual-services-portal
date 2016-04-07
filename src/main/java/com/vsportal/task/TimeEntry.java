@@ -5,6 +5,7 @@ import java.sql.Date;
 import com.vsportal.client.Client;
 import com.vsportal.contract.Contract;
 import com.vsportal.user.User;
+import com.vsportal.request.Request;
 
 public class TimeEntry {
 	private int id;
@@ -14,16 +15,21 @@ public class TimeEntry {
 	private Date updated;
 	private User updatedBy;
 	private Task task;
+	private Request request;
 	private float hoursConsumed;
 	private User user;
 	private Contract contract;
 	private Client client;
 	
+	public TimeEntry(){
+		super();
+	}
+	
 	public TimeEntry(int id, String displayValue){
 		this.id = id;
 		this.displayValue = displayValue;
 	}
-	public TimeEntry(int id, Date created, User createdBy, Date updated, User updatedBy, Task task, float hoursConsumed,
+	public TimeEntry(int id, Date created, User createdBy, Date updated, User updatedBy, Task task, Request request, float hoursConsumed,
 			User user, Contract contract, Client client) {
 		super();
 		this.id = id;
@@ -32,6 +38,7 @@ public class TimeEntry {
 		this.updated = updated;
 		this.updatedBy = updatedBy;
 		this.task = task;
+		this.request = request;
 		this.hoursConsumed = hoursConsumed;
 		this.user = user;
 		this.contract = contract;
@@ -108,5 +115,11 @@ public class TimeEntry {
 	
 	public void setDisplayValue(String displayValue){
 		this.displayValue = displayValue;
+	}
+	public Request getRequest() {
+		return request;
+	}
+	public void setRequest(Request request) {
+		this.request = request;
 	}
 }
