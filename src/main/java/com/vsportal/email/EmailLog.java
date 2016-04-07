@@ -20,7 +20,7 @@ public class EmailLog {
 	private String body;
 	private EmailTemplate template;
 	private String table;
-	private int tableId;
+	private int tableRecordId;
 	private Status status;
 	private Client client;
 	
@@ -34,7 +34,7 @@ public class EmailLog {
 	}
 
 	public EmailLog(int id, Date created, User createdBy, Date updated, User updatedBy, String recipient, String from,
-			String direction, String subject, String body, EmailTemplate template, String table, int tableId,
+			String direction, String subject, String body, EmailTemplate template, String table, int tableRecordId,
 			Status status, Client client) {
 		super();
 		this.id = id;
@@ -49,7 +49,7 @@ public class EmailLog {
 		this.body = body;
 		this.template = template;
 		this.table = table;
-		this.tableId = tableId;
+		this.tableRecordId = tableRecordId;
 		this.status = status;
 		this.client = client;
 		this.displayValue = this.subject;
@@ -151,12 +151,12 @@ public class EmailLog {
 		this.table = table;
 	}
 
-	public int getTableId() {
-		return tableId;
+	public int getTableRecordId() {
+		return tableRecordId;
 	}
 
-	public void setTableId(int tableId) {
-		this.tableId = tableId;
+	public void setTableRecordId(int tableRecordId) {
+		this.tableRecordId = tableRecordId;
 	}
 
 	public Status getStatus() {

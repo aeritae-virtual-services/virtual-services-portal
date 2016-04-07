@@ -17,7 +17,7 @@ public class TaskTypeRowMapper<T> implements RowMapper<TaskType> {
 		User ub = new User(rs.getInt("Task_Type.updated_by"), rs.getString("updatedby.full_name"));
 		taskType.setUpdatedBy(ub);
 		taskType.setLabel(rs.getString("Task_Type.label"));
-		taskType.setValue(rs.getString("Task_TYpe.value"));
+		taskType.setValue(rs.getString("Task_Type.value"));
 		return taskType;
 	}
 }

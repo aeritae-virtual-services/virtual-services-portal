@@ -17,7 +17,7 @@ public class ListDefinitionRowMapper<T> implements RowMapper<ListDefinition> {
 		User ub = new User(rs.getInt("List_Definition.updated_by"), rs.getString("updatedby.full_name"));
 		listDefinition.setUpdatedBy(ub);
 		listDefinition.setTableName(rs.getString("List_Definition.table_nme"));
-		listDefinition.setRole(new Role(rs.getInt("List_Definition.role_id"),rs.getString("roleid.role_nme")));
+		listDefinition.setRoleId(new Role(rs.getInt("List_Definition.role_id"),rs.getString("roleid.role_nme")));
 		listDefinition.setColumnLabel(rs.getString("List_Definition.column_label"));
 		listDefinition.setColumnName(rs.getString("List_Definition.column_nme"));
 		listDefinition.setSequence(rs.getInt("List_Definition.sequence"));

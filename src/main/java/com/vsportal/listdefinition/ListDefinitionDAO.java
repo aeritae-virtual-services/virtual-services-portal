@@ -35,7 +35,7 @@ public class ListDefinitionDAO extends JdbcDaoSupport{
 							ps.setInt(1, sessionUser.getId());
 							ps.setInt(2, sessionUser.getId());
 							ps.setString(3, listDefinition.getTableName());
-							ps.setInt(4, listDefinition.getRole().getId());
+							ps.setInt(4, listDefinition.getRoleId().getId());
 							ps.setString(5, listDefinition.getColumnLabel());
 							ps.setString(6, listDefinition.getColumnName());
 							ps.setInt(7, listDefinition.getSequence());

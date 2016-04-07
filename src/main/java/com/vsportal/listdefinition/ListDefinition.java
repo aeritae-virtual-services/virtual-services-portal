@@ -13,7 +13,7 @@ public class ListDefinition implements Comparable<ListDefinition>{
 	private Date updated;
 	private User updatedBy;
 	private String tableName;
-	private Role role;
+	private Role roleId;
 	private String columnLabel;
 	private String columnName;
 	private int sequence;
@@ -27,7 +27,7 @@ public class ListDefinition implements Comparable<ListDefinition>{
 	}
 
 	public ListDefinition(int id, Date created, User createdBy, Date updated, User updatedBy, String tableName,
-			Role role, String columnLabel, String columnName, int sequence) {
+			Role roleId, String columnLabel, String columnName, int sequence) {
 		super();
 		this.id = id;
 		this.created = created;
@@ -35,7 +35,7 @@ public class ListDefinition implements Comparable<ListDefinition>{
 		this.updated = updated;
 		this.updatedBy = updatedBy;
 		this.tableName = tableName;
-		this.role = role;
+		this.roleId = roleId;
 		this.columnLabel = columnLabel;
 		this.columnName = columnName;
 		this.sequence = sequence;
@@ -98,12 +98,12 @@ public class ListDefinition implements Comparable<ListDefinition>{
 		this.tableName = tableName;
 	}
 
-	public Role getRole() {
-		return role;
+	public Role getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(Role roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getColumnLabel() {

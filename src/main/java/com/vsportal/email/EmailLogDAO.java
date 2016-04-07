@@ -41,7 +41,7 @@ public class EmailLogDAO extends JdbcDaoSupport{
 						ps.setString(7, emailLog.getSubject());
 						ps.setInt(8, emailLog.getTemplate().getId());
 						ps.setString(9, emailLog.getTable());
-						ps.setInt(10, emailLog.getTableId());
+						ps.setInt(10, emailLog.getTableRecordId());
 						ps.setInt(11, emailLog.getStatus().getId());
 						//getClient missing
 						ps.setInt(12, emailLog.getClient().getId());

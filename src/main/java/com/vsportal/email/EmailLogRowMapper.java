@@ -27,7 +27,7 @@ public class EmailLogRowMapper<T> implements RowMapper<EmailLog> {
 		EmailTemplate emailTemplate = new EmailTemplate(rs.getInt("Email_Log.email_template_id"),rs.getString("emailtemplateid.email_subject"));
 		emailLog.setTemplate(emailTemplate);
 		emailLog.setTable(rs.getString("Email_Log.email_table"));
-		emailLog.setTableId(rs.getInt("Email_Log.table_record_id"));
+		emailLog.setTableRecordId(rs.getInt("Email_Log.table_record_id"));
 		Status status = new Status(rs.getInt("Email_Log.status"),rs.getString("statusid.label"));
 		emailLog.setStatus(status);
 		Client client = new Client(rs.getInt("Email_Log.client"),rs.getString("clientid.client_nme"));
