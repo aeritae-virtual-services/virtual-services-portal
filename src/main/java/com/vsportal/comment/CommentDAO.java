@@ -99,9 +99,9 @@ public class CommentDAO extends JdbcDaoSupport{
 			sqlJoin += " LEFT JOIN User As updatedby ON Comment.updated_by = updatedby.id";
 		}
 		//Request
-		if(columns.equals("*") || columns.contains("request")) {
+		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
-			sqlJoin += " LEFT JOIN Request As request ON Comment.request = request.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Comment.request_id = requestid.id";
 		}
 		
 		
@@ -161,9 +161,9 @@ public class CommentDAO extends JdbcDaoSupport{
 			sqlJoin += " LEFT JOIN User As updatedby ON Comment.updated_by = updatedby.id";
 		}
 		//Request
-		if(columns.equals("*") || columns.contains("request")) {
+		if(columns.equals("*") || columns.contains("request_id")) {
 			sql += " requestid.req_nbr,";
-			sqlJoin += " LEFT JOIN Request As requestid ON Comment.request = requestid.id";
+			sqlJoin += " LEFT JOIN Request As requestid ON Comment.request_id = requestid.id";
 		}
 		
 		//If last character is a comma, remove it

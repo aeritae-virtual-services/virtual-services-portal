@@ -60,7 +60,7 @@ VALUES					(1,
 						(1,1,3,3,'2016-02-19','2016-06-02','2016-06-17',6,30,20,10,5,6,100,0,6,5000,30,20,10,5,1,2000,1000,250),
 						(1,1,4,3,'2016-03-19','2016-07-02','2016-07-05',6,30,20,10,5,6,100,0,7,5000,30,20,10,5,1,2000,1000,250)
 ;
-INSERT INTO `User`		(created_by, updated_by, user_id, first_nme, last_nme, full_nme, phone_number, email, client_id, role_id, profile_image,passwd)
+INSERT INTO `User`		(created_by, updated_by, user_id, first_name, last_name, full_name, phone_number, email, client_id, role_id, profile_image,passwd)
 VALUES					(1,1,'aaa','Admin','Admin','Admin Admin','000-000-0000','admin@admin.com','',0,'',''),
 						(1,1,'bbb','Beta','Beta','Beta Beta','111-111-1111','beta@beta.com','',0,'',''),
 						(1,1,'mcu','Magic','User','Magic User','222-222-2222','magic@client.com',1,1,'',''),
@@ -127,7 +127,7 @@ VALUES						(1,1,'TypeA'),
 ;
 
 INSERT INTO `Task`			(created_by, updated_by, request_id,assignment_group,assigned_to,instructions,task_status,task_nbr,task_hours_consumed,poked_analyst,poked_date,poked_by,client_id)
-							(1,1,1,0,5,'Show visual design for new form',1,'123',0,0,'',1),
+VALUES						(1,1,1,0,5,'Show visual design for new form',1,'123',0,0,'',1),
 							(1,1,2,0,5,'Check requirements for transition to new version',8,'321',0,0,'',2),
 							(1,1,3,0,5,'Show visual design for new form',1,'123',0,0,'',2),
 							(1,1,4,0,5,'Check requirements for transition to new version',8,'321',0,0,'',1),
@@ -136,4 +136,35 @@ INSERT INTO `Task`			(created_by, updated_by, request_id,assignment_group,assign
 							(1,1,7,0,5,'Show visual design for new form',1,'123',0,0,'',4),
 							(1,1,8,0,5,'Check requirements for transition to new version',8,'321',0,0,'',4),
 							(1,1,9,0,5,'Page is full with color, review with client which they would like removed',2,'321',0,0,'',4)
+;
+
+INSERT INTO `Watch_List`	(created_by, updated_by, request_id, email_address)
+VALUES						(1,1,1,'creaform@clientone.com'),
+							(1,1,2,'update@clienttwo.com'),
+							(1,1,3,'createform@clientwo.com'),
+							(1,1,4,'update@clientone.com'),
+							(1,1,5,'creatform@clientthree.com'),
+							(1,1,6,'update@clientthree.com'),
+							(1,1,7,'createform@clientfour.com'),
+							(1,1,8,'update@clientfour.com'),
+							(1,1,9,'removecolors@clientfour.com')
+;
+
+INSERT INTO `Comments`		(created_by, updated_by, request_id, comment)
+VALUES						(1,1,1,'1:Ticket Created Manually Via SQL'),
+							(1,1,2,'2:Ticket Created Manually Via SQL'),
+							(1,1,3,'3:Ticket Created Manually Via SQL'),
+							(1,1,4,'4:Ticket Created Manually Via SQL'),
+							(1,1,5,'5:Ticket Created Manually Via SQL'),
+							(1,1,6,'6:Ticket Created Manually Via SQL'),
+							(1,1,7,'7:Ticket Created Manually Via SQL'),
+							(1,1,8,'8:Ticket Created Manually Via SQL'),
+							(1,1,9,'9:Ticket Created Manually Via SQL')
+;
+
+INSERT INTO `Tier`	(created_by,updated_by,tier_name,tier_description)
+VALUES				(1,1,'Tier 1','Description of Tier 1'),
+					(1,1,'Tier 2','Description of Tier 2'),
+					(1,1,'Tier 3','Description of Tier 3'),
+					(1,1,'Tier 4','Description of Tier 4')
 ;
