@@ -168,3 +168,24 @@ VALUES				(1,1,'Tier 1','Description of Tier 1'),
 					(1,1,'Tier 3','Description of Tier 3'),
 					(1,1,'Tier 4','Description of Tier 4')
 ;
+
+INSERT INTO `Approval`	(created_by,updated_by,client_id,request_id,decision_by,decision_date,decision,approval_type,description)
+VALUES					(1,1,1,1,3,'2016-04-24','Approved','Request for hours','Simple request to verify use of hours for this ticket'),
+						(1,1,4,9,4,'2016-04-24','Rejected','Verification','Confirmation that all colors would be removed')
+;
+
+INSERT INTO `Workflow_Operation` (created_by,updated_by,operation_nme,description)
+VALUES					(1,1,'Request','Request Workflow Operation')
+;
+
+INSERT INTO `Workflow_Step` (created_by,updated_by,operation_id,success_next_step,fail_next_step,description,email_template_id,assignment_group_id,instructions,new_status,write_metric,task_type)
+VALUES						(1,1,1,2,3,'Request is created',1,1,'Connect with the client to verify requirements',1,0,1),
+							(1,1,1,4,5,'Begin work on request',2,1,'Begin work on request',3,0,2),
+							(1,1,1,6,7,'Incorrect Requirements',3,1,'Given requirements do not match desired outcome',4,0,3)
+;
+
+INSERT INTO `Email_Template`	(created_by,updated_by,email_to,email_subject,email_body)
+VALUES							(1,1,'quemanagers@aeritae.com','A new request was created','A new request was created please verify the given requirements'),
+								(1,1,'ADNmembers@aeritae.com','A New request is avalible!','A new request has been verified and is avalible for work!'),
+								(1,1,'quemanagers@aeritae.com','A request has been closed','A request has been clsoed because of innaccurate requirements')			
+;
